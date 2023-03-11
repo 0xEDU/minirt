@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_close_window.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 19:53:24 by edu              ###   ########.fr       */
+/*   Created: 2023/03/11 20:05:53 by edu               #+#    #+#             */
+/*   Updated: 2023/03/11 20:19:18 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(void)
+void	mlx_close_window(t_mlx *mlx)
 {
-	t_mlx	mlx;
-
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
+	mlx_destroy_window(mlx->mlx, mlx->window);
+	mlx_destroy_display(mlx->mlx);
+	if (mlx->mlx)
+		free(mlx->mlx);
+	exit(0);
 }

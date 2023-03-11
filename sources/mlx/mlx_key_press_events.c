@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_key_press_events.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 19:53:24 by edu              ###   ########.fr       */
+/*   Created: 2023/03/11 19:54:36 by edu               #+#    #+#             */
+/*   Updated: 2023/03/11 20:05:33 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(void)
+int	mlx_key_press_events(int key_code, t_mlx *mlx)
 {
-	t_mlx	mlx;
-
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
+	if (key_code == 65307)
+		mlx_close_window(mlx);
 	return (0);
 }

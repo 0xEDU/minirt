@@ -6,7 +6,7 @@
 /*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:36:47 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 19:44:49 by edu              ###   ########.fr       */
+/*   Updated: 2023/03/11 20:11:34 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	mlx_loop_window(t_mlx *mlx)
 {
+	mlx_key_hook(mlx->window, &mlx_key_press_events, mlx);
 	mlx_loop(mlx->mlx);
 }
