@@ -21,11 +21,11 @@ LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(MLX_OBJS) $(LIBFT)
+$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) 
 	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
-	@make -C --no-print-directory libft
+	@make --no-print-directory -C libft
 	@echo "\033[1;92m[SUCCESS] LIBFT created!\033[0m"
 
 $(PATH_OBJS)%.o: $(PATH_SRCS)%.c
@@ -45,7 +45,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@make --no-print-directory -C libft clean
+	@make --no-print-directory -C libft fclean
 	@echo "\033[1;93m[SUCCESS] Full clean done!\33[0m"
 
 re: fclean all
