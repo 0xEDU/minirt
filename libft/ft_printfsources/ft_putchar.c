@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 21:08:32 by edu              ###   ########.fr       */
+/*   Created: 2022/09/27 21:46:43 by coder             #+#    #+#             */
+/*   Updated: 2022/10/01 03:55:17 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libput.h"
 
-int	main(void)
+int	ft_putchar(char c)
 {
-	t_mlx	mlx;
-
-	ft_printf("oi\n");
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
+	write(1, &c, 1);
+	return (1);
 }

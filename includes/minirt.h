@@ -6,7 +6,7 @@
 /*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:51:27 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 20:11:58 by edu              ###   ########.fr       */
+/*   Updated: 2023/03/11 21:07:32 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include "../libft/includes/libft.h"
+# include "../libft/includes/ft_printf.h"
+# include "../libft/includes/get_next_line.h"
+# include "../libft/includes/libput.h"
 
 typedef struct s_mlx {
 	void	*mlx;

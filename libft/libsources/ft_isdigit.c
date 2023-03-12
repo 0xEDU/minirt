@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 21:08:32 by edu              ###   ########.fr       */
+/*   Created: 2022/08/27 16:31:29 by coder             #+#    #+#             */
+/*   Updated: 2022/08/27 16:43:27 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isdigit(int c)
 {
-	t_mlx	mlx;
-
-	ft_printf("oi\n");
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
+	if (48 <= c && c <= 57)
+		return (2048);
+	else
+		return (0);
 }

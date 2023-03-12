@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 21:08:32 by edu              ###   ########.fr       */
+/*   Created: 2022/08/27 15:51:34 by coder             #+#    #+#             */
+/*   Updated: 2022/08/27 17:13:55 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isalpha(int c)
 {
-	t_mlx	mlx;
-
-	ft_printf("oi\n");
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
+	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+		return (1024);
+	else
+		return (0);
 }

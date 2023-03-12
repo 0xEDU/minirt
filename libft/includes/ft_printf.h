@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 21:08:32 by edu              ###   ########.fr       */
+/*   Created: 2022/09/27 12:28:37 by coder             #+#    #+#             */
+/*   Updated: 2022/10/14 15:51:19 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
 
-int	main(void)
-{
-	t_mlx	mlx;
-
-	ft_printf("oi\n");
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
-}
+int		ft_printf(const char *format, ...);
+int		print_pointer(unsigned long int p);
+#endif

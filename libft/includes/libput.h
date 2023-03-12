@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libput.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 21:08:32 by edu              ###   ########.fr       */
+/*   Created: 2022/08/27 15:51:37 by coder             #+#    #+#             */
+/*   Updated: 2022/10/14 15:51:33 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef LIBPUT_H
+# define LIBPUT_H
 
-int	main(void)
-{
-	t_mlx	mlx;
+# include <unistd.h>
 
-	ft_printf("oi\n");
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
-}
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(long long n);
+int		ft_putnbr_hex(unsigned long long n, char option);
+#endif
