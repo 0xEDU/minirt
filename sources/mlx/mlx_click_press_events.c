@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_click_press_events.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 21:14:31 by edu              ###   ########.fr       */
+/*   Created: 2023/03/11 21:13:15 by edu               #+#    #+#             */
+/*   Updated: 2023/03/11 21:18:25 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(void)
+int	mlx_click_press_events(t_mlx *mlx)
 {
-	t_mlx	mlx;
-
-	mlx_open_window(&mlx);
-	mlx_loop_window(&mlx);
-	return (0);
+	mlx_close_window(mlx);
+	exit(0);
 }

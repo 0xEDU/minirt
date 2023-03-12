@@ -8,6 +8,7 @@ SRCS = main.c
 MLX_SRCS = mlx_open_window.c \
 		   mlx_loop_window.c \
 		   mlx_close_window.c \
+		   mlx_click_press_events.c \
 		   mlx_key_press_events.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
