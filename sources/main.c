@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/20 19:21:28 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:30:08 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(void)
 	t_minirt	minirt;
 
 	mlx_open_window(&minirt.mlx);
+
 	mlx_loop_window(&minirt.mlx);
 	return (0);
 }

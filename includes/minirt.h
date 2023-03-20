@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:51:27 by edu               #+#    #+#             */
-/*   Updated: 2023/03/20 19:21:04 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:30:35 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,7 @@ void	mlx_loop_window(t_mlx *mlx);
 void	mlx_close_window(t_mlx *mlx);
 int		mlx_key_press_events(int key_code, t_mlx *mlx);
 int		mlx_click_press_events(t_mlx *mlx);
+void	mlx_pixel_draw(t_image *image, int x, int y, int color);
+void	mlx_create_image(t_minirt *minirt);
+void	mlx_image_to_window(t_minirt *minirt, int x, int y);
 #endif
