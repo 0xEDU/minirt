@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_open_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:23:31 by edu               #+#    #+#             */
-/*   Updated: 2023/03/11 19:25:16 by edu              ###   ########.fr       */
+/*   Updated: 2023/03/20 18:22:39 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	mlx_open_window(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	mlx->window = mlx_new_window(mlx->mlx, 800, 600, "minirt");
+	mlx->window = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "minirt");
 	if (!mlx->window)
 		free(mlx->window);
 }
