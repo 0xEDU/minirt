@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:51:27 by edu               #+#    #+#             */
-/*   Updated: 2023/03/20 18:22:10 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:21:04 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,24 @@
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libput.h"
 
+typedef struct s_image {
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+}				t_image;
+
 typedef struct s_mlx {
 	void	*mlx;
 	void	*window;
 }				t_mlx;
+
+typedef struct s_minirt {
+	t_mlx	mlx;
+	t_image	img;
+}				t_minirt;
+
 
 /* MLX-related functions */
 void	mlx_open_window(t_mlx *mlx);
