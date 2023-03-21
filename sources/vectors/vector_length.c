@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   vector_length.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:59:45 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 20:00:22 by guribeir         ###   ########.fr       */
+/*   Created: 2023/03/21 19:17:08 by guribeir          #+#    #+#             */
+/*   Updated: 2023/03/21 20:03:12 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-# include "rendering.h"
-# include "vector.h"
+#include "vector.h"
 
-#endif
+double	vector_length(t_vector *vector)
+{
+	double	length;
+
+	length = (vector->x * vector->x)
+		+ (vector->y * vector->y)
+		+ (vector->z * vector->z);
+	return (sqrt(length));
+}

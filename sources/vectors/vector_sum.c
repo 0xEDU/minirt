@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   vector_sum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:59:45 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 20:00:22 by guribeir         ###   ########.fr       */
+/*   Created: 2023/03/21 19:11:37 by guribeir          #+#    #+#             */
+/*   Updated: 2023/03/21 19:34:43 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-# include "rendering.h"
-# include "vector.h"
+#include "vector.h"
 
-#endif
+void	vector_sum(t_vector *vector, t_vector *add)
+{
+	vector->x += add->x;
+	vector->y += add->y;
+	vector->z += add->z;
+}

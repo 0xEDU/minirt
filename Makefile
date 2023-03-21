@@ -3,6 +3,7 @@ NAME = minirt
 PATH_SRCS = ./sources/
 PATH_MLX_SRCS = ./sources/mlx/
 PATH_COLORS = ./sources/colors/
+PATH_VECTORS = ./sources/vectors/
 PATH_OBJS = ./objects/
 
 SRCS = main.c
@@ -14,21 +15,27 @@ MLX_SRCS = mlx_open_window.c \
 		   mlx_create_image.c \
 		   mlx_image_to_window.c \
 		   mlx_key_press_events.c
-COLORS_SRCS = create_rgb.c
+COLORS_SRCS = color_create_rgb.c
+VECTORS_SRCS = vector_div.c \
+			  vector_length.c \
+			  vector_mult.c \
+			  vector_negate.c \
+			  vector_sum.c \
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}
 COLORS_OBJS = ${COLORS_SRCS:%.c=$(PATH_OBJS)%.o}
+VECTORS_OBJS = ${VECTORS_SRCS:%.c=$(PATH_OBJS)%.o}
 
 INCLUDE = -I ./includes/
-FLAGS = -Wall -Wextra -Werror -g3 -fPIE
+FLAGS = -Wall -Wextra -Werror -g3
 LINKERS = -lmlx -lXext -lX11 -lm
 LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS)
-	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS)
+	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	@make --no-print-directory -C libft
@@ -45,6 +52,11 @@ $(PATH_OBJS)%.o: $(PATH_MLX_SRCS)%.c
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
 
 $(PATH_OBJS)%.o: $(PATH_COLORS)%.c
+	@mkdir -p $(PATH_OBJS)
+	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
+	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
+
+$(PATH_OBJS)%.o: $(PATH_VECTORS)%.c
 	@mkdir -p $(PATH_OBJS)
 	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   vector_div.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:59:45 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 20:00:22 by guribeir         ###   ########.fr       */
+/*   Created: 2023/03/21 19:15:37 by guribeir          #+#    #+#             */
+/*   Updated: 2023/03/21 19:16:18 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-# include "rendering.h"
-# include "vector.h"
+#include "vector.h"
 
-#endif
+void	vector_div(t_vector *vector, double value)
+{
+	vector->x /= value;
+	vector->y /= value;
+	vector->z /= value;
+}

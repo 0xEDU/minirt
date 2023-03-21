@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_rgb.c                                       :+:      :+:    :+:   */
+/*   vector_mult.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 16:53:40 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:15:17 by guribeir         ###   ########.fr       */
+/*   Created: 2023/03/21 19:13:33 by guribeir          #+#    #+#             */
+/*   Updated: 2023/03/21 19:16:33 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "vector.h"
 
-unsigned long	create_rgb(t_color *color)
+void	vector_mult(t_vector *vector, double value)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	r = color->r;
-	g = color->g;
-	b = color->b;
-	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	vector->x *= value;
+	vector->y *= value;
+	vector->z *= value;
 }

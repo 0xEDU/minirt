@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   vector_negate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:59:45 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 20:00:22 by guribeir         ###   ########.fr       */
+/*   Created: 2023/03/21 19:04:41 by guribeir          #+#    #+#             */
+/*   Updated: 2023/03/21 19:15:00 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-# include "rendering.h"
-# include "vector.h"
+#include "vector.h"
 
-#endif
+void	vector_negate(t_vector *vector)
+{
+	vector->x *= -1;
+	vector->y *= -1;
+	vector->z *= -1;
+}
