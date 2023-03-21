@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:51:27 by edu               #+#    #+#             */
-/*   Updated: 2023/03/21 16:58:21 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:25:26 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line.h"
@@ -59,9 +60,9 @@ typedef struct	s_point3
 
 typedef struct	s_color
 {
-	double	x;
-	double	y;
-	double	z;
+	double	r;
+	double	g;
+	double	b;
 
 }	t_color;
 
@@ -74,6 +75,6 @@ int				mlx_click_press_events(t_mlx *mlx);
 void			mlx_pixel_draw(t_image *image, int x, int y, int color);
 void			mlx_create_image(t_minirt *minirt);
 void			mlx_image_to_window(t_minirt *minirt, int x, int y);
-unsigned long	create_rgb(int r, int g, int b);
+unsigned long	create_rgb(t_color *color);
 
 #endif
