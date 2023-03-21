@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 20:01:09 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:11:28 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ typedef struct s_minirt {
 
 /* MLX-related functions */
 void			mlx_open_window(t_mlx *mlx);
-void			mlx_loop_window(t_mlx *mlx);
-void			mlx_close_window(t_mlx *mlx);
-int				mlx_key_press_events(int key_code, t_mlx *mlx);
-int				mlx_click_press_events(t_mlx *mlx);
+void			mlx_loop_window(t_minirt *minirt);
+void			mlx_close_window(t_minirt *minirt);
+int				mlx_key_press_events(int key_code, t_minirt *minirt);
+int				mlx_click_press_events(t_minirt *minirt);
 void			mlx_pixel_draw(t_image *image, int x, int y, int color);
 void			mlx_create_image(t_minirt *minirt);
 void			mlx_image_to_window(t_minirt *minirt, int x, int y);
