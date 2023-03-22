@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/03/21 20:11:43 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:03:17 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,24 @@ int	main(void)
 	int			i;
 	int			j;
 	t_color		color;
+	t_vector	vec1;
+	t_vector	vec2;
+	t_ray		ray;
 
-	color.r = 1;
-	color.g = 2;
-	color.b = 0.25;
-	vector_negate(&color);
-	vector_mult(&color, 2);
-	vector_div(&color, 2);
-	vector_length(&color);
+	ft_bzero(&color, 1);
+	ft_bzero(&vec1, 1);
+	ft_bzero(&vec2, 1);
+	ft_bzero(&ray, 1);
+	ray.origin = &vec1;
+	ray.direction = &vec2;
+	vec1.x = 5;
+	vec1.y = 6;
+	vec1.z = 7;
+	vec2.x = 15;
+	vec2.y = 16;
+	vec2.z = 17;
+	printf("X DO RAY AT = %f\n", ray_at(&ray, 2).x);
+	printf("X DO RAY ORIGIN = %f\n", ray.origin->x);
 	mlx_open_window(&minirt.mlx);
 	mlx_create_image(&minirt);
 	i = 0;
