@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 20:05:34 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:00:37 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ typedef t_vector	t_point3;
 typedef t_vector	t_color;
 
 /*Emulated Vector Methods*/
-void			vector_negate(t_vector *vector);
-void			vector_sum(t_vector *vector, t_vector *add);
-void			vector_mult(t_vector *vector, double value);
-void			vector_div(t_vector *vector, double value);
+t_vector		vector_negate(t_vector *vector);
+t_vector		vector_sum(t_vector *vector, t_vector *add);
+t_vector		vector_mult(t_vector *vector, double value);
+t_vector		vector_div(t_vector *vector, double value);
 double			vector_length(t_vector *vector);
 
 /* Color functions*/
