@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/22 22:02:15 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:52:45 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 {
 	t_ray		new;
-	t_vector	placeholder;
 
-	new.origin = &camera->origin;
-	placeholder = vector_diff(
+	new.origin = camera->origin;
+	new.direction = vector_diff(
 			vector_sum(
 				vector_sum(camera->lower_left_corner,
 					vector_mult(camera->horizontal, normal.x)),
 				vector_mult(camera->vertical, normal.y)), camera->origin);
-	new.direction = &placeholder;
 	return (new);
 }
 
@@ -64,7 +62,7 @@ void	render_scene(t_minirt *minirt)
 			normal.x = (double)loop.x / (WIDTH);
 			normal.y = (double)loop.y / (HEIGHT);
 			ray = ray_constructor(&minirt->camera, normal);
-			color = ray_color(&ray);
+			color = ray_color(ray);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));
 			loop.y++;
