@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_div.c                                       :+:      :+:    :+:   */
+/*   vector_unit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:15:37 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/22 22:21:59 by guribeir         ###   ########.fr       */
+/*   Created: 2023/03/22 19:51:39 by guribeir          #+#    #+#             */
+/*   Updated: 2023/03/22 21:20:35 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "minirt.h"
 
-t_vector	vector_div(t_vector vector, double value)
+t_vector	vector_unit(t_vector *vector)
 {
-	t_vector	new;
-
-	new.x = vector.x / value;
-	new.y = vector.y / value;
-	new.z = vector.z / value;
-	return (new);
+	return (vector_div(*vector, vector_length(vector)));
 }

@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/21 22:00:37 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:43:13 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,19 @@ typedef t_vector	t_point3;
 typedef t_vector	t_color;
 
 /*Emulated Vector Methods*/
-t_vector		vector_negate(t_vector *vector);
-t_vector		vector_sum(t_vector *vector, t_vector *add);
-t_vector		vector_mult(t_vector *vector, double value);
-t_vector		vector_div(t_vector *vector, double value);
+t_vector		vector_negate_self(t_vector *vector);
+t_vector		vector_sum_self(t_vector *vector, t_vector *add);
+t_vector		vector_sum(t_vector vector, t_vector add);
+t_vector		vector_mult_self(t_vector *vector, double value);
+t_vector		vector_mult(t_vector vector, double value);
+t_vector		vector_div_self(t_vector *vector, double value);
+t_vector		vector_div(t_vector vector, double value);
+t_vector		vector_diff(t_vector u, t_vector v);
+t_vector		vector_create(double x, double y, double z);
 double			vector_length(t_vector *vector);
+
+/*Vector Utils*/
+t_vector		vector_unit(t_vector *vector);
 
 /* Color functions*/
 unsigned long	color_create_rgb(t_color *color);
