@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 16:52:45 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:43:37 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 			vector_sum(
 				vector_sum(camera->lower_left_corner,
 					vector_mult(camera->horizontal, normal.x)),
-				vector_mult(camera->vertical, normal.y)), camera->origin);
+				vector_mult(camera->vertical, normal.y)),
+			camera->origin);
 	return (new);
 }
 
 static void	turn_on_camera(t_camera *camera)
 {
-	camera->viewport_height = 2.0;
+	camera->viewport_height = -2.0;
 	camera->viewport_width = (16.0 / 9.0) * camera->viewport_height;
 	camera->focal_length = 1.0;
 	camera->origin = vector_create(0, 0, 0);
@@ -53,20 +54,19 @@ void	render_scene(t_minirt *minirt)
 	ft_bzero(&color, 1);
 	ft_bzero(&ray, 1);
 	turn_on_camera(&minirt->camera);
-	loop.x = WIDTH;
-	while (loop.x >= 0)
+	while (loop.x < WIDTH)
 	{
 		loop.y = 0;
 		while (loop.y < HEIGHT)
 		{
-			normal.x = (double)loop.x / (WIDTH);
-			normal.y = (double)loop.y / (HEIGHT);
+			normal.x = (double)loop.x / (WIDTH - 1);
+			normal.y = (double)loop.y / (HEIGHT - 1);
 			ray = ray_constructor(&minirt->camera, normal);
 			color = ray_color(ray);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));
 			loop.y++;
 		}
-		loop.x--;
+		loop.x++;
 	}
 }
