@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 16:51:07 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:00:19 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef t_vector	t_color;
 t_vector		vector_negate_self(t_vector *vector);
 t_vector		vector_sum_self(t_vector *vector, t_vector *add);
 t_vector		vector_sum(t_vector vector, t_vector add);
+t_vector		vector_subtr(t_vector vector, double value);
 t_vector		vector_mult_self(t_vector *vector, double value);
 t_vector		vector_mult(t_vector vector, double value);
 t_vector		vector_div_self(t_vector *vector, double value);
@@ -50,6 +51,7 @@ double			vector_length(t_vector vector);
 
 /*Vector Utils*/
 t_vector		vector_unit(t_vector vector);
+double			vector_dot(t_vector u, t_vector v);
 
 /* Color functions*/
 unsigned long	color_create_rgb(t_color *color);

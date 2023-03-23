@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 21:13:41 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 19:59:17 by etachott         ###   ########.fr       */
+/*   Created: 2023/03/23 19:38:13 by etachott          #+#    #+#             */
+/*   Updated: 2023/03/23 20:01:39 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
-# include "vector.h"
+#include "minirt.h"
 
-typedef struct s_ray
+int	hit_sphere(t_point3 center, t_ray ray, double radius)
 {
-	t_point3	origin;
-	t_vector	direction;
-}				t_ray;
+	t_vector	distance;
+	t_vector	delta;
 
-/* Light pseudo-methods */
-t_point3	ray_at(t_ray ray, double t);
-t_color		ray_color(t_ray ray);
-
-/* Light hitting functions */
-int		hit_sphere(t_point3 center, t_ray ray, double radius);
-
-#endif
+	distance = vector_diff(ray.origin, center);
+	delta.x = vector_dot(ray.direction, ray.direction);
+	delta.y = 2.0 * vector_dot(distance, ray.direction);
+	delta.z = vector_dot(distance, distance) - (radius * radius);
+	return ((delta.y * delta.y - 4 * delta.x * delta.z) > 0);
+}

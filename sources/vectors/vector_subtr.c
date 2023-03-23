@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   vector_subtr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 21:13:41 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 19:59:17 by etachott         ###   ########.fr       */
+/*   Created: 2023/03/23 19:51:37 by etachott          #+#    #+#             */
+/*   Updated: 2023/03/23 19:52:56 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
-# include "vector.h"
+#include "minirt.h"
 
-typedef struct s_ray
+t_vector	vector_subtr(t_vector vector, double value)
 {
-	t_point3	origin;
-	t_vector	direction;
-}				t_ray;
+	t_vector	new;
 
-/* Light pseudo-methods */
-t_point3	ray_at(t_ray ray, double t);
-t_color		ray_color(t_ray ray);
-
-/* Light hitting functions */
-int		hit_sphere(t_point3 center, t_ray ray, double radius);
-
-#endif
+	new.x = vector.x - value;
+	new.y = vector.y - value;
+	new.z = vector.z - value;
+	return (new);
+}

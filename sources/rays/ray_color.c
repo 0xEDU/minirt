@@ -18,6 +18,8 @@ t_color	ray_color(t_ray ray)
 	double		t;
 	t_color		color1;
 
+	if (hit_sphere(vector_create(0, 0, -1), ray, 0.5))
+		return (vector_create(255, 0, 0));
 	unit_direction = vector_unit(ray.direction);
 	t = 0.5 * (unit_direction.y + 1.0);
 	color1.x = (unsigned char)(255.999 * (1.0 - t + t * 0.5));
