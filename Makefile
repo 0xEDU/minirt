@@ -7,7 +7,9 @@ PATH_VECTORS = ./sources/vectors/
 PATH_RAYS = ./sources/rays/
 PATH_OBJS = ./objects/
 
-SRCS = main.c
+SRCS =	main.c \
+		init_minirt.c \
+		render_scene.c
 MLX_SRCS = mlx_open_window.c \
 		   mlx_loop_window.c \
 		   mlx_close_window.c \
@@ -17,12 +19,19 @@ MLX_SRCS = mlx_open_window.c \
 		   mlx_image_to_window.c \
 		   mlx_key_press_events.c
 COLORS_SRCS =	color_create_rgb.c
-VECTORS_SRCS =  vector_div.c \
-				vector_length.c \
+VECTORS_SRCS =  vector_div_self.c \
+				vector_div.c \
+				vector_mult_self.c \
 				vector_mult.c \
-				vector_negate.c \
-				vector_sum.c
-RAYS_SRCS =	ray_at.c
+				vector_negate_self.c \
+				vector_sum_self.c \
+				vector_sum.c \
+				vector_diff.c \
+				vector_length.c \
+				vector_unit.c \
+				vector_create.c
+RAYS_SRCS =	ray_at.c \
+			ray_color.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}
