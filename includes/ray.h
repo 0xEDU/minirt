@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:13:41 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 19:59:17 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:31:34 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ t_point3	ray_at(t_ray ray, double t);
 t_color		ray_color(t_ray ray);
 
 /* Light hitting functions */
-int		hit_sphere(t_point3 center, t_ray ray, double radius);
+double		hit_sphere(t_point3 center, t_ray ray, double radius);
 
 #endif
