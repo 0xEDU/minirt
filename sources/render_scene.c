@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 20:08:26 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:52:23by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 	t_ray		new;
 
 	new.origin = camera->origin;
+	normal.y = 1.0 - normal.y;
 	new.direction = vector_diff(
 			vector_sum(
 				vector_sum(camera->lower_left_corner,
@@ -29,7 +30,7 @@ static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 
 static void	turn_on_camera(t_camera *camera)
 {
-	camera->viewport_height = -2.0;
+	camera->viewport_height = 2.0;
 	camera->viewport_width = (16.0 / 9.0) * camera->viewport_height;
 	camera->focal_length = 1.0;
 	camera->origin = vector_create(0, 0, 0);
@@ -56,8 +57,8 @@ void	render_scene(t_minirt *minirt)
 	turn_on_camera(&minirt->camera);
 	while (loop.x < WIDTH)
 	{
-		loop.y = 0;
-		while (loop.y < HEIGHT)
+		loop.y = HEIGHT;
+		while (loop.y >= 0)
 		{
 			normal.x = (double)loop.x / (WIDTH - 1);
 			normal.y = (double)loop.y / (HEIGHT - 1);
@@ -65,7 +66,7 @@ void	render_scene(t_minirt *minirt)
 			color = ray_color(ray);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));
-			loop.y++;
+			loop.y--;
 		}
 		loop.x++;
 	}
