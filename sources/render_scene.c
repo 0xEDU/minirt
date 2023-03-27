@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 11:49:57 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:01:55 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	render_scene(t_minirt *minirt)
 	ft_bzero(&color, 1);
 	ft_bzero(&ray, 1);
 	turn_on_camera(&minirt->camera);
+	loop.x = 0;
 	while (loop.x < WIDTH)
 	{
 		loop.y = HEIGHT;

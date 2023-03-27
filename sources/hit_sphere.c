@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/03/27 14:09:08 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:35:30 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static int	check_root_value(t_variation t,
 			t_vector delta,
 			double sqrt_discr,
-			double root)
+			double *root)
 {
-	if (t.min > root || root > t.max)
+	if (t.min > *root || *root > t.max)
 	{
-		root = (-delta.y + sqrt_discr) / delta.x;
-		if (t.min > root || root > t.max)
+		*root = (-delta.y + sqrt_discr) / delta.x;
+		if (t.min > *root || *root > t.max)
 			return (0);
 	}
 	return (1);
@@ -50,7 +50,7 @@ int	hit_sphere(t_sphere sphere, t_ray *ray, t_variation t, t_hit_record *rec)
 	if (discr < 0)
 		return (0);
 	root = (-delta.y - sqrt(discr)) / delta.x;
-	if (!check_root_value(t, delta, sqrt(discr), root))
+	if (!check_root_value(t, delta, sqrt(discr), &root))
 		return (0);
 	rec->t = root;
 	rec->point = ray_at(*ray, rec->t);
