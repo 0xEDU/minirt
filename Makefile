@@ -5,6 +5,7 @@ PATH_MLX_SRCS = ./sources/mlx/
 PATH_COLORS = ./sources/colors/
 PATH_VECTORS = ./sources/vectors/
 PATH_RAYS = ./sources/rays/
+PATH_HITTABLE = ./sources/hittable/
 PATH_OBJS = ./objects/
 
 SRCS =	main.c \
@@ -31,16 +32,19 @@ VECTORS_SRCS =  vector_div_self.c \
 				vector_subtr.c \
 				vector_diff.c \
 				vector_length.c \
+				vector_length_squared.c \
 				vector_unit.c \
 				vector_create.c
 RAYS_SRCS =	ray_at.c \
 			ray_color.c
+HITTABLE_SRCS =	set_face_normal.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}
 COLORS_OBJS = ${COLORS_SRCS:%.c=$(PATH_OBJS)%.o}
 VECTORS_OBJS = ${VECTORS_SRCS:%.c=$(PATH_OBJS)%.o}
 RAYS_OBJS = ${RAYS_SRCS:%.c=$(PATH_OBJS)%.o}
+HITTABLE_OBJS = ${HITTABLE_SRCS:%.c=$(PATH_OBJS)%.o}
 
 INCLUDE = -I ./includes/
 FLAGS = -Wall -Wextra -Werror -g3
@@ -49,8 +53,8 @@ LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS)
-	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS)
+	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	@make --no-print-directory -C libft
@@ -77,6 +81,11 @@ $(PATH_OBJS)%.o: $(PATH_VECTORS)%.c
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
 
 $(PATH_OBJS)%.o: $(PATH_RAYS)%.c
+	@mkdir -p $(PATH_OBJS)
+	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
+	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
+
+$(PATH_OBJS)%.o: $(PATH_HITTABLE)%.c
 	@mkdir -p $(PATH_OBJS)
 	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"

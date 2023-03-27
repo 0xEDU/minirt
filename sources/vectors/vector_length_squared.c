@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   vector_length_squared.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:59:45 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 11:19:12 by etachott         ###   ########.fr       */
+/*   Created: 2023/03/27 11:21:13 by etachott          #+#    #+#             */
+/*   Updated: 2023/03/27 11:48:01 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-# include "rendering.h"
-# include "vector.h"
-# include "ray.h"
-# include "hittable.h"
+#include "minirt.h"
 
-#endif
+double	vector_length_squared(const t_vector vector)
+{
+	return ((vector.x * vector.x)
+		+ (vector.y * vector.y)
+		+ (vector.z * vector.z));
+}

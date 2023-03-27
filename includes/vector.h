@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 20:00:19 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:26:19 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ double			vector_length(t_vector vector);
 /*Vector Utils*/
 t_vector		vector_unit(t_vector vector);
 double			vector_dot(t_vector u, t_vector v);
+double			vector_length_squared(const t_vector vector);
 
 /* Color functions*/
 unsigned long	color_create_rgb(t_color *color);

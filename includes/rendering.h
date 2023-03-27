@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/23 19:58:42 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:15:26 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libput.h"
 # include "vector.h"
+
+typedef struct s_variation {
+	double	min;
+	double	max;	
+}				t_variation;
 
 typedef struct s_image {
 	void		*img;
