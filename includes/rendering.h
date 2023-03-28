@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/28 13:53:10 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:40:26 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,19 @@ typedef struct s_hittable_list {
 void		hittable_list_clear(t_hittable_list *list);
 void		hittable_list_add(t_hittable_list *list, t_sphere *object);
 int			hittable_list_hit(t_hittable_list *list, t_ray *ray,
-			t_variation t, t_hit_record *rec);
+				t_variation t, t_hit_record *rec);
 
 /* Hit Record Utils */
 void		create_world(t_hittable_list *world);
-void		set_face_normal(t_hit_record *rec, t_ray *ray, t_vector *out_normal);
+void		set_face_normal(t_hit_record *rec,
+				t_ray *ray, t_vector *out_normal);
 
 /* Light hitting functions */
 int			hit_sphere(t_sphere sphere,
-			t_ray *ray,
-			t_variation t,
-			t_hit_record *rec);
-t_color		*ray_color(t_ray ray, t_hittable_list *world);
+				t_ray *ray,
+				t_variation t,
+				t_hit_record *rec);
+t_color		ray_color(t_ray ray, t_hittable_list *world);
 
 /* Initialization functions */
 void		init_minirt(t_minirt *minirt);
