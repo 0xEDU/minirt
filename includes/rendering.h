@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 21:02:39 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:53:10 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,36 +90,36 @@ typedef struct s_hittable_list {
 }				t_hittable_list;
 
 /* Hittable list functions */
-void	hittable_list_clear(t_hittable_list *list);
-void	hittable_list_add(t_hittable_list *list, t_sphere *object);
-int		hittable_list_hit(t_hittable_list *list, t_ray *ray,
+void		hittable_list_clear(t_hittable_list *list);
+void		hittable_list_add(t_hittable_list *list, t_sphere *object);
+int			hittable_list_hit(t_hittable_list *list, t_ray *ray,
 			t_variation t, t_hit_record *rec);
 
 /* Hit Record Utils */
-void	create_world(t_hittable_list *world);
-void	set_face_normal(t_hit_record *rec, t_ray *ray, t_vector *out_normal);
+void		create_world(t_hittable_list *world);
+void		set_face_normal(t_hit_record *rec, t_ray *ray, t_vector *out_normal);
 
 /* Light hitting functions */
-int		hit_sphere(t_sphere sphere,
+int			hit_sphere(t_sphere sphere,
 			t_ray *ray,
 			t_variation t,
 			t_hit_record *rec);
-t_color		ray_color(t_ray ray, t_hittable_list *world);
+t_color		*ray_color(t_ray ray, t_hittable_list *world);
 
 /* Initialization functions */
-void	init_minirt(t_minirt *minirt);
+void		init_minirt(t_minirt *minirt);
 
 /* Rendering functions */
-void	render_scene(t_minirt *minirt, t_hittable_list *world);
+void		render_scene(t_minirt *minirt, t_hittable_list *world);
 
 /* MLX-related functions */
-void	mlx_open_window(t_mlx *mlx);
-void	mlx_loop_window(t_minirt *minirt);
-void	mlx_close_window(t_minirt *minirt);
-int		mlx_key_press_events(int key_code, t_minirt *minirt);
-int		mlx_click_press_events(t_minirt *minirt);
-void	mlx_pixel_draw(t_image *image, int x, int y, int color);
-void	mlx_create_image(t_minirt *minirt);
-void	mlx_image_to_window(t_minirt *minirt, int x, int y);
+void		mlx_open_window(t_mlx *mlx);
+void		mlx_loop_window(t_minirt *minirt);
+void		mlx_close_window(t_minirt *minirt);
+int			mlx_key_press_events(int key_code, t_minirt *minirt);
+int			mlx_click_press_events(t_minirt *minirt);
+void		mlx_pixel_draw(t_image *image, int x, int y, int color);
+void		mlx_create_image(t_minirt *minirt);
+void		mlx_image_to_window(t_minirt *minirt, int x, int y);
 
 #endif
