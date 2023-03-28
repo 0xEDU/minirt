@@ -11,6 +11,7 @@ PATH_OBJS = ./objects/
 SRCS =	main.c \
 		init_minirt.c \
 		hit_sphere.c \
+		create_world.c \
 		render_scene.c
 MLX_SRCS = mlx_open_window.c \
 		   mlx_loop_window.c \
@@ -37,7 +38,10 @@ VECTORS_SRCS =  vector_div_self.c \
 				vector_create.c
 RAYS_SRCS =	ray_at.c \
 			ray_color.c
-HITTABLE_SRCS =	set_face_normal.c
+HITTABLE_SRCS =	set_face_normal.c \
+				hittable_list_add.c \
+				hittable_list_clear.c \
+				hittable_list_hit.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}

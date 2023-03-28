@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 16:01:55 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:24:59 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,13 @@ static void	turn_on_camera(t_camera *camera)
 			vector_create(0, 0, camera->focal_length));
 }
 
-void	render_scene(t_minirt *minirt)
+void	render_scene(t_minirt *minirt, t_hittable_list *world)
 {
 	t_vector	normal;
 	t_vector	loop;
 	t_ray		ray;
 	t_color		color;
 
-	ft_bzero(&normal, 1);
-	ft_bzero(&loop, 1);
-	ft_bzero(&color, 1);
-	ft_bzero(&ray, 1);
 	turn_on_camera(&minirt->camera);
 	loop.x = 0;
 	while (loop.x < WIDTH)
@@ -64,7 +60,7 @@ void	render_scene(t_minirt *minirt)
 			normal.x = (double)loop.x / (WIDTH - 1);
 			normal.y = (double)loop.y / (HEIGHT - 1);
 			ray = ray_constructor(&minirt->camera, normal);
-			color = ray_color(ray);
+			color = ray_color(ray, world);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));
 			loop.y--;

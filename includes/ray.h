@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:13:41 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 11:49:17 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:23:53 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ typedef struct s_ray
 
 /* Light pseudo-methods */
 t_point3	ray_at(t_ray ray, double t);
-t_color		ray_color(t_ray ray);
 
 #endif
