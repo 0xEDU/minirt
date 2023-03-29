@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 11:26:19 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:45:05 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_vector
 typedef t_vector	t_point3;
 typedef t_vector	t_color;
 
+typedef struct s_light
+{
+	t_point3	source;
+	t_color		color;
+	double		intensity;
+}				t_light;
+
 /*Emulated Vector Methods*/
 t_vector		vector_negate_self(t_vector *vector);
 t_vector		vector_sum_self(t_vector *vector, t_vector *add);
@@ -53,6 +60,7 @@ double			vector_length(t_vector vector);
 t_vector		vector_unit(t_vector vector);
 double			vector_dot(t_vector u, t_vector v);
 double			vector_length_squared(const t_vector vector);
+t_vector		vector_reflect(t_vector input, t_vector normal);
 
 /* Color functions*/
 unsigned long	color_create_rgb(t_color *color);

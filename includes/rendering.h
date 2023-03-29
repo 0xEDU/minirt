@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/28 15:40:26 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:34:05 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,19 @@ typedef struct s_hit_record {
 	int			front_face;
 }				t_hit_record;
 
+typedef struct s_material {
+	t_color	color;
+	double	ambient;
+	double	diffuse;
+	double	specular;
+	double	shininess;
+}				t_material;
+
 typedef struct s_sphere {
 	t_point3	center;
 	double		radius;
 	int			type;
-	int			(*hit)(struct s_sphere object, t_ray *ray,
-			t_variation t, t_hit_record *rec);
+	t_material	m;
 }				t_sphere;
 
 typedef union u_hittable {
@@ -105,13 +112,14 @@ int			hit_sphere(t_sphere sphere,
 				t_ray *ray,
 				t_variation t,
 				t_hit_record *rec);
-t_color		ray_color(t_ray ray, t_hittable_list *world);
+t_color		ray_color(t_ray ray, t_hittable_list *world, t_light light, t_camera camera);
 
 /* Initialization functions */
 void		init_minirt(t_minirt *minirt);
 
 /* Rendering functions */
 void		render_scene(t_minirt *minirt, t_hittable_list *world);
+t_color		lighting(t_material material, t_light light, t_point3 point, t_camera camera, t_vector normal_vector);
 
 /* MLX-related functions */
 void		mlx_open_window(t_mlx *mlx);

@@ -12,7 +12,8 @@ SRCS =	main.c \
 		init_minirt.c \
 		hit_sphere.c \
 		create_world.c \
-		render_scene.c
+		render_scene.c \
+		lighting.c
 MLX_SRCS = mlx_open_window.c \
 		   mlx_loop_window.c \
 		   mlx_close_window.c \
@@ -35,7 +36,8 @@ VECTORS_SRCS =  vector_div_self.c \
 				vector_length.c \
 				vector_length_squared.c \
 				vector_unit.c \
-				vector_create.c
+				vector_create.c \
+				vector_reflect.c
 RAYS_SRCS =	ray_at.c \
 			ray_color.c
 HITTABLE_SRCS =	set_face_normal.c \
