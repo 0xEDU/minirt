@@ -6,13 +6,13 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/04 21:35:15 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:10:22 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_vector	normalize(t_vector vector)
+t_vector	normalize(t_vector vector)
 {
 	t_vector	result;
 	double		length;
@@ -40,7 +40,6 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 	double		reflect_dot_eye;
 	double		factor;
 
-	(void) factor;
 	effective_color = vector_mult(material.color, light.intensity);
 	light_vector = normalize(vector_diff(light.source, point));
 	eye_vector = vector_negate_self(&eyev);

@@ -11,6 +11,7 @@ PATH_OBJS = ./objects/
 SRCS =	main.c \
 		init_minirt.c \
 		hit_sphere.c \
+		hit_plane.c \
 		create_world.c \
 		render_scene.c \
 		lighting.c

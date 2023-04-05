@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/04 12:04:22 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:03:12 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define SPHERE 1
+# define PLANE 2
 
 typedef struct s_variation {
 	double	min;
@@ -65,6 +66,7 @@ typedef struct s_hit_record {
 	t_vector	normal;
 	double		t;
 	int			front_face;
+	int			index;
 }				t_hit_record;
 
 typedef struct s_material {
@@ -82,13 +84,26 @@ typedef struct s_sphere {
 	t_material	m;
 }				t_sphere;
 
+typedef struct s_plane {
+	t_vector	normal;
+	t_vector	position;
+	int			type;
+	t_material	m;
+}				t_plane;
+
 typedef union u_hittable {
 	int			type;
 	t_sphere	sphere;
 }				t_hittable;
 
 typedef struct s_hittable_node {
-	t_sphere				*object;
+	union
+	{
+		void				*object;
+		t_sphere			*sphere;
+		t_plane				*plane;			
+	};
+	int						index;
 	struct s_hittable_node	*next;
 }				t_hittable_node;
 
@@ -98,7 +113,7 @@ typedef struct s_hittable_list {
 
 /* Hittable list functions */
 void		hittable_list_clear(t_hittable_list *list);
-void		hittable_list_add(t_hittable_list *list, t_sphere *object);
+void	hittable_list_add(t_hittable_list *list, void *object, int index);
 int			hittable_list_hit(t_hittable_list *list, t_ray *ray,
 				t_variation t, t_hit_record *rec);
 
@@ -112,7 +127,10 @@ int			hit_sphere(t_sphere sphere,
 				t_ray *ray,
 				t_variation t,
 				t_hit_record *rec);
+int			hit_plane(t_plane plane, t_ray *ray, t_variation t, 
+				t_hit_record *rec);
 t_color		ray_color(t_ray ray, t_hittable_list *world, t_light light);
+t_vector	normalize(t_vector vector);
 
 /* Initialization functions */
 void		init_minirt(t_minirt *minirt);

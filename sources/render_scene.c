@@ -6,25 +6,11 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/04 21:25:13 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:44:59 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-static t_vector	normalize(t_vector vector)
-{
-	t_vector	result;
-	double		length;
-
-	length = vector_length(vector);
-	if (length == 0)
-		return (vector);
-	result.x = vector.x / length;
-	result.y = vector.y / length;
-	result.z = vector.z / length;
-	return (result);
-}
 
 static t_light	set_light(double x, double y, double z, double intensity)
 {
@@ -76,7 +62,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 
 	turn_on_camera(&minirt->camera);
 	loop.x = 0;
-	point_light = set_light(-10, 10, -10, 0.6);
+	point_light = set_light(-10, 10, -10, 1);
 	point_light.color = vector_create(1, 1, 1);
 	while (loop.x < WIDTH)
 	{

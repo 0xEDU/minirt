@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/03/27 21:01:51 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:03:33 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,21 @@ int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 	current = list->head;
 	while (current)
 	{
-		if (hit_sphere(*(current->object), ray, t, &temp_record))
+		if (hit_sphere(*(current->sphere), ray, t, &temp_record))
 		{
 			hit_anything = 1;
 			closest_so_far = temp_record.t;
 			t.max = closest_so_far;
 			*rec = temp_record;
+			rec->index = current->index;
+		}
+		if (hit_plane(*(current->plane), ray, t, &temp_record))
+		{
+			hit_anything = 1;
+			closest_so_far = temp_record.t;
+			t.max = closest_so_far;
+			*rec = temp_record;
+			rec->index = current->index;
 		}
 		current = current->next;
 	}
