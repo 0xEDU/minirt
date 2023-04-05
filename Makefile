@@ -23,7 +23,8 @@ MLX_SRCS = mlx_open_window.c \
 		   mlx_image_to_window.c \
 		   mlx_key_press_events.c
 COLORS_SRCS =	color_create_rgb.c
-VECTORS_SRCS =  vector_div_self.c \
+VECTORS_SRCS =  vector_add.c \
+				vector_div_self.c \
 				vector_div.c \
 				vector_dot.c \
 				vector_mult_self.c \

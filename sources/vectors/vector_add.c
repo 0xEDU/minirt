@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/04/04 11:32:24 by etachott         ###   ########.fr       */
+/*   Created: 2023/04/04 18:56:15 by etachott          #+#    #+#             */
+/*   Updated: 2023/04/04 18:57:29 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(void)
+t_vector	vector_add(t_vector vector, double value)
 {
-	t_minirt		minirt;
-	t_hittable_list	*world;
+	t_vector	new;
 
-	world = ft_calloc(sizeof(t_hittable_list), 1);
-	init_minirt(&minirt);
-	mlx_open_window(&minirt.mlx);
-	mlx_create_image(&minirt);
-	create_world(world);
-	render_scene(&minirt, world);
-	mlx_image_to_window(&minirt, 0, 0);
-	printf("DONE :D\n");
-	mlx_loop_window(&minirt);
-	return (0);
+	new.x = vector.x + value;
+	new.y = vector.y + value;
+	new.z = vector.z + value;
+	return (new);
 }

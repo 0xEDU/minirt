@@ -6,11 +6,25 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/29 20:46:10 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/04 21:25:13 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static t_vector	normalize(t_vector vector)
+{
+	t_vector	result;
+	double		length;
+
+	length = vector_length(vector);
+	if (length == 0)
+		return (vector);
+	result.x = vector.x / length;
+	result.y = vector.y / length;
+	result.z = vector.z / length;
+	return (result);
+}
 
 static t_light	set_light(double x, double y, double z, double intensity)
 {
@@ -28,12 +42,12 @@ static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 
 	new.origin = camera->origin;
 	normal.y = 1.0 - normal.y;
-	new.direction = vector_diff(
+	new.direction = normalize(vector_diff(
 			vector_sum(
 				vector_sum(camera->lower_left_corner,
 					vector_mult(camera->horizontal, normal.x)),
 				vector_mult(camera->vertical, normal.y)),
-			camera->origin);
+			camera->origin));
 	return (new);
 }
 
@@ -62,7 +76,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 
 	turn_on_camera(&minirt->camera);
 	loop.x = 0;
-	point_light = set_light(-10, 10, -10, 1);
+	point_light = set_light(-10, 10, -10, 0.6);
 	point_light.color = vector_create(1, 1, 1);
 	while (loop.x < WIDTH)
 	{
@@ -72,7 +86,9 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 			normal.x = (double)loop.x / (WIDTH - 1);
 			normal.y = (double)loop.y / (HEIGHT - 1);
 			ray = ray_constructor(&minirt->camera, normal);
-			color = ray_color(ray, world, point_light, minirt->camera);
+			if (ray.direction.x > 1 || ray.direction.y > 1 || ray.direction.z > 1)
+				printf("ray dir: %f | %f | %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
+			color = ray_color(ray, world, point_light);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));
 			loop.y--;

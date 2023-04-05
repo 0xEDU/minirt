@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/29 20:45:05 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:21:50 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_light
 }				t_light;
 
 /*Emulated Vector Methods*/
+t_vector		vector_add(t_vector vector, double value);
 t_vector		vector_negate_self(t_vector *vector);
 t_vector		vector_sum_self(t_vector *vector, t_vector *add);
 t_vector		vector_sum(t_vector vector, t_vector add);

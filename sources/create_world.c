@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/03/29 20:19:14 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:04:27 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	create_world(t_hittable_list *world)
 	sphere1->m.ambient = 0.1;
 	sphere1->m.diffuse = 0.9;
 	sphere1->m.specular = 0.9;
-	sphere1->m.shininess = 1;
+	sphere1->m.shininess = 200;
 	sphere1->m.color = vector_create(1, 0.2, 1);
 	world->head = NULL;
 	hittable_list_add(world, sphere1);
