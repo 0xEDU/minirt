@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/05 19:03:12 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:13:05 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_hittable_node {
 		t_sphere			*sphere;
 		t_plane				*plane;			
 	};
+	int						type;
 	int						index;
 	struct s_hittable_node	*next;
 }				t_hittable_node;
@@ -113,7 +114,7 @@ typedef struct s_hittable_list {
 
 /* Hittable list functions */
 void		hittable_list_clear(t_hittable_list *list);
-void	hittable_list_add(t_hittable_list *list, void *object, int index);
+void	hittable_list_add(t_hittable_list *list, void *object, int index, int type);
 int			hittable_list_hit(t_hittable_list *list, t_ray *ray,
 				t_variation t, t_hit_record *rec);
 

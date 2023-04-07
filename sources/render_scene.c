@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/05 18:44:59 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:41:35 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	turn_on_camera(t_camera *camera)
 {
 	camera->viewport_height = 2.0;
 	camera->viewport_width = (16.0 / 9.0) * camera->viewport_height;
-	camera->focal_length = -1.0;
-	camera->origin = vector_create(0, 0, -3);
+	camera->focal_length = 1.0;
+	camera->origin = vector_create(0, 1.9, -20);
 	camera->horizontal = vector_create(camera->viewport_width, 0, 0);
 	camera->vertical = vector_create(0, camera->viewport_height, 0);
 	camera->lower_left_corner = vector_diff(
@@ -62,7 +62,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 
 	turn_on_camera(&minirt->camera);
 	loop.x = 0;
-	point_light = set_light(-10, 10, -10, 1);
+	point_light = set_light(-10, 10, 19, 1);
 	point_light.color = vector_create(1, 1, 1);
 	while (loop.x < WIDTH)
 	{
