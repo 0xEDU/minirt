@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/07 11:13:05 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:04:43 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,11 @@ typedef struct s_hittable_list {
 
 /* Hittable list functions */
 void		hittable_list_clear(t_hittable_list *list);
-void	hittable_list_add(t_hittable_list *list, void *object, int index, int type);
+void		hittable_list_add(t_hittable_list *list, void *object, int index, int type);
 int			hittable_list_hit(t_hittable_list *list, t_ray *ray,
 				t_variation t, t_hit_record *rec);
+int			hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
+				t_variation t, t_hit_record *rec, int ignore_index);
 
 /* Hit Record Utils */
 void		create_world(t_hittable_list *world);
@@ -138,7 +140,7 @@ void		init_minirt(t_minirt *minirt);
 
 /* Rendering functions */
 void		render_scene(t_minirt *minirt, t_hittable_list *world);
-t_color		lighting(t_material material, t_light light, t_point3 point, t_vector eyev, t_vector normal_vector);
+t_color		lighting(t_material material, t_light light, t_point3 point, t_vector eyev, t_vector normal_vector, int in_shadow);
 
 /* MLX-related functions */
 void		mlx_open_window(t_mlx *mlx);

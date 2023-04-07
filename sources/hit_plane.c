@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:35:29 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 14:46:56 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:34:54 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
 	rec->t = temp;
 	rec->point = ray_at(*ray, rec->t);
 	rec->normal = plane.normal;
-	if (vector_dot(plane.normal, ray->direction) > 1e-8)
+	if (vector_dot(plane.normal, ray->direction) > 0.00001)
 		vector_negate_self(&rec->normal);
 	return (1);
 }

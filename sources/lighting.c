@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/05 19:10:22 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:47:05 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vector	normalize(t_vector vector)
 	return (result);
 }
 
-t_color	lighting(t_material material, t_light light, t_point3 point, t_vector eyev, t_vector normal_vector)
+t_color	lighting(t_material material, t_light light, t_point3 point, t_vector eyev, t_vector normal_vector, int in_shadow)
 {
 	t_color		effective_color;
 	t_vector	light_vector;
@@ -50,7 +50,7 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 	//printf("camera: %f | %f | %f\nmaterial.specular", camera.origin.x, camera.origin.y, camera.origin.z);
 	// printf("normal_vector: %f | %f | %f\n", normal_vector.x, normal_vector.y, normal_vector.z);
 	// printf("light_vector: %f | %f | %f\n", light_vector.x, light_vector.y, light_vector.z);
-	if (light_dot_normal < 0)
+	if (light_dot_normal < 0 || in_shadow)
 	{
 		// printf("entrou aqui\n");
 		diffuse = vector_create(0, 0, 0);

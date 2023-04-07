@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 14:02:53 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:04:02 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,40 @@ t_material	get_material(t_hittable_list *world, int index)
 	return (material);
 }
 
+static int	is_shadowed(t_point3 point, t_light light, t_hittable_list *world, int ignored_index)
+{
+	t_vector		shadow_vector;
+	t_ray			shadow_ray;
+	t_hit_record	temp_record;
+	t_variation		var;
+	double			distance;
+
+	var.min = 0;
+	var.max = HUGE_VAL;
+	shadow_vector = vector_diff(light.source, point);
+	distance = vector_length(shadow_vector);
+	shadow_ray.origin = vector_add(point, 1e-6);
+	shadow_ray.direction = normalize(shadow_vector);
+	if (hittable_shadow_hit(world, &shadow_ray, var, &temp_record, ignored_index))
+	{
+		if (temp_record.t < distance)
+			return (1);
+	}
+	return (0);
+}
+
 t_color	ray_color(t_ray ray, t_hittable_list *world, t_light light)
 {
 	t_variation		var;
 	t_hit_record	rec;
+	int				in_shadow;
 
 	var.min = 0;
 	var.max = HUGE_VAL;
 	if (hittable_list_hit(world, &ray, var, &rec))
 	{
-		return (lighting(get_material(world, rec.index), light, rec.point, ray.direction, rec.normal));
+		in_shadow = is_shadowed(rec.point, light, world, rec.index);
+		return (lighting(get_material(world, rec.index), light, rec.point, ray.direction, rec.normal, in_shadow));
 	}
 	return (vector_create(0, 0, 0));
 }
