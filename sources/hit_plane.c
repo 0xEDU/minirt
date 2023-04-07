@@ -6,26 +6,12 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:35:29 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 14:36:15 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:46:56 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
-// {
-// 	double	temp;
-
-// 	if (fabsf(ray->direction.y) < 1e-8)
-// 		return (0);
-// 	temp = -ray->origin.y / ray->direction.y;
-// 	if (temp > t.max || temp < t.min)
-// 		return (0);
-// 	rec->t = temp;
-// 	rec->point = ray_at(*ray, rec->t);
-// 	rec->normal = plane.normal;
-// 	return (1);
-// }
 int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
 {
 	double	v_distance;
@@ -33,8 +19,6 @@ int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
 	double	temp;
 
 	v_distance = vector_dot(plane.normal, ray->direction);
-	//printf("v_distance: %f \n", v_distance);
-	//printf("light_vector: %f | %f | %f\n", light_vector.x, light_vector.y, light_vector.z);
 	if (fabs(v_distance) < 1e-8)
 		return (0);
 	v_origin = -(vector_dot(plane.normal, ray->origin) - vector_dot(plane.normal, plane.position));
@@ -42,12 +26,9 @@ int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
 	if (temp > t.max || temp < t.min)
 		return (0);
 	rec->t = temp;
-	// rec->point = ray_at(*ray, rec->t);
-	rec->point.x = ray->origin.x + (ray->direction.x * rec->t);
-	rec->point.y = ray->origin.y + (ray->direction.y * rec->t);
-	rec->point.z = ray->origin.z + (ray->direction.z * rec->t);
+	rec->point = ray_at(*ray, rec->t);
 	rec->normal = plane.normal;
-	if (vector_dot(plane.normal, ray->direction) > 0.00001)
+	if (vector_dot(plane.normal, ray->direction) > 1e-8)
 		vector_negate_self(&rec->normal);
 	return (1);
 }
