@@ -39,7 +39,8 @@ VECTORS_SRCS =  vector_add.c \
 				vector_length_squared.c \
 				vector_unit.c \
 				vector_create.c \
-				vector_reflect.c
+				vector_reflect.c \
+				vector_cross.c
 RAYS_SRCS =	ray_at.c \
 			ray_color.c
 HITTABLE_SRCS =	set_face_normal.c \

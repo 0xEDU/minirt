@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/07 17:04:43 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:09:11 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "ray.h"
 # define WIDTH 1920
 # define HEIGHT 1080
+# define PI 3.1415926535897932385
 # define SPHERE 1
 # define PLANE 2
 
@@ -53,6 +54,10 @@ typedef struct s_camera {
 	t_vector	horizontal;
 	t_vector	vertical;
 	t_vector	lower_left_corner;
+	t_vector	view_up;
+	t_point3	lookfrom;
+	t_point3	lookat;
+	
 }				t_camera;
 
 typedef struct s_minirt {

@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 15:40:53 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:52:25 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	create_world(t_hittable_list *world)
 	sphere2->m.color = vector_create(0.5, 1, 0.1);
 
 	sphere3 = ft_calloc(sizeof(t_sphere), 1);
-	sphere3->center = vector_create(-1.5, 0.33, -0.75);
+	sphere3->center = vector_create(-2.5, 0.33, -0.75);
 	sphere3->radius = 0.33;
 	sphere3->type = SPHERE;
 	sphere3->m.ambient = 0.1;
