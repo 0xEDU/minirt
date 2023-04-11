@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/10 13:21:11 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:40:34 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_vector		vector_mult(t_vector vector, double value);
 t_vector		vector_div_self(t_vector *vector, double value);
 t_vector		vector_div(t_vector vector, double value);
 t_vector		vector_diff(t_vector u, t_vector v);
+t_vector		vector_product(t_vector u, t_vector v);
 t_vector		vector_create(double x, double y, double z);
 double			vector_length(t_vector vector);
 

@@ -12,6 +12,7 @@ SRCS =	main.c \
 		init_minirt.c \
 		hit_sphere.c \
 		hit_plane.c \
+		hit_cylinder.c \
 		create_world.c \
 		render_scene.c \
 		lighting.c
@@ -40,6 +41,7 @@ VECTORS_SRCS =  vector_add.c \
 				vector_unit.c \
 				vector_create.c \
 				vector_reflect.c \
+				vector_product.c \
 				vector_cross.c
 RAYS_SRCS =	ray_at.c \
 			ray_color.c

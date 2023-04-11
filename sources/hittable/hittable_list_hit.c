@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 17:07:08 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:07:58 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,18 @@ int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
 			{
 				if (hit_plane(*(current->plane), ray, temp_var, &temp_record))
 				{
+					hit_anything = 1;
+					closest_so_far = temp_record.t;
+					// t.max = closest_so_far;
+					*rec = temp_record;
+					rec->index = current->index;
+				}
+			}
+			else if (current->type == CYLINDER)
+			{
+				if (hit_cylinder(*(current->cylinder), ray, &temp_record))
+				{
+					
 					hit_anything = 1;
 					closest_so_far = temp_record.t;
 					// t.max = closest_so_far;
@@ -98,6 +110,18 @@ int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 				rec->index = current->index;
 			}
 		}
+		else if (current->type == CYLINDER)
+			{
+				if (hit_cylinder(*(current->cylinder), ray, &temp_record))
+				{
+					
+					hit_anything = 1;
+					closest_so_far = temp_record.t;
+					// t.max = closest_so_far;
+					*rec = temp_record;
+					rec->index = current->index;
+				}
+			}
 		current = current->next;
 	}
 	return (hit_anything);

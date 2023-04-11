@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 17:04:02 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:31:44 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	is_shadowed(t_point3 point, t_light light, t_hittable_list *world, in
 	var.max = HUGE_VAL;
 	shadow_vector = vector_diff(light.source, point);
 	distance = vector_length(shadow_vector);
-	shadow_ray.origin = vector_add(point, 1e-6);
+	shadow_ray.origin = vector_sum(point, vector_mult(vector_unit(shadow_vector), 1e-4));
 	shadow_ray.direction = normalize(shadow_vector);
 	if (hittable_shadow_hit(world, &shadow_ray, var, &temp_record, ignored_index))
 	{
@@ -60,7 +60,9 @@ t_color	ray_color(t_ray ray, t_hittable_list *world, t_light light)
 	if (hittable_list_hit(world, &ray, var, &rec))
 	{
 		in_shadow = is_shadowed(rec.point, light, world, rec.index);
+		// in_shadow = 0;
 		return (lighting(get_material(world, rec.index), light, rec.point, ray.direction, rec.normal, in_shadow));
+		// return ((vector_mult(rec.normal, 0.5)));//, vector_create(0.5, 0.5, 0.5)));
 	}
 	return (vector_create(0, 0, 0));
 }

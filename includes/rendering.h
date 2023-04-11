@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/10 13:09:11 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:07:24 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define PI 3.1415926535897932385
 # define SPHERE 1
 # define PLANE 2
+# define CYLINDER 3
 
 typedef struct s_variation {
 	double	min;
@@ -89,6 +90,17 @@ typedef struct s_sphere {
 	t_material	m;
 }				t_sphere;
 
+typedef struct s_cylinder {
+	t_vector	axis;
+	t_vector	center;
+	double		radius;
+	double		height;
+	t_vector	cap_top;
+	t_vector	cap_bottom;
+	int			type;
+	t_material	m;
+}				t_cylinder;
+
 typedef struct s_plane {
 	t_vector	normal;
 	t_vector	position;
@@ -106,6 +118,7 @@ typedef struct s_hittable_node {
 	{
 		void				*object;
 		t_sphere			*sphere;
+		t_cylinder			*cylinder;
 		t_plane				*plane;			
 	};
 	int						type;
@@ -137,6 +150,7 @@ int			hit_sphere(t_sphere sphere,
 				t_hit_record *rec);
 int			hit_plane(t_plane plane, t_ray *ray, t_variation t, 
 				t_hit_record *rec);
+int			hit_cylinder(t_cylinder cyl, t_ray *ray, t_hit_record *rec);
 t_color		ray_color(t_ray ray, t_hittable_list *world, t_light light);
 t_vector	normalize(t_vector vector);
 

@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/10 14:00:58 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:46:09 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	turn_on_camera(t_camera *camera, double vfov, double aspect_ratio)
 	theta = convert_to_radians(vfov);
 	h_cam = tan(theta/2);
 	// point3(-2,2,1), point3(0,0,-1), vec3(0,1,0)
-	camera->lookfrom = vector_create(-0.1, 1, 3);
+	camera->lookfrom = vector_create(-0.1, 1, 10);
 	camera->lookat = vector_create(0, 0, -1);
 	camera->view_up = vector_create(0, 1, 0);
 	camera->viewport_height = 2.0 * h_cam;
@@ -79,7 +79,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 	t_color		color;
 	t_light		point_light;
 
-	turn_on_camera(&minirt->camera, 160, (3.0 / 2.0));
+	turn_on_camera(&minirt->camera, 70, (3.0 / 2.0));
 	loop.x = 0;
 	point_light = set_light(-5, 12, 20, 1);
 	point_light.color = vector_create(1, 1, 1);
@@ -91,8 +91,6 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 			normal.x = (double)loop.x / (WIDTH - 1);
 			normal.y = (double)loop.y / (HEIGHT - 1);
 			ray = ray_constructor(&minirt->camera, normal);
-			if (ray.direction.x > 1 || ray.direction.y > 1 || ray.direction.z > 1)
-				printf("ray dir: %f | %f | %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 			color = ray_color(ray, world, point_light);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));

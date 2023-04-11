@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 16:47:05 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:34:21 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 	double		reflect_dot_eye;
 	double		factor;
 
-	effective_color = vector_mult(material.color, light.intensity);
+	effective_color = vector_product(vector_mult(material.color, light.intensity), light.color);
 	light_vector = normalize(vector_diff(light.source, point));
 	eye_vector = vector_negate_self(&eyev);
 	if (eye_vector.x > 1 || eye_vector.y > 1 || eye_vector.z > 1)
@@ -83,6 +83,7 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 	//printf("specular: %f\n", material.specular);
 	// return (vector_sum(vector_sum(ambient, diffuse), specular));
 	result = vector_sum(vector_sum(diffuse, specular), ambient);
+	// result = specular;
 	if (result.x > 1)
 		result.x = 1;
 	if (result.y > 1)
