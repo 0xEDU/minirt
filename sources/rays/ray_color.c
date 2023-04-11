@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/11 16:31:44 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:57:54 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ t_material	get_material(t_hittable_list *world, int index)
 	current = world->head;
 	while (current)
 	{
-		if (index == current->index)
+		if (index == current->index && current->type == PLANE)
 			material = current->plane->m;
+		else if (index == current->index && current->type == SPHERE)
+			material = current->sphere->m;
+		else if (index == current->index && current->type == CYLINDER)
+			material = current->cylinder->m;
 		current = current->next;
 	}
 	return (material);
@@ -61,7 +65,7 @@ t_color	ray_color(t_ray ray, t_hittable_list *world, t_light light)
 	{
 		in_shadow = is_shadowed(rec.point, light, world, rec.index);
 		// in_shadow = 0;
-		return (lighting(get_material(world, rec.index), light, rec.point, ray.direction, rec.normal, in_shadow));
+		return (lighting(get_material(world, rec.index), light, rec.point, vector_negate_self(&ray.direction), rec.normal, in_shadow));
 		// return ((vector_mult(rec.normal, 0.5)));//, vector_create(0.5, 0.5, 0.5)));
 	}
 	return (vector_create(0, 0, 0));

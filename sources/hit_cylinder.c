@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:26:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/10 18:56:38 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:53:29 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int hit_cylinder(t_cylinder cyl, t_ray *ray, t_hit_record *rec)
 	double root;
 	double a, b, c;
 
-	v_origin_center = vector_diff(ray->origin, cyl.center);
+	// v_origin_center = vector_diff(ray->origin, cyl.center);
+	v_origin_center = vector_diff(ray->origin, cyl.cap_bottom);
 	t_vector projected_origin_center = vector_project_onto_plane(v_origin_center, cyl.axis);
 	v = vector_project_onto_plane(ray->direction, cyl.axis);
 

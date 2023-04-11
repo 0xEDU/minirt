@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/11 16:34:21 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:44:38 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 	t_color		effective_color;
 	t_vector	light_vector;
 	t_vector	reflect_vector;
-	t_vector	eye_vector;
+	// t_vector	eye_vector;
 	t_color		ambient;
 	t_color		diffuse;
 	t_color		specular;
@@ -42,9 +42,9 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 
 	effective_color = vector_product(vector_mult(material.color, light.intensity), light.color);
 	light_vector = normalize(vector_diff(light.source, point));
-	eye_vector = vector_negate_self(&eyev);
-	if (eye_vector.x > 1 || eye_vector.y > 1 || eye_vector.z > 1)
-		printf("eyev: %f | %f | %f\n", eye_vector.x, eye_vector.y, eye_vector.z);
+	// eye_vector = vector_negate_self(&eyev);
+	// if (eye_vector.x > 1 || eye_vector.y > 1 || eye_vector.z > 1)
+	// 	printf("eyev: %f | %f | %f\n", eye_vector.x, eye_vector.y, eye_vector.z);
 	ambient = vector_mult(effective_color, material.ambient);
 	light_dot_normal = vector_dot(light_vector, normal_vector);
 	//printf("camera: %f | %f | %f\nmaterial.specular", camera.origin.x, camera.origin.y, camera.origin.z);
@@ -62,7 +62,7 @@ t_color	lighting(t_material material, t_light light, t_point3 point, t_vector ey
 		
 		diffuse = vector_mult(effective_color, material.diffuse * light_dot_normal);
 		reflect_vector = vector_reflect(vector_negate_self(&light_vector), normal_vector);
-		reflect_dot_eye = vector_dot(reflect_vector, eye_vector); // camera.orign may be wrong;
+		reflect_dot_eye = vector_dot(reflect_vector, eyev); // camera.orign may be wrong;
 		// printf("reflect_dot_eye: %f \n", reflect_dot_eye);
 		// printf("normal_vector: %f | %f | %f\n", normal_vector.x, normal_vector.y, normal_vector.z);
 		if (reflect_dot_eye <= 0)
