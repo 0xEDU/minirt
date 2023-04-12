@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/12 15:53:54 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:18:53 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	create_world(t_hittable_list *world)
 	cyl1->cap_bottom = vector_sum(cyl1->center, vector_mult(cyl1->axis, -(cyl1->height / 2.0)));
 	cyl1->type = CYLINDER;
 	cyl1->m.ambient = 0.2;
-	cyl1->m.diffuse = 0.7;
+	cyl1->m.diffuse = 0.9;
 	cyl1->m.specular = 0.3;
 	cyl1->m.shininess = 200;
 	cyl1->m.color = vector_create(1, 0, 0);
@@ -50,7 +50,7 @@ void	create_world(t_hittable_list *world)
 	cyl2->cap_bottom = vector_sum(cyl2->center, vector_mult(cyl2->axis, -(cyl2->height / 2.0)));
 	cyl2->type = CYLINDER;
 	cyl2->m.ambient = 0.2;
-	cyl2->m.diffuse = 0.7;
+	cyl2->m.diffuse = 0.9;
 	cyl2->m.specular = 0.3;
 	cyl2->m.shininess = 200;
 	cyl2->m.color = vector_create(0.5, 0.5, 1);
@@ -64,7 +64,7 @@ void	create_world(t_hittable_list *world)
 	cyl3->cap_bottom = vector_sum(cyl3->center, vector_mult(cyl3->axis, -(cyl3->height / 2.0)));
 	cyl3->type = CYLINDER;
 	cyl3->m.ambient = 0.2;
-	cyl3->m.diffuse = 0.7;
+	cyl3->m.diffuse = 0.9;
 	cyl3->m.specular = 0.3;
 	cyl3->m.shininess = 200;
 	cyl3->m.color = vector_create(1, 0, 0);
@@ -78,7 +78,7 @@ void	create_world(t_hittable_list *world)
 	cyl4->cap_bottom = vector_sum(cyl4->center, vector_mult(cyl4->axis, -(cyl4->height / 2.0)));
 	cyl4->type = CYLINDER;
 	cyl4->m.ambient = 0.2;
-	cyl4->m.diffuse = 0.7;
+	cyl4->m.diffuse = 0.9;
 	cyl4->m.specular = 0.3;
 	cyl4->m.shininess = 200;
 	cyl4->m.color = vector_create(1, 0, 0);
@@ -92,7 +92,7 @@ void	create_world(t_hittable_list *world)
 	cyl5->cap_bottom = vector_sum(cyl5->center, vector_mult(cyl5->axis, -(cyl5->height / 2.0)));
 	cyl5->type = CYLINDER;
 	cyl5->m.ambient = 0.2;
-	cyl5->m.diffuse = 0.7;
+	cyl5->m.diffuse = 0.9;
 	cyl5->m.specular = 0.3;
 	cyl5->m.shininess = 200;
 	cyl5->m.color = vector_create(1, 0, 0);
@@ -102,7 +102,7 @@ void	create_world(t_hittable_list *world)
 	sphere1->radius = 4;
 	sphere1->type = SPHERE;
 	sphere1->m.ambient = 0.2;
-	sphere1->m.diffuse = 0.7;
+	sphere1->m.diffuse = 0.9;
 	sphere1->m.specular = 0.3;
 	sphere1->m.shininess = 200;
 	sphere1->m.color = vector_create(1, 0, 0);
@@ -112,7 +112,7 @@ void	create_world(t_hittable_list *world)
 	sphere2->radius = 1.5;
 	sphere2->type = SPHERE;
 	sphere2->m.ambient = 0.2;
-	sphere2->m.diffuse = 0.7;
+	sphere2->m.diffuse = 0.9;
 	sphere2->m.specular = 0.3;
 	sphere2->m.shininess = 200;
 	sphere2->m.color = vector_create(0.5, 0.5, 1);
@@ -122,7 +122,7 @@ void	create_world(t_hittable_list *world)
 	sphere3->radius = 1.5;
 	sphere3->type = SPHERE;
 	sphere3->m.ambient = 0.2;
-	sphere3->m.diffuse = 0.7;
+	sphere3->m.diffuse = 0.9;
 	sphere3->m.specular = 0.3;
 	sphere3->m.shininess = 200;
 	sphere3->m.color = vector_create(0.5, 0.5, 1);
@@ -132,7 +132,7 @@ void	create_world(t_hittable_list *world)
 	sphere4->radius = 1.5;
 	sphere4->type = SPHERE;
 	sphere4->m.ambient = 0.2;
-	sphere4->m.diffuse = 0.7;
+	sphere4->m.diffuse = 0.9;
 	sphere4->m.specular = 0.3;
 	sphere4->m.shininess = 200;
 	sphere4->m.color = vector_create(1, 0, 0);
@@ -145,7 +145,7 @@ void	create_world(t_hittable_list *world)
 	plane1->m.diffuse = 0.9;
 	plane1->m.specular = 0.5;
 	plane1->m.shininess = 200;
-	plane1->m.color = vector_create(30/255, 30/255, 30/255);
+	plane1->m.color = vector_create(1, 1, 1);
 	
 	// plane2 = ft_calloc(sizeof(t_plane), 1);
 	// plane2->normal = vector_create(1, 0, 0);
