@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/12 16:09:09 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:14:27 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	turn_on_camera(t_camera *camera, double vfov, double aspect_ratio)
 	camera->vertical = vector_mult(v, camera->viewport_height);
 	camera->lower_left_corner = vector_diff(
 			vector_diff(
-				vector_diff(camera->origin, vector_div(camera->horizontal, 2)),
+				vector_diff(camera->origin, vector_div(vector_negate_self(&camera->horizontal), 2)),
 				vector_div(camera->vertical, 2)), w);
 }
 
