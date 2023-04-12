@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/12 15:03:21 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:09:09 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static void	turn_on_camera(t_camera *camera, double vfov, double aspect_ratio)
 	theta = convert_to_radians(vfov);
 	h_cam = tan(theta/2);
 	// point3(-2,2,1), point3(0,0,-1), vec3(0,1,0)
-	camera->lookfrom = vector_create(0, 6, 10);
-	camera->lookat = vector_create(0, 0, -1);
+	camera->lookfrom = vector_create(6, 0, -20);
+	camera->lookat = vector_create(-0.224148,0,0.974555);
 	camera->view_up = vector_create(0, 1, 0);
-	camera->viewport_height = 2.0 * h_cam;
+	camera->viewport_height = 1.2 * h_cam;
 	camera->viewport_width = aspect_ratio * camera->viewport_height;
 	w = vector_unit(vector_diff(camera->lookfrom, camera->lookat));
 	u = vector_unit(vector_cross(camera->view_up, w));
@@ -79,14 +79,14 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 	t_color		color;
 	t_light		point_light;
 
-	turn_on_camera(&minirt->camera, 70, (3.0 / 2.0));
+	turn_on_camera(&minirt->camera, 90, (1.75));
 	loop.x = 0;
-	point_light = set_light(-5, 12, 20, 1);
+	point_light = set_light(3, 18, -20, 0.79);
 	point_light.color = vector_create(1, 1, 1);
 	while (loop.x < WIDTH)
 	{
-		loop.y = HEIGHT;
-		while (loop.y >= 0)
+		loop.y = 0;
+		while (loop.y < HEIGHT)
 		{
 			normal.x = (double)loop.x / (WIDTH - 1);
 			normal.y = (double)loop.y / (HEIGHT - 1);
@@ -94,7 +94,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 			color = ray_color(ray, world, point_light);
 			mlx_pixel_draw(&minirt->img, loop.x, loop.y,
 				color_create_rgb(&color));
-			loop.y--;
+			loop.y++;
 		}
 		loop.x++;
 	}
