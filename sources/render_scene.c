@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/10 18:46:09 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:03:21 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	turn_on_camera(t_camera *camera, double vfov, double aspect_ratio)
 	theta = convert_to_radians(vfov);
 	h_cam = tan(theta/2);
 	// point3(-2,2,1), point3(0,0,-1), vec3(0,1,0)
-	camera->lookfrom = vector_create(-0.1, 1, 10);
+	camera->lookfrom = vector_create(0, 6, 10);
 	camera->lookat = vector_create(0, 0, -1);
 	camera->view_up = vector_create(0, 1, 0);
 	camera->viewport_height = 2.0 * h_cam;

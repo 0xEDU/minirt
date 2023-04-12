@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_world.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/11 16:58:23 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:03:08 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	create_world(t_hittable_list *world)
 {
 	t_cylinder	*cyl1;
-	// t_sphere	*sphere1;
+	t_sphere	*sphere1;
 	// t_sphere	*sphere2;
 	// t_sphere	*sphere3;
 	t_plane		*plane1;
@@ -23,28 +23,28 @@ void	create_world(t_hittable_list *world)
 	t_plane		*plane3;
 
 	cyl1 = ft_calloc(sizeof(t_cylinder), 1);
-	cyl1->center = vector_create(0, 0, -10);
-	cyl1->radius = 3;
+	cyl1->center = vector_create(0, 0, 0);
+	cyl1->radius = 2;
 	cyl1->axis = vector_create(0, 1, 0);
-	cyl1->height = 20;
+	cyl1->height = 6;
 	cyl1->cap_top = vector_sum(cyl1->center, vector_mult(cyl1->axis, cyl1->height/ 2.0));
 	cyl1->cap_bottom = vector_sum(cyl1->center, vector_mult(cyl1->axis, -(cyl1->height / 2.0)));
 	cyl1->type = CYLINDER;
 	cyl1->m.ambient = 0.1;
-	cyl1->m.diffuse = 0.9;
-	cyl1->m.specular = 0.5;
+	cyl1->m.diffuse = 0.7;
+	cyl1->m.specular = 0.3;
 	cyl1->m.shininess = 200;
 	cyl1->m.color = vector_create(0.1, 1, 0.5);
 
-	// sphere1 = ft_calloc(sizeof(t_sphere), 1);
-	// sphere1->center = vector_create(-0.5, 1, 0.5);
-	// sphere1->radius = 1;
-	// sphere1->type = SPHERE;
-	// sphere1->m.ambient = 0.1;
-	// sphere1->m.diffuse = 0.7;
-	// sphere1->m.specular = 0.3;
-	// sphere1->m.shininess = 200;
-	// sphere1->m.color = vector_create(0.1, 1, 0.5);
+	sphere1 = ft_calloc(sizeof(t_sphere), 1);
+	sphere1->center = vector_create(0, 0, 0);
+	sphere1->radius = 3;
+	sphere1->type = SPHERE;
+	sphere1->m.ambient = 0.1;
+	sphere1->m.diffuse = 0.7;
+	sphere1->m.specular = 0.3;
+	sphere1->m.shininess = 200;
+	sphere1->m.color = vector_create(0.1, 1, 0.5);
 
 	// sphere2 = ft_calloc(sizeof(t_sphere), 1);
 	// sphere2->center = vector_create(3, 0.5, -0.5);
@@ -97,8 +97,8 @@ void	create_world(t_hittable_list *world)
 	plane3->m.color = vector_create(1, 0.9, 0.9);
 
 	world->head = NULL;
+	hittable_list_add(world, sphere1, 0, SPHERE);
 	hittable_list_add(world, cyl1, 1, CYLINDER);
-	// hittable_list_add(world, sphere1, 0, SPHERE);
 	// hittable_list_add(world, sphere2, 1, SPHERE);
 	// hittable_list_add(world, sphere3, 2, SPHERE);
 	hittable_list_add(world, plane1, 3, PLANE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hittable_list_hit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/10 17:07:58 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:54:51 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
 			}
 			else if (current->type == CYLINDER)
 			{
-				if (hit_cylinder(*(current->cylinder), ray, &temp_record))
+				if (hit_cylinder(*(current->cylinder), ray, temp_var, &temp_record))
 				{
 					
 					hit_anything = 1;
@@ -112,7 +112,7 @@ int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 		}
 		else if (current->type == CYLINDER)
 			{
-				if (hit_cylinder(*(current->cylinder), ray, &temp_record))
+				if (hit_cylinder(*(current->cylinder), ray, temp_var, &temp_record))
 				{
 					
 					hit_anything = 1;

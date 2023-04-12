@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:26:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/11 16:53:29 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:52:40 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-	// static int	check_root_value(t_variation t,
-	// 			t_vector delta,
-	// 			double sqrt_discr,
-	// 			double *root)
-	// {
-	// 	if (t.min 	> *root || *root > t.max)
-	// 	{
-	// 		*root = -delta.y - sqrt_discr / 2 * delta.x;
-	// 		if (t.min > *root || *root > t.max)
-	// 			return (0);
-	// 	}
-	// 	return (1);
-	// }
-
-static int check_root_value(t_cylinder *cyl, t_ray *ray, double root)
-{
-	t_point3 point;
-	t_vector relative_point;
-	double projected_height;
-
-	point = ray_at(*ray, root);
-	relative_point = vector_diff(point, cyl->cap_bottom);
-	projected_height = vector_dot(relative_point, cyl->axis);
-	if (0 <= projected_height && projected_height <= cyl->height)
-		return 1;
-	return 0;
-}
 
 static t_vector vector_project_onto_plane(t_vector v, t_vector n)
 {
@@ -50,102 +22,108 @@ static t_vector vector_project_onto_plane(t_vector v, t_vector n)
 	return vector_diff(v, n_scaled);
 }
 
-	// b ← 2 * ray.origin.x * ray.direction.x +
-	// 2 * ray.origin.z * ray.direction.z
-	//
-	// c ← ray.origin.x² + ray.origin.z² - 1
-	// int	hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
-	// {
-	// 	t_vector	delta;
-	// 	double		discr;
-	// 	double		root;
-
-	// 	delta.x = ray->direction.x * ray->direction.x + ray->direction.z * ray->direction.z;
-	// 	// if (0 < delta.x && delta.x < 0.0001)
-	// 	// 	return (0);
-	// 	delta.y = 2 * ray->origin.x * ray->origin.x + 2 * ray->origin.z * ray->origin.z;
-	// 	delta.z = ray->direction.x * ray->direction.x + ray->direction.z * ray->direction.z - 1;
-	// 	discr = delta.y * delta.y - 4 * delta.x * delta.z;
-	// 	if (discr < 0)
-	// 		return (0);
-	// 	root = -delta.y + sqrt(discr) / 2 * delta.x;
-	// 	if (!check_root_value(t, delta, sqrt(discr), &root))
-	// 		return (0);
-	// 	rec->t = root;
-	// 	rec->point = ray_at(*ray, rec->t);
-	// 	rec->normal = vector_diff(vector_project_onto_plane(vector_diff(rec->point, cyl.center), cyl.axis), rec->point);
-	// 	set_face_normal(rec, ray, &rec->normal);
-	// 	return (1);
-	// }
-
-
-
-
-// int hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
+// int hit_cylinder(t_cylinder cyl, t_ray *ray, t_hit_record *rec)
 // {
-// 	t_vector v;
-// 	t_vector v_origin_center;
-// 	t_vector delta;
-// 	double discr;
-// 	double root;
+//     t_vector v;
+//     t_vector v_origin_center;
+//     double discr;
+//     double root1, root2;
+//     double a, b, c;
 
-// 	v_origin_center = vector_diff(ray->origin, cyl.center);
-// 	v = vector_project_onto_plane(ray->direction, cyl.axis);
-// 	delta.x = vector_length_squared(v);
-// 	v = vector_project_onto_plane(v_origin_center, cyl.axis);
-// 	delta.y = 2 * vector_dot(v, ray->direction);
-// 	delta.z = vector_length_squared(v) - cyl.radius * cyl.radius;
-// 	discr = delta.y * delta.y - 4 * delta.x * delta.z;
-// 	if (discr < 0)
-// 		return (0);
-// 	root = (-delta.y - sqrt(discr)) / (2 * delta.x);
-// 	if (!check_root_value(t, &cyl, ray, root))
-// 	{
-// 		root = (-delta.y + sqrt(discr)) / (2 * delta.x);
-// 		if (!check_root_value(t, &cyl, ray, root))
-// 			return (0);
-// 	}
-// 	rec->t = root;
-// 	rec->point = ray_at(*ray, rec->t);
-// 	rec->normal = vector_unit(vector_diff(vector_project_onto_plane(vector_diff(rec->point, cyl.center), cyl.axis), rec->point));
-// 	set_face_normal(rec, ray, &rec->normal);
-// 	return (1);
+//     v_origin_center = vector_diff(ray->origin, cyl.cap_bottom);
+//     t_vector projected_origin_center = vector_project_onto_plane(v_origin_center, cyl.axis);
+//     v = vector_project_onto_plane(ray->direction, cyl.axis);
+
+//     a = vector_length_squared(v);
+//     b = 2 * vector_dot(projected_origin_center, v);
+//     c = vector_length_squared(projected_origin_center) - cyl.radius * cyl.radius;
+
+//     discr = b * b - 4 * a * c;
+//     if (discr < 0)
+//         return (0);
+
+//     root1 = (-b - sqrt(discr)) / (2 * a);
+//     root2 = (-b + sqrt(discr)) / (2 * a);
+
+//     // Calculate the intersection points and their heights
+//     t_vector point1 = ray_at(*ray, root1);
+//     double height1 = vector_dot(cyl.axis, vector_diff(point1, cyl.cap_bottom));
+
+//     t_vector point2 = ray_at(*ray, root2);
+//     double height2 = vector_dot(cyl.axis, vector_diff(point2, cyl.cap_bottom));
+
+//     // Check if any of the intersections are within the height range of the cylinder
+//     if ((height1 >= 0 && height1 <= cyl.height) && (height2 < 0 || height2 > cyl.height || root1 < root2))
+//     {
+//         rec->t = root1;
+//         rec->point = point1;
+//     }
+//     else if ((height2 >= 0 && height2 <= cyl.height) && (height1 < 0 || height1 > cyl.height || root2 < root1))
+//     {
+//         rec->t = root2;
+//         rec->point = point2;
+//     }
+//     else
+//     {
+//         return (0);
+//     }
+
+//     t_vector point_on_axis = vector_sum(cyl.cap_bottom, vector_mult(cyl.axis, vector_dot(vector_diff(rec->point, cyl.cap_bottom), cyl.axis)));
+//     rec->normal = vector_unit(vector_diff(rec->point, point_on_axis));
+//     set_face_normal(rec, ray, &rec->normal);
+
+//     return (1);
 // }
 
-int hit_cylinder(t_cylinder cyl, t_ray *ray, t_hit_record *rec)
+int hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 {
-	t_vector v;
-	t_vector v_origin_center;
-	// t_vector delta;
-	double discr;
-	double root;
-	double a, b, c;
+    t_vector v;
+    t_vector v_origin_center;
+    double discr;
+    double root1, root2;
+    double a, b, c;
 
-	// v_origin_center = vector_diff(ray->origin, cyl.center);
-	v_origin_center = vector_diff(ray->origin, cyl.cap_bottom);
-	t_vector projected_origin_center = vector_project_onto_plane(v_origin_center, cyl.axis);
-	v = vector_project_onto_plane(ray->direction, cyl.axis);
+    v_origin_center = vector_diff(ray->origin, cyl.cap_bottom);
+    t_vector projected_origin_center = vector_project_onto_plane(v_origin_center, cyl.axis);
+    v = vector_project_onto_plane(ray->direction, cyl.axis);
 
-	a = vector_length_squared(v);
-	b = 2 * vector_dot(projected_origin_center, v);
-	c = vector_length_squared(projected_origin_center) - cyl.radius * cyl.radius;
+    a = vector_length_squared(v);
+    b = 2 * vector_dot(projected_origin_center, v);
+    c = vector_length_squared(projected_origin_center) - cyl.radius * cyl.radius;
 
-	discr = b * b - 4 * a * c;
-	if (discr < 0)
-		return (0);
+    discr = b * b - 4 * a * c;
+    if (discr < 0)
+        return (0);
 
-	root = (-b - sqrt(discr)) / (2 * a);
-	if (!check_root_value(&cyl, ray, root))
-	{
-		root = (-b + sqrt(discr)) / (2 * a);
-		if (!check_root_value(&cyl, ray, root))
-			return (0);
-	}
-	rec->t = root;
-	rec->point = ray_at(*ray, rec->t);
-	t_vector point_on_axis = vector_sum(cyl.center, vector_mult(cyl.axis, vector_dot(vector_diff(rec->point, cyl.center), cyl.axis)));
-	rec->normal = vector_unit(vector_diff(rec->point, point_on_axis));
-	set_face_normal(rec, ray, &rec->normal);
+    root1 = (-b - sqrt(discr)) / (2 * a);
+    root2 = (-b + sqrt(discr)) / (2 * a);
 
-	return (1);
+    // Calculate the intersection points and their heights
+    t_vector point1 = ray_at(*ray, root1);
+    double height1 = vector_dot(cyl.axis, vector_diff(point1, cyl.cap_bottom));
+
+    t_vector point2 = ray_at(*ray, root2);
+    double height2 = vector_dot(cyl.axis, vector_diff(point2, cyl.cap_bottom));
+
+    // Check if any of the intersections are within the height range of the cylinder and the t_variation range
+    if ((height1 >= 0 && height1 <= cyl.height && root1 >= t.min && root1 <= t.max) && (height2 < 0 || height2 > cyl.height || root2 < t.min || root2 > t.max || root1 < root2))
+    {
+        rec->t = root1;
+        rec->point = point1;
+    }
+    else if ((height2 >= 0 && height2 <= cyl.height && root2 >= t.min && root2 <= t.max) && (height1 < 0 || height1 > cyl.height || root1 < t.min || root1 > t.max || root2 < root1))
+    {
+        rec->t = root2;
+        rec->point = point2;
+    }
+    else
+    {
+        return (0);
+    }
+
+    t_vector point_on_axis = vector_sum(cyl.cap_bottom, vector_mult(cyl.axis, vector_dot(vector_diff(rec->point, cyl.cap_bottom), cyl.axis)));
+    rec->normal = vector_unit(vector_diff(rec->point, point_on_axis));
+    set_face_normal(rec, ray, &rec->normal);
+
+    return (1);
 }

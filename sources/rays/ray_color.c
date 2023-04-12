@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/11 16:57:54 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:56:47 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_color	ray_color(t_ray ray, t_hittable_list *world, t_light light)
 	if (hittable_list_hit(world, &ray, var, &rec))
 	{
 		in_shadow = is_shadowed(rec.point, light, world, rec.index);
-		// in_shadow = 0;
+		//in_shadow = 0;
 		return (lighting(get_material(world, rec.index), light, rec.point, vector_negate_self(&ray.direction), rec.normal, in_shadow));
 		// return ((vector_mult(rec.normal, 0.5)));//, vector_create(0.5, 0.5, 0.5)));
 	}

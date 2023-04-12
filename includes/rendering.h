@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/10 17:07:24 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:54:27 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int			hit_sphere(t_sphere sphere,
 				t_hit_record *rec);
 int			hit_plane(t_plane plane, t_ray *ray, t_variation t, 
 				t_hit_record *rec);
-int			hit_cylinder(t_cylinder cyl, t_ray *ray, t_hit_record *rec);
+int 		hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec);
 t_color		ray_color(t_ray ray, t_hittable_list *world, t_light light);
 t_vector	normalize(t_vector vector);
 
