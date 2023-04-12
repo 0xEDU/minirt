@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/12 16:18:53 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:22:12 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	create_world(t_hittable_list *world)
 	plane1->m.diffuse = 0.9;
 	plane1->m.specular = 0.5;
 	plane1->m.shininess = 200;
-	plane1->m.color = vector_create(1, 1, 1);
+	plane1->m.color = vector_create(0.1176470588, 0.1176470588, 0.1176470588);
 	
 	// plane2 = ft_calloc(sizeof(t_plane), 1);
 	// plane2->normal = vector_create(1, 0, 0);
