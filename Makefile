@@ -6,6 +6,7 @@ PATH_COLORS = ./sources/colors/
 PATH_VECTORS = ./sources/vectors/
 PATH_RAYS = ./sources/rays/
 PATH_HITTABLE = ./sources/hittable/
+PATH_PARSER = ./sources/parser/
 PATH_OBJS = ./objects/
 
 SRCS =	main.c \
@@ -50,6 +51,10 @@ HITTABLE_SRCS =	set_face_normal.c \
 				hittable_list_add.c \
 				hittable_list_clear.c \
 				hittable_list_hit.c
+PARSER_SRCS =	parse_ambient.c \
+				parse_camera.c \
+				parse_light.c \
+				parse_utils.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}
@@ -57,6 +62,7 @@ COLORS_OBJS = ${COLORS_SRCS:%.c=$(PATH_OBJS)%.o}
 VECTORS_OBJS = ${VECTORS_SRCS:%.c=$(PATH_OBJS)%.o}
 RAYS_OBJS = ${RAYS_SRCS:%.c=$(PATH_OBJS)%.o}
 HITTABLE_OBJS = ${HITTABLE_SRCS:%.c=$(PATH_OBJS)%.o}
+PARSER_OBJS = ${PARSER_SRCS:%.c=$(PATH_OBJS)%.o}
 
 INCLUDE = -I ./includes/
 FLAGS = -Wall -Wextra -Werror -g3
@@ -65,8 +71,8 @@ LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS)
-	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(PARSER_OBJS)
+	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(PARSER_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	@make --no-print-directory -C libft
@@ -98,6 +104,11 @@ $(PATH_OBJS)%.o: $(PATH_RAYS)%.c
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
 
 $(PATH_OBJS)%.o: $(PATH_HITTABLE)%.c
+	@mkdir -p $(PATH_OBJS)
+	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
+	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
+
+$(PATH_OBJS)%.o: $(PATH_PARSER)%.c
 	@mkdir -p $(PATH_OBJS)
 	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"

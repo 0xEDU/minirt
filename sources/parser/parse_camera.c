@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 17:12:12 by coder             #+#    #+#             */
-/*   Updated: 2023/04/14 16:01:35 by guribeir         ###   ########.fr       */
+/*   Created: 2023/04/14 16:07:06 by guribeir          #+#    #+#             */
+/*   Updated: 2023/04/14 16:37:28 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
-char	*ft_strtrim(char *s1, char const *set)
+void	parse_camera(char *line, t_camera *camera)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	char	**split;
 
-	str = 0;
-	i = 0;
-	if (s1 && set)
-	{
-		j = ft_strlen(s1);
-		while (s1[i] && ft_strchr(set, s1[i]))
-			i++;
-		while (s1[j - 1] && ft_strchr(set, s1[j - 1]) && j > i)
-			j--;
-		str = (char *) malloc(sizeof(char) * (j - i + 1));
-		if (str)
-			ft_strlcpy(str, &s1[i], (j - i + 1));
-	}
-	return (str);
+	split = ft_split(line, ' ');
+	camera->lookfrom = parse_vector(split[1]);
+	camera->lookat = parse_vector(split[2]);
+	camera->fov = ft_atof(split[3]);
+	ft_free_matrix((void **)split);
 }
