@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/12 14:54:51 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:41:57 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
 					rec->index = current->index;
 				}
 			}
+			else if (current->type == CONE)
+			{
+				if (hit_cone(*(current->cone), ray, temp_var, &temp_record))
+				{
+					
+					hit_anything = 1;
+					closest_so_far = temp_record.t;
+					// t.max = closest_so_far;
+					*rec = temp_record;
+					rec->index = current->index;
+				}
+			}
 		}
 		current = current->next;
 	}
@@ -91,6 +103,17 @@ int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 		if (current->type == SPHERE)
 		{
 			if (hit_sphere(*(current->sphere), ray, temp_var, &temp_record))
+			{
+				hit_anything = 1;
+				closest_so_far = temp_record.t;
+				// t.max = closest_so_far;
+				*rec = temp_record;
+				rec->index = current->index;
+			}
+		}
+		else if (current->type == CONE)
+		{
+			if (hit_cone(*(current->cone), ray, temp_var, &temp_record))
 			{
 				hit_anything = 1;
 				closest_so_far = temp_record.t;

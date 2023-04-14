@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/12 14:56:47 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:43:38 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_material	get_material(t_hittable_list *world, int index)
 			material = current->sphere->m;
 		else if (index == current->index && current->type == CYLINDER)
 			material = current->cylinder->m;
+		else if (index == current->index && current->type == CONE)
+			material = current->cone->m;
 		current = current->next;
 	}
 	return (material);

@@ -13,6 +13,7 @@ SRCS =	main.c \
 		hit_sphere.c \
 		hit_plane.c \
 		hit_cylinder.c \
+		hit_cone.c \
 		create_world.c \
 		render_scene.c \
 		lighting.c

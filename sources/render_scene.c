@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/12 16:14:27 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:29:24 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	turn_on_camera(t_camera *camera, double vfov, double aspect_ratio)
 	theta = convert_to_radians(vfov);
 	h_cam = tan(theta/2);
 	// point3(-2,2,1), point3(0,0,-1), vec3(0,1,0)
-	camera->lookfrom = vector_create(6, 0, -20);
+	camera->lookfrom = vector_create(6, 15, -20);
 	camera->lookat = vector_create(-0.224148,0,0.974555);
 	camera->view_up = vector_create(0, 1, 0);
 	camera->viewport_height = 1.2 * h_cam;
@@ -81,7 +81,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 
 	turn_on_camera(&minirt->camera, 90, (1.75));
 	loop.x = 0;
-	point_light = set_light(3, 18, -20, 0.79);
+	point_light = set_light(3, 20, -20, 0.79);
 	point_light.color = vector_create(1, 1, 1);
 	while (loop.x < WIDTH)
 	{

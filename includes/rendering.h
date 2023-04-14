@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/12 14:54:27 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:54:58 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
+# define CONE 4
 
 typedef struct s_variation {
 	double	min;
@@ -101,6 +102,16 @@ typedef struct s_cylinder {
 	t_material	m;
 }				t_cylinder;
 
+
+typedef struct s_cone {
+	t_vector	vertex;
+	t_vector	axis;
+	double		height;
+	double		angle;
+	int			type;
+	t_material	m;
+}				t_cone;
+
 typedef struct s_plane {
 	t_vector	normal;
 	t_vector	position;
@@ -119,7 +130,8 @@ typedef struct s_hittable_node {
 		void				*object;
 		t_sphere			*sphere;
 		t_cylinder			*cylinder;
-		t_plane				*plane;			
+		t_plane				*plane;
+		t_cone				*cone;	
 	};
 	int						type;
 	int						index;
@@ -151,6 +163,7 @@ int			hit_sphere(t_sphere sphere,
 int			hit_plane(t_plane plane, t_ray *ray, t_variation t, 
 				t_hit_record *rec);
 int 		hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec);
+int			hit_cone(t_cone cone, t_ray *ray, t_variation t, t_hit_record *rec);
 t_color		ray_color(t_ray ray, t_hittable_list *world, t_light light);
 t_vector	normalize(t_vector vector);
 
