@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: etachott <etachott@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:44:50 by coder             #+#    #+#             */
-/*   Updated: 2022/11/13 08:16:43 by etachott         ###   ########.fr       */
+/*   Created: 2022/11/13 05:49:22 by etachott          #+#    #+#             */
+/*   Updated: 2022/11/13 07:30:21 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft.h"
+#include "linked_list.h"
 
-// prototypes
-char	*gnl_strjoin(char *s1, char *s2);
-int		gnl_strchr(const char *s, char c);
-char	*get_next_line(int fd);
-#endif
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*node;
+
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (0);
+	node->content = content;
+	node->next = NULL;
+	return (node);
+}

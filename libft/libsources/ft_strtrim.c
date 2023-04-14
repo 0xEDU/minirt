@@ -6,12 +6,20 @@
 /*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:12:12 by coder             #+#    #+#             */
-/*   Updated: 2022/09/13 20:39:54 by coder            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:54:35 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+*	Trim leading and trailing characters from a string.
+*
+*	@param char const	*s1: The string to trim;
+*	@param char const	*set: The set of characters to trim.
+*
+*	@return A new string that has been trimmed.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;

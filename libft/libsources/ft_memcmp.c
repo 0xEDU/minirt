@@ -6,27 +6,37 @@
 /*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 00:58:08 by coder             #+#    #+#             */
-/*   Updated: 2022/08/30 01:13:50 by coder            ###   ########.fr       */
+/*   Updated: 2023/03/16 15:16:06 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+*	Compare two blocks of memory.
+*
+*	@param void	*s1: A pointer to the first block of memory
+*	@param void	*s2: A pointer to the second block of memory
+*	@param size_t	n: the number of bytes to compare
+*
+*	@return	If the two memory blocks are equal, return 0. Else, return the
+*	difference between the two blocks.
+*/
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t				i;
-	const unsigned char	*p1;
-	const unsigned char	*p2;
+	size_t				index;
+	const unsigned char	*ptr1;
+	const unsigned char	*ptr2;
 
-	i = 0;
-	p1 = s1;
-	p2 = s2;
-	while (i < n)
+	index = 0;
+	ptr1 = s1;
+	ptr2 = s2;
+	while (index < n)
 	{
-		if (p1[i] != p2[i])
-			return (p1[i] - p2[i]);
+		if (ptr1[index] != ptr2[index])
+			return (ptr1[index] - ptr2[index]);
 		else
-			i++;
+			index++;
 	}
 	return (0);
 }

@@ -6,35 +6,40 @@
 /*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:54:52 by coder             #+#    #+#             */
-/*   Updated: 2022/08/30 20:39:02 by coder            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:18:19 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* 
+*	Convert a string representation of a number to an integer.
+*	NOTE: If the input string is greater than MAX_INT,it WILL overflow.
+*
+*	@param char	*str: Pointer to a string.
+*
+*	@return int result: A integer that corresponds to the converted string.
+*/
 int	ft_atoi(const char *str)
 {
-	int	neg_counter;
-	int	final_num;
+	int	is_negative;
+	int	result;
 
-	neg_counter = 0;
-	final_num = 0;
+	is_negative = 1;
+	result = 0;
 	while (*str == ' ' || *str == '\t' || *str == '\r'
 		|| *str == '\n' || *str == '\f' || *str == '\v')
 		str++;
-	if (*str == 43 || *str == 45)
+	if (*str == '+' || *str == '-')
 	{
-		if (*str == 45)
-			neg_counter = 1;
+		if (*str == '-')
+			is_negative = -1;
 		str++;
 	}
-	while (48 <= *str && *str <= 57)
+	while ('0' <= *str && *str <= '9')
 	{
-		final_num = (*str - 48) + (final_num * 10);
+		result = (*str - '0') + (result * 10);
 		str++;
 	}
-	if (neg_counter == 1)
-		return (final_num * -1);
-	else
-		return (final_num);
+	return (result * is_negative);
 }

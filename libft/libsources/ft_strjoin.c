@@ -6,12 +6,20 @@
 /*   By: etachott <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:43:14 by etachott          #+#    #+#             */
-/*   Updated: 2022/09/10 13:55:41 by etachott         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:18:31 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+*	Allocate a string new joining strings s1 and s2.
+*
+*	@param char const	*s1: First string to be joined;
+*	@param char const	*s2: Second string to be joined.
+*
+*	@return A pointer to the allocated area containing the joined string.
+*/
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new;

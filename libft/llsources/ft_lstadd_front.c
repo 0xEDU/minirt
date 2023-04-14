@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: etachott <etachott@student.42sp.org.b      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:44:50 by coder             #+#    #+#             */
-/*   Updated: 2022/11/13 08:16:43 by etachott         ###   ########.fr       */
+/*   Created: 2022/11/13 06:14:41 by etachott          #+#    #+#             */
+/*   Updated: 2022/11/13 07:30:11 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft.h"
+#include "linked_list.h"
 
-// prototypes
-char	*gnl_strjoin(char *s1, char *s2);
-int		gnl_strchr(const char *s, char c);
-char	*get_next_line(int fd);
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *lst;
+	*lst = new;
+}
