@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/14 16:41:06 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:58:08 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,11 @@ static void	turn_on_camera(t_camera *camera, double aspect_ratio)
 	h_cam = tan(theta/2);
 	// point3(-2,2,1), point3(0,0,-1), vec3(0,1,0)
 	camera->view_up = vector_create(0, 1, 0);
-	camera->viewport_height = 1.2 * h_cam;
+	camera->viewport_height = 1.175 * h_cam;
 	camera->viewport_width = aspect_ratio * camera->viewport_height;
 	w = vector_unit(vector_diff(camera->lookfrom, camera->lookat));
 	u = vector_unit(vector_cross(camera->view_up, w));
 	v = vector_cross(w, u);
-	camera->focal_length = 1.0;
 	camera->horizontal = vector_mult(u, camera->viewport_width);
 	camera->vertical = vector_mult(v, camera->viewport_height);
 	camera->lower_left_corner = vector_diff(
@@ -67,9 +66,9 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 	t_color		color;
 	t_light		point_light;
 
-	turn_on_camera(&minirt->camera, (1.75));
-	loop.x = 0;
+	turn_on_camera(&minirt->camera, (1.77777777778));
 	point_light = minirt->light;
+	loop.x = 0;
 	while (loop.x < WIDTH)
 	{
 		loop.y = 0;

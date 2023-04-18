@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/14 16:39:02 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:31:31 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,12 @@ t_vector		parse_vector(char *line);
 void			parse_ambient(char *line, t_ambient *ambient);
 void			parse_camera(char *line, t_camera *camera);
 void			parse_light(char *line, t_light *light);
+void			parse_sphere(char *line, t_hittable_list *world,
+					t_minirt *minirt, int *i);
+void			parse_plane(char *line, t_hittable_list *world,
+					t_minirt *minirt, int *i);
+void			parse_cylinder(char *line, t_hittable_list *world,
+					t_minirt *minirt, int *i);
 
 /* MLX-related functions */
 void			mlx_open_window(t_mlx *mlx);

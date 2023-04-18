@@ -54,6 +54,9 @@ HITTABLE_SRCS =	set_face_normal.c \
 PARSER_SRCS =	parse_ambient.c \
 				parse_camera.c \
 				parse_light.c \
+				parse_sphere.c \
+				parse_plane.c \
+				parse_cylinder.c \
 				parse_utils.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}

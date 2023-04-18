@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_world.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/14 16:35:42 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:40:31 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 t_hittable_list	*create_world(char *file, t_minirt *minirt)
 {
 	t_hittable_list	*world;
+	int				i;
 	int				fd;
 	char			*line;
 
+	i = 0;
 	world = ft_calloc(sizeof(t_hittable_list), 1);
 	fd = open(file, O_RDONLY);
 	while (1)
@@ -31,6 +33,12 @@ t_hittable_list	*create_world(char *file, t_minirt *minirt)
 			parse_camera(line, &minirt->camera);
 		else if (line[0] == 'L')
 			parse_light(line, &minirt->light);
+		else if (line[0] == 's' && line[1] == 'p' && line[2] == ' ')
+			parse_sphere(line, world, minirt, &i);
+		else if (line[0] == 'p' && line[1] == 'l' && line[2] == ' ')
+			parse_plane(line, world, minirt, &i);
+		else if (line[0] == 'c' && line[1] == 'y' && line[2] == ' ')
+			parse_cylinder(line, world, minirt, &i);
 		free(line);
 	}
 	close(fd);
@@ -70,7 +78,7 @@ t_hittable_list	*create_world(char *file, t_minirt *minirt)
 // 	// cyl1->center = vector_create(0, 0.5, 0);
 // 	// cyl1->radius = 4;
 // 	// cyl1->axis = vector_create(0, 1, 0);
-// 	// cyl1->height = 9;ylinder
+// 	// cyl1->height = 9;
 // 	// cyl1->cap_top = vector_sum(cyl1->center, vector_mult(cyl1->axis, cyl1->height/ 2.0));
 // 	// cyl1->cap_bottom = vector_sum(cyl1->center, vector_mult(cyl1->axis, -(cyl1->height / 2.0)));
 // 	// cyl1->type = CYLINDER;
