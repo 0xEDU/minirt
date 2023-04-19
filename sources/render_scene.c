@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/17 19:58:08 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:40:47 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 	t_ray		new;
 
 	new.origin = camera->lookfrom;
-	normal.y = 1.0 - normal.y;
+	// normal.y = 1.0 - normal.y;
 	new.direction = normalize(vector_diff(
 			vector_sum(
 				vector_sum(camera->lower_left_corner,
@@ -31,6 +31,13 @@ static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 				vector_mult(camera->vertical, normal.y)),
 			camera->lookfrom));
 	return (new);
+}
+
+static int	vector_is_equal(t_vector v1, t_vector v2)
+{
+	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
+		return (1);
+	return (0);
 }
 
 static void	turn_on_camera(t_camera *camera, double aspect_ratio)
@@ -41,15 +48,18 @@ static void	turn_on_camera(t_camera *camera, double aspect_ratio)
 	t_vector	u;
 	t_vector	v;
 
+	if (vector_is_equal(camera->lookat, vector_create(0,1,0)))
+	    camera->lookat.z += 0.0001;
+	else if (vector_is_equal(camera->lookat, vector_create(0,-1,0)))
+	    camera->lookat.z -= 0.0001;	
 	theta = convert_to_radians(camera->fov);
 	h_cam = tan(theta/2);
-	// point3(-2,2,1), point3(0,0,-1), vec3(0,1,0)
 	camera->view_up = vector_create(0, 1, 0);
 	camera->viewport_height = 1.175 * h_cam;
 	camera->viewport_width = aspect_ratio * camera->viewport_height;
-	w = vector_unit(vector_diff(camera->lookfrom, camera->lookat));
+	w = vector_unit(vector_negate_self(&camera->lookat));
 	u = vector_unit(vector_cross(camera->view_up, w));
-	v = vector_cross(w, u);
+	v = vector_cross(u, w);
 	camera->horizontal = vector_mult(u, camera->viewport_width);
 	camera->vertical = vector_mult(v, camera->viewport_height);
 	camera->lower_left_corner = vector_diff(
