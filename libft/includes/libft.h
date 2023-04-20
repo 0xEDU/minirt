@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:51:37 by coder             #+#    #+#             */
-/*   Updated: 2023/04/14 15:44:34 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:58:28 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+double	ft_atof(char *str);
+double	ft_atof_validate(char *str);
 int		ft_atoi(const char *str);
 int		ft_atoi_hex(const char *str);
-double	ft_atof(char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_free_matrix(void **matrix);

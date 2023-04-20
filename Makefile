@@ -7,6 +7,7 @@ PATH_VECTORS = ./sources/vectors/
 PATH_RAYS = ./sources/rays/
 PATH_HITTABLE = ./sources/hittable/
 PATH_PARSER = ./sources/parser/
+PATH_VALIDATOR = ./sources/validator/
 PATH_OBJS = ./objects/
 
 SRCS =	main.c \
@@ -59,6 +60,11 @@ PARSER_SRCS =	parse_ambient.c \
 				parse_cylinder.c \
 				parse_utils.c
 
+VALIDATOR_SRCS =	validate_argv.c \
+					validate_file.c \
+					validate_line.c \
+					validate_camera.c
+
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}
 COLORS_OBJS = ${COLORS_SRCS:%.c=$(PATH_OBJS)%.o}
@@ -66,6 +72,7 @@ VECTORS_OBJS = ${VECTORS_SRCS:%.c=$(PATH_OBJS)%.o}
 RAYS_OBJS = ${RAYS_SRCS:%.c=$(PATH_OBJS)%.o}
 HITTABLE_OBJS = ${HITTABLE_SRCS:%.c=$(PATH_OBJS)%.o}
 PARSER_OBJS = ${PARSER_SRCS:%.c=$(PATH_OBJS)%.o}
+VALIDATOR_OBJS = ${VALIDATOR_SRCS:%.c=$(PATH_OBJS)%.o}
 
 INCLUDE = -I ./includes/
 FLAGS = -Wall -Wextra -Werror -g3
@@ -74,8 +81,8 @@ LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(PARSER_OBJS)
-	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(PARSER_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(PARSER_OBJS) $(VALIDATOR_OBJS)
+	@cc $(FLAGS) $(OBJS) $(MLX_OBJS) $(COLORS_OBJS) $(VECTORS_OBJS) $(RAYS_OBJS) $(HITTABLE_OBJS) $(PARSER_OBJS) $(VALIDATOR_OBJS) $(LINKERS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	@make --no-print-directory -C libft
@@ -112,6 +119,11 @@ $(PATH_OBJS)%.o: $(PATH_HITTABLE)%.c
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
 
 $(PATH_OBJS)%.o: $(PATH_PARSER)%.c
+	@mkdir -p $(PATH_OBJS)
+	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
+	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"
+
+$(PATH_OBJS)%.o: $(PATH_VALIDATOR)%.c
 	@mkdir -p $(PATH_OBJS)
 	@cc $(FLAGS) $(INCLUDE) -c $< -o $@
 	@echo "\033[1;92m[SUCCESS] Object creation done!\033[0m"

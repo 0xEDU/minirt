@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/18 18:31:31 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:09:13 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,12 @@ void			parse_plane(char *line, t_hittable_list *world,
 					t_minirt *minirt, int *i);
 void			parse_cylinder(char *line, t_hittable_list *world,
 					t_minirt *minirt, int *i);
+
+/* Validating functions */
+int				validate_argv(int argc, char **argv);
+int				validate_file(char *file);
+int				validate_line(char *line);
+int				validate_camera(char *line);
 
 /* MLX-related functions */
 void			mlx_open_window(t_mlx *mlx);

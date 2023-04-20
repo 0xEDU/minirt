@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:32:46 by coder             #+#    #+#             */
-/*   Updated: 2023/03/16 17:42:14 by edu              ###   ########.fr       */
+/*   Updated: 2023/04/19 20:02:19 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	index;
 
+	if (s1 == NULL || s2 == NULL)
+		return (-1);
 	index = 0;
 	if (n == 0)
 		return (0);
