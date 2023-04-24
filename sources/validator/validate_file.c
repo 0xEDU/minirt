@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:11:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/19 21:32:21 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:27:21 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	validate_file(char *file)
 {
-	int fd;
-	char *line;
+	char	*line;
+	int		fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

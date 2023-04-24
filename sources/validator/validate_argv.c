@@ -6,13 +6,13 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:05:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/19 20:05:52 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:26:57 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int validate_argv(int argc, char **argv)
+int	validate_argv(int argc, char **argv)
 {
 	if (argc != 2)
 		return (0);
