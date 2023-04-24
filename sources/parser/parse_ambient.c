@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:27:08 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/14 16:37:19 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:53:21 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void parse_ambient(char *line, t_ambient *ambient)
+void	parse_ambient(char *line, t_ambient *ambient)
 {
 	char	**split;
 

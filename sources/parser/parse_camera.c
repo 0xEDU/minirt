@@ -6,14 +6,12 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:07:06 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/18 19:49:33 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:56:22 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// Lookat must be a fixed number, not a variable
-// We need to create a function to calculate the lookat, which is the camera normal
 void	parse_camera(char *line, t_camera *camera)
 {
 	char	**split;

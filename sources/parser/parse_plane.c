@@ -6,18 +6,18 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:21:11 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/17 19:09:46 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:56:02 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_plane(char *line, t_hittable_list *world, t_minirt *minirt, int *i)
+void	parse_plane(char *ln, t_hittable_list *world, t_minirt *minirt, int *i)
 {
 	t_plane	*plane;
 	char	**split;
 
-	split = ft_split(line, ' ');
+	split = ft_split(ln, ' ');
 	plane = ft_calloc(sizeof(t_plane), 1);
 	plane->position = parse_vector(split[1]);
 	plane->normal = parse_vector(split[2]);

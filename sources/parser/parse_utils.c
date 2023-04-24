@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:37:06 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:41 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:56:50 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_color parse_color(char *line)
+t_color	parse_color(char *line)
 {
 	char	**split;
 	t_color	color;

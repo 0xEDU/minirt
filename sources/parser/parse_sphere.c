@@ -6,21 +6,21 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:26:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/17 17:19:33 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:56:40 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_sphere(char *line, t_hittable_list *world, t_minirt *minirt, int *i)
+void	parse_sphere(char *ln, t_hittable_list *world, t_minirt *minirt, int *i)
 {
 	t_sphere	*sphere;
 	char		**split;
 
-	split = ft_split(line, ' ');
+	split = ft_split(ln, ' ');
 	sphere = ft_calloc(sizeof(t_sphere), 1);
 	sphere->center = parse_vector(split[1]);
-	sphere->radius = ft_atof(split[2])/2;
+	sphere->radius = ft_atof(split[2]) / 2;
 	sphere->type = SPHERE;
 	sphere->m.ambient = minirt->ambient.ratio;
 	sphere->m.diffuse = 0.9;
