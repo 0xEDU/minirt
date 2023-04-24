@@ -63,7 +63,9 @@ PARSER_SRCS =	parse_ambient.c \
 VALIDATOR_SRCS =	validate_argv.c \
 					validate_file.c \
 					validate_line.c \
-					validate_camera.c
+					validate_camera.c \
+					validate_ambient.c \
+					validate_utils.c
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}

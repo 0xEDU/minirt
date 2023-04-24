@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/19 21:09:13 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:40:14 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_camera {
 	t_vector	view_up;
 	t_point3	lookfrom;
 	t_point3	lookat;
-	
 }				t_camera;
 
 typedef struct s_ambient {
@@ -110,7 +109,6 @@ typedef struct s_cylinder {
 	t_material	m;
 }				t_cylinder;
 
-
 typedef struct s_cone {
 	t_vector	vertex;
 	t_vector	axis;
@@ -152,11 +150,12 @@ typedef struct s_hittable_list {
 
 /* Hittable list functions */
 void			hittable_list_clear(t_hittable_list *list);
-void			hittable_list_add(t_hittable_list *list, void *object, int index, int type);
+void			hittable_list_add(t_hittable_list *list, void *object,
+					int index, int type);
 int				hittable_list_hit(t_hittable_list *list, t_ray *ray,
-				t_variation t, t_hit_record *rec);
+					t_variation t, t_hit_record *rec);
 int				hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
-				t_variation t, t_hit_record *rec, int ignore_index);
+					t_variation t, t_hit_record *rec, int ignore_index);
 
 /* Hit Record Utils */
 t_hittable_list	*create_world(char *file, t_minirt *minirt);
@@ -168,10 +167,12 @@ int				hit_sphere(t_sphere sphere,
 					t_ray *ray,
 					t_variation t,
 					t_hit_record *rec);
-int				hit_plane(t_plane plane, t_ray *ray, t_variation t, 
+int				hit_plane(t_plane plane, t_ray *ray, t_variation t,
 					t_hit_record *rec);
-int 			hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec);
-int				hit_cone(t_cone cone, t_ray *ray, t_variation t, t_hit_record *rec);
+int				hit_cylinder(t_cylinder cyl, t_ray *ray,
+					t_variation t, t_hit_record *rec);
+int				hit_cone(t_cone cone, t_ray *ray,
+					t_variation t, t_hit_record *rec);
 t_color			ray_color(t_ray ray, t_hittable_list *world, t_light light);
 t_vector		normalize(t_vector vector);
 
@@ -180,7 +181,8 @@ void			init_minirt(t_minirt *minirt);
 
 /* Rendering functions */
 void			render_scene(t_minirt *minirt, t_hittable_list *world);
-t_color			lighting(t_material material, t_light light, t_point3 point, t_vector eyev, t_vector normal_vector, int in_shadow);
+t_color			lighting(t_material material, t_light light, t_point3 point,
+					t_vector eyev, t_vector normal_vector, int in_shadow);
 
 /* Parsing functions utils */
 t_color			parse_color(char *line);
@@ -202,6 +204,11 @@ int				validate_argv(int argc, char **argv);
 int				validate_file(char *file);
 int				validate_line(char *line);
 int				validate_camera(char *line);
+int				validate_ambient(char *line);
+
+/* Validating utils */
+int				validate_position(char *position);
+int				validate_normal(char *normal);
 
 /* MLX-related functions */
 void			mlx_open_window(t_mlx *mlx);
