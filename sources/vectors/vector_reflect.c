@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 17:29:33 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/04 14:22:53 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 10:00:02 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 t_vector	vector_reflect(t_vector v, t_vector n)
 {
-	t_vector result;
-	const double dot_product = 2 * (v.x * n.x + v.y * n.y + v.z * n.z);
+	t_vector		result;
+	const double	dot_product = 2 * (v.x * n.x + v.y * n.y + v.z * n.z);
 
 	result.x = v.x - dot_product * n.x;
 	result.y = v.y - dot_product * n.y;
