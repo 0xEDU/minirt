@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:30:12 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/14 16:33:32 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:44:39 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,5 @@ double	ft_atof(char *str)
 		div *= 0.1;
 		i++;
 	}
-	// if (str[i] && !ft_isdigit(str[i]))
-	// 	return (-42);
 	return (nb * is_neg);
 }
