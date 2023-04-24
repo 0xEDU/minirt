@@ -6,7 +6,7 @@
 #    By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/27 15:51:38 by coder             #+#    #+#              #
-#    Updated: 2023/04/19 20:57:54 by etachott         ###   ########.fr        #
+#    Updated: 2023/04/24 19:10:02 by etachott         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ LIBSRCS = $(addprefix $(PATH_LIBSRCS)/, ft_atoi.c \
 	   ft_putstr_fd.c     \
 	   ft_split.c         \
 	   ft_strchr.c        \
+	   ft_strcmp.c        \
 	   ft_strdup.c        \
 	   ft_striteri.c      \
 	   ft_strjoin.c       \
