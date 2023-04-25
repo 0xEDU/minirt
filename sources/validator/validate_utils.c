@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:17:07 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 12:40:05 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:43:51 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static	int	comma_check(char *line)
 	return (1);
 }
 
-
 int	validate_normal(char *normal)
 {
-	// Refatorar
 	int		i;
 	char	**split;
 
@@ -43,7 +41,7 @@ int	validate_normal(char *normal)
 	while (normal[++i])
 	{
 		if (!ft_isdigit(normal[i]) && normal[i] != '.'
-				&& normal[i] != ',' && normal[i] != '-')
+			&& normal[i] != ',' && normal[i] != '-')
 			return (0);
 	}
 	split = ft_split(normal, ',');
