@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/24 21:11:27 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:36:38 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,6 @@ typedef struct s_ambient {
 	double		ratio;
 	t_color		color;
 }				t_ambient;
-
-typedef struct s_minirt {
-	t_mlx			mlx;
-	t_image			img;
-	t_camera		camera;
-	t_ambient		ambient;
-	t_light			light;
-}				t_minirt;
 
 typedef struct s_hit_record {
 	t_point3	point;
@@ -147,6 +139,15 @@ typedef struct s_hittable_node {
 typedef struct s_hittable_list {
 	t_hittable_node	*head;
 }				t_hittable_list;
+
+typedef struct s_minirt {
+	t_mlx			mlx;
+	t_image			img;
+	t_camera		camera;
+	t_ambient		ambient;
+	t_light			light;
+	t_hittable_list	*world;
+}				t_minirt;
 
 /* Hittable list functions */
 void			hittable_list_clear(t_hittable_list *list);

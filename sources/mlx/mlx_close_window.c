@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_close_window.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:05:53 by edu               #+#    #+#             */
-/*   Updated: 2023/03/22 21:18:58 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:52:05 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	free_list(t_hittable_list *list)
+{
+	t_hittable_node *tmp;
+
+	tmp = list->head;
+	while (tmp)
+	{
+		list->head = tmp->next;
+		free(tmp->object);
+		free(tmp);
+		tmp = list->head;
+	}
+	free(list);
+}
 
 void	mlx_close_window(t_minirt *minirt)
 {
@@ -19,5 +34,6 @@ void	mlx_close_window(t_minirt *minirt)
 	mlx_destroy_display(minirt->mlx.mlx);
 	if (minirt->mlx.mlx)
 		free(minirt->mlx.mlx);
+	free_list(minirt->world);
 	exit(0);
 }
