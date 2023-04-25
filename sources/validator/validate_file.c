@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:11:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 19:25:04 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:32:42 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	validate_file(char *file)
 		if (!line)
 			break ;
 		if (!validate_line(line))
+		{
+			free(line);
 			return (0);
+		}
 		free(line);
 	}
 	return (1);

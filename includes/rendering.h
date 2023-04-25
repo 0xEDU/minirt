@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/24 19:40:14 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:11:27 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,10 +205,20 @@ int				validate_file(char *file);
 int				validate_line(char *line);
 int				validate_camera(char *line);
 int				validate_ambient(char *line);
+int				validate_light(char *line);
+int				validate_sphere(char *line);
+int				validate_plane(char *line);
+int				validate_cylinder(char *line);
 
 /* Validating utils */
 int				validate_position(char *position);
 int				validate_normal(char *normal);
+int				validate_color(char *line);
+int				validate_vector(char **vector);
+int				validate_double(char *line);
+int				clean_return(int status_code, void **split);
+int				validate_ratio(char *line);
+int				validate_float(char *line);
 
 /* MLX-related functions */
 void			mlx_open_window(t_mlx *mlx);

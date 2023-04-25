@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:25:43 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 19:24:43 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:34:28 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ int	validate_camera(char *line)
 	while (split[i])
 		i++;
 	if (i != 4)
-		return (0);
+		return (clean_return(0, (void **)split));
 	if (!validate_position(split[1]))
-		return (0);
+		return (clean_return(0, (void **)split));
 	if (!validate_normal(split[2]))
-		return (0);
+		return (clean_return(0, (void **)split));
 	if (!validate_fov(split[3]))
-		return (0);
-	ft_free_matrix((void **)split);
-	return (1);
+		return (clean_return(0, (void **)split));
+	return (clean_return(1, (void **)split));
 }

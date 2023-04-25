@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:17:07 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 19:30:27 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:21:34 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	validate_normal(char *normal)
 {
+	// Refatorar
 	int		i;
 	int		comma;
 
@@ -39,7 +40,7 @@ int	validate_normal(char *normal)
 	return (0);
 }
 
-static int	validate_double(char *line)
+int	validate_double(char *line)
 {
 	int	j;
 	int	i;
@@ -67,7 +68,7 @@ static int	validate_double(char *line)
 	return (1);
 }
 
-static int	validate_vector(char **vector)
+int	validate_vector(char **vector)
 {
 	int	i;
 	int	j;
@@ -124,15 +125,8 @@ int	validate_position(char *position)
 	while (split[i])
 		i++;
 	if (i != 3)
-	{
-		ft_free_matrix((void **)split);
-		return (0);
-	}
+		return (clean_return(0, (void **)split));
 	if (!validate_vector(split))
-	{
-		ft_free_matrix((void **)split);
-		return (0);
-	}
-	ft_free_matrix((void **)split);
-	return (1);
+		return (clean_return(0, (void **)split));
+	return (clean_return(1, (void **)split));
 }

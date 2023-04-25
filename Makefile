@@ -65,7 +65,12 @@ VALIDATOR_SRCS =	validate_argv.c \
 					validate_line.c \
 					validate_camera.c \
 					validate_ambient.c \
-					validate_utils.c
+					validate_light.c \
+					validate_sphere.c \
+					validate_plane.c \
+					validate_cylinder.c \
+					validate_utils.c \
+					validate_utils2.c 
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
 MLX_OBJS = ${MLX_SRCS:%.c=$(PATH_OBJS)%.o}
