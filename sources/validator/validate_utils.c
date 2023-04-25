@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:17:07 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 12:43:51 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:19:19 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	validate_normal(char *normal)
 	i = -1;
 	while (split[++i])
 	{
-		if (ft_atof(split[i]) != 0 && ft_atof(split[i]) != 1)
+		if (ft_atof(split[i]) != 0.0 && ft_atof(split[i]) != 1.0)
 			return (clean_return(0, (void **)split));
 	}
 	return (clean_return(1, (void **)split));
