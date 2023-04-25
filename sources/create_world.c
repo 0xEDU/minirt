@@ -6,21 +6,18 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 10:01:09 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:18:15 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_hittable_list	*create_world(char *file, t_minirt *minirt)
+void	create_world(char *file, t_minirt *minirt,
+		t_hittable_list *world, int i)
 {
-	t_hittable_list	*world;
-	int				i;
 	int				fd;
 	char			*line;
 
-	i = 0;
-	world = ft_calloc(sizeof(t_hittable_list), 1);
 	fd = open(file, O_RDONLY);
 	while (1)
 	{
@@ -42,5 +39,4 @@ t_hittable_list	*create_world(char *file, t_minirt *minirt)
 		free(line);
 	}
 	close(fd);
-	return (world);
 }

@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/25 13:36:38 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:31:18 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,9 @@ int				hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
 					t_variation t, t_hit_record *rec, int ignore_index);
 
 /* Hit Record Utils */
-t_hittable_list	*create_world(char *file, t_minirt *minirt);
+// t_hittable_list	*create_world(char *file, t_minirt *minirt);
+void			create_world(char *file, t_minirt *minirt,
+					t_hittable_list *world, int i);
 void			set_face_normal(t_hit_record *rec,
 					t_ray *ray, t_vector *out_normal);
 

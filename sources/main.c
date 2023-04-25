@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/04/25 14:16:20 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:17:07 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int argc, char **argv)
 	init_minirt(&minirt);
 	mlx_open_window(&minirt.mlx);
 	mlx_create_image(&minirt);
-	world = create_world(argv[1], &minirt);
+	world = ft_calloc(sizeof(t_hittable_list), 1);
+	create_world(argv[1], &minirt, world, 0);
 	minirt.world = world;
 	render_scene(&minirt, world);
 	mlx_image_to_window(&minirt, 0, 0);

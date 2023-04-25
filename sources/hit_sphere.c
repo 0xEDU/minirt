@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/13 18:18:06 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:32:01 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_root_value(t_variation t,
 			double sqrt_discr,
 			double *root)
 {
-	if (t.min 	> *root || *root > t.max)
+	if (t.min > *root || *root > t.max)
 	{
 		*root = (-delta.y + sqrt_discr) / delta.x;
 		if (t.min > *root || *root > t.max)

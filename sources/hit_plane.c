@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:35:29 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/07 15:34:54 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:31:31 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
 	v_distance = vector_dot(plane.normal, ray->direction);
 	if (fabs(v_distance) < 1e-8)
 		return (0);
-	v_origin = -(vector_dot(plane.normal, ray->origin) - vector_dot(plane.normal, plane.position));
+	v_origin = -(vector_dot(plane.normal, ray->origin)
+			- vector_dot(plane.normal, plane.position));
 	temp = v_origin / v_distance;
 	if (temp > t.max || temp < t.min)
 		return (0);

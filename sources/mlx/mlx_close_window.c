@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:05:53 by edu               #+#    #+#             */
-/*   Updated: 2023/04/25 13:52:05 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:18:45 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	free_list(t_hittable_list *list)
 {
-	t_hittable_node *tmp;
+	t_hittable_node	*tmp;
 
 	tmp = list->head;
 	while (tmp)
