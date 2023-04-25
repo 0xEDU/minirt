@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:26:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 18:00:40 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:08:39 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,31 @@ static int hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec
 	return (0);
 }
 
+static int	teste(double root1, double root2, t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
+{
+	t_vector point1 = ray_at(*ray, root1);
+	double height1 = vector_dot(cyl.axis, vector_diff(point1, cyl.cap_bottom));
+	t_vector point2 = ray_at(*ray, root2);
+	double height2 = vector_dot(cyl.axis, vector_diff(point2, cyl.cap_bottom));
+	if ((height1 >= 0 && height1 <= cyl.height && root1 >= t.min && root1 <= t.max)
+			&& (height2 < 0 || height2 > cyl.height
+			|| root2 < t.min || root2 > t.max || root1 < root2))
+	{
+		rec->t = root1;
+		rec->point = point1;
+		return (1);
+	}
+	else if ((height2 >= 0 && height2 <= cyl.height && root2 >= t.min && root2 <= t.max)
+			&& (height1 < 0 || height1 > cyl.height
+			|| root1 < t.min || root1 > t.max || root2 < root1))
+	{
+		rec->t = root2;
+		rec->point = point2;
+		return (1);
+	}
+	return (0);
+}
+
 int hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 {
 	t_vector v;
@@ -59,6 +84,7 @@ int hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 	double discr;
 	double root1, root2;
 	double a, b, c;
+	int body_hit;
 
 	v_origin_center = vector_diff(ray->origin, cyl.cap_bottom);
 	t_vector projected_origin_center
@@ -72,29 +98,8 @@ int hit_cylinder(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 		return 0;
 	root1 = (-b - sqrt(discr)) / (2 * a);
 	root2 = (-b + sqrt(discr)) / (2 * a);
-	t_vector point1 = ray_at(*ray, root1);
-	double height1 = vector_dot(cyl.axis, vector_diff(point1, cyl.cap_bottom));
-	t_vector point2 = ray_at(*ray, root2);
-	double height2 = vector_dot(cyl.axis, vector_diff(point2, cyl.cap_bottom));
-	int body_hit;
-	if ((height1 >= 0 && height1 <= cyl.height && root1 >= t.min && root1 <= t.max)
-			&& (height2 < 0 || height2 > cyl.height
-			|| root2 < t.min || root2 > t.max || root1 < root2))
-	{
-		rec->t = root1;
-		rec->point = point1;
-		body_hit = 1;
-	}
-	else if ((height2 >= 0 && height2 <= cyl.height && root2 >= t.min && root2 <= t.max)
-			&& (height1 < 0 || height1 > cyl.height
-			|| root1 < t.min || root1 > t.max || root2 < root1))
-	{
-		rec->t = root2;
-		rec->point = point2;
-		body_hit = 1;
-	}
-	else
-		body_hit = 0;
+	
+	body_hit = teste(root1, root2, cyl, ray, t, rec);
 	t_hit_record cap_rec;
 	int cap_hit = hit_caps(cyl, ray, t, &cap_rec);
 	if (cap_hit && body_hit)
