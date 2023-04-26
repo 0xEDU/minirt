@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/26 16:10:46 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:44:54 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 # define PI 3.1415926535897932385
 # define SPHERE 1
 # define PLANE 2
+# define PL 2
 # define CYLINDER 3
+# define CYL 3
 # define CONE 4
 # define AMBIENT 0
 # define DIFFUSE 1
@@ -77,6 +79,7 @@ typedef struct s_hit_record {
 	double		t;
 	int			front_face;
 	int			index;
+	int			ignore_index;
 }				t_hit_record;
 
 typedef struct s_material {
@@ -132,6 +135,7 @@ typedef struct s_hittable_node {
 		void				*object;
 		t_sphere			*sphere;
 		t_cylinder			*cylinder;
+		t_cylinder			*cyl;
 		t_plane				*plane;
 		t_cone				*cone;	
 	};
@@ -190,7 +194,7 @@ void			hittable_list_add(t_hittable_list *list, void *object,
 int				hittable_list_hit(t_hittable_list *list, t_ray *ray,
 					t_variation t, t_hit_record *rec);
 int				hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
-					t_variation t, t_hit_record *rec, int ignore_index);
+					t_variation t, t_hit_record *rec);
 
 /* Hit Record Utils */
 // t_hittable_list	*create_world(char *file, t_minirt *minirt);
