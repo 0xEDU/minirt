@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:44:32 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 16:43:58 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:12:57 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	int	validate_sphere_values(char **split)
 	if (!validate_color(split[3]))
 	{
 		printf("Error\nSphere color must be in format 0,0,0"
-			"and values must be between 0 and 255\n");
+			" and values must be between 0 and 255\n");
 		return (0);
 	}
 	return (1);

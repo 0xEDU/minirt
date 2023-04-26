@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:07:48 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 16:29:30 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:07:08 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	validate_cylinder_first(char **split)
 	if (!validate_normal(split[2]))
 	{
 		printf("Error\nCylinder normal must be in format 0,0,0"
-			"and values must be between 1 and 0\n");
+			" and values must be between 1 and 0\n");
 		return (0);
 	}
 	return (1);
@@ -43,7 +43,7 @@ static int	validate_cylinder_second(char **split)
 	if (!validate_color(split[5]))
 	{
 		printf("Error\nCylinder color must be in format 0,0,0"
-			"and values must be between 0 and 255\n");
+			" and values must be between 0 and 255\n");
 		return (0);
 	}
 	return (1);
