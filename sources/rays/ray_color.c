@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 09:58:35 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:12:23 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,19 @@ static int	is_shadowed(t_point3 point, t_light light,
 
 t_color	ray_color(t_ray ray, t_hittable_list *world, t_light light)
 {
-	t_variation		var;
-	t_hit_record	rec;
+	t_hit			hit;
 	int				in_shadow;
 
-	var.min = 0;
-	var.max = HUGE_VAL;
-	if (hittable_list_hit(world, &ray, var, &rec))
+	hit.t.min = 0;
+	hit.t.max = HUGE_VAL;
+	hit.ray = &ray;
+	hit.rec = &(t_hit_record) {0};
+	if (hittable_list_hit(world, hit.ray, hit.t, hit.rec))
 	{
-		in_shadow = is_shadowed(rec.point, light, world, rec.index);
-		return (lighting(get_material(world, rec.index), light, rec.point,
-				vector_negate_self(&ray.direction), rec.normal, in_shadow));
+		in_shadow = is_shadowed(hit.rec->point, light, world, hit.rec->index);
+		return (lighting(get_material(world, hit.rec->index), 
+				light, hit.rec->point,
+				vector_negate_self(&hit.ray->direction), hit.rec->normal, in_shadow));
 	}
 	return (vector_create(0, 0, 0));
 }

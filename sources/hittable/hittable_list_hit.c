@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 09:51:01 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:01:26 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
 	return (hit_anything);
 }
 
+// int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
+// 			t_variation t, t_hit_record *rec)
 int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 			t_variation t, t_hit_record *rec)
 {

@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/25 17:31:18 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:31:10 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,28 @@ typedef struct s_minirt {
 	t_light			light;
 	t_hittable_list	*world;
 }				t_minirt;
+
+typedef struct s_hit {
+	union
+	{
+		void				*object;
+		t_sphere			*sphere;
+		t_cylinder			*cyl;
+		t_plane				*plane;
+		t_cone				*cone;	
+	};
+	t_ray			*ray;
+	t_variation		t;
+	t_hit_record	*rec;
+}				t_hit;
+
+typedef struct s_bhaskara {
+	double	a;
+	double	b;
+	double	c;
+	double	discr;
+	double	root[2];
+}				t_bhaskara;
 
 /* Hittable list functions */
 void			hittable_list_clear(t_hittable_list *list);
