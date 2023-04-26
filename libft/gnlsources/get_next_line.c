@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:44:35 by coder             #+#    #+#             */
-/*   Updated: 2022/10/14 16:05:45 by edu              ###   ########.fr       */
+/*   Updated: 2023/04/25 22:58:57 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,18 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = set_buffer(fd, buf);
+	if (buf == NULL)
+		buf = set_buffer(fd, buf);
 	if (buf == NULL)
 		return (NULL);
 	line = get_line(buf);
-	buf = go_to_next_line(buf);
+	if (line)
+		buf = go_to_next_line(buf);
+	else
+	{
+		free(buf);
+		buf = NULL;
+	}
 	return (line);
 }
 
@@ -65,8 +72,6 @@ static char	*get_line(char *buffer)
 	size_t	i;
 
 	i = 0;
-	if (*(buffer + i) == '\0')
-		return (NULL);
 	while (*(buffer + i) != '\0' && *(buffer + i) != '\n')
 		i++;
 	line = ft_calloc(i + (*(buffer + i) == '\n') + 1, sizeof(char));

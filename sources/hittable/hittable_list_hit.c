@@ -6,134 +6,88 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 09:51:01 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:45:05 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
-			t_variation t, t_hit_record *rec, int ignore_index)
+static int	set_record(double *closest, t_hit_record *tr,
+	t_hit_record *rec, int index)
 {
-	t_hit_record	temp_record;
-	t_hittable_node	*current;
-	int				hit_anything;
-	double			closest_so_far;
-	t_variation		temp_var;
+	*closest = tr->t;
+	*rec = *tr;
+	rec->index = index;
+	return (1);
+}
 
-	hit_anything = 0;
-	closest_so_far = t.max;
-	current = list->head;
-	while (current)
+static int	init_shadow_variables(double *closest, t_variation t)
+{
+	*closest = t.max;
+	return (0);
+}
+
+static void	set_t_var(t_variation *t_var, t_variation t, double closest)
+{
+	t_var->min = t.min;
+	t_var->max = closest;
+}
+
+int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
+			t_variation t, t_hit_record *rec)
+{
+	t_hit_record	tr;
+	t_hittable_node	*c;
+	int				hit_any;
+	double			closest;
+	t_variation		t_var;
+
+	hit_any = init_shadow_variables(&closest, t);
+	c = list->head;
+	while (c)
 	{
-		if (current->index != ignore_index)
+		if (c->index != rec->ignore_index)
 		{
-			temp_var.min = t.min;
-			temp_var.max = closest_so_far;
-			if (current->type == SPHERE)
-			{
-				if (hit_sphere(*(current->sphere), ray, temp_var, &temp_record))
-				{
-					hit_anything = 1;
-					closest_so_far = temp_record.t;
-					*rec = temp_record;
-					rec->index = current->index;
-				}
-			}
-			else if (current->type == PLANE)
-			{
-				if (hit_plane(*(current->plane), ray, temp_var, &temp_record))
-				{
-					hit_anything = 1;
-					closest_so_far = temp_record.t;
-					*rec = temp_record;
-					rec->index = current->index;
-				}
-			}
-			else if (current->type == CYLINDER)
-			{
-				if (hit_cylinder(*(current->cylinder), ray,
-						temp_var, &temp_record))
-				{
-					hit_anything = 1;
-					closest_so_far = temp_record.t;
-					*rec = temp_record;
-					rec->index = current->index;
-				}
-			}
-			else if (current->type == CONE)
-			{
-				if (hit_cone(*(current->cone), ray, temp_var, &temp_record))
-				{
-					hit_anything = 1;
-					closest_so_far = temp_record.t;
-					*rec = temp_record;
-					rec->index = current->index;
-				}
-			}
+			set_t_var(&t_var, t, closest);
+			if (c->type == SPHERE && hit_sphere(*(c->sphere), ray, t_var, &tr))
+					hit_any = set_record(&closest, &tr, rec, c->index);
+			else if (c->type == CONE && hit_cone(*(c->cone), ray, t_var, &tr))
+					hit_any = set_record(&closest, &tr, rec, c->index);
+			else if (c->type == PL && hit_plane(*(c->plane), ray, t_var, &tr))
+					hit_any = set_record(&closest, &tr, rec, c->index);
+			else if (c->type == CYL && hit_cylinder(*(c->cyl), ray, t_var, &tr))
+					hit_any = set_record(&closest, &tr, rec, c->index);
 		}
-		current = current->next;
+		c = c->next;
 	}
-	return (hit_anything);
+	return (hit_any);
 }
 
 int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 			t_variation t, t_hit_record *rec)
 {
-	t_hit_record	temp_record;
-	t_hittable_node	*current;
-	int				hit_anything;
-	double			closest_so_far;
-	t_variation		temp_var;
+	t_hit_record	tr;
+	t_hittable_node	*c;
+	int				hit_any;
+	double			closest;
+	t_variation		t_var;
 
-	hit_anything = 0;
-	closest_so_far = t.max;
-	current = list->head;
-	while (current)
+	hit_any = 0;
+	closest = t.max;
+	c = list->head;
+	while (c)
 	{
-		temp_var.min = t.min;
-		temp_var.max = closest_so_far;
-		if (current->type == SPHERE)
-		{
-			if (hit_sphere(*(current->sphere), ray, temp_var, &temp_record))
-			{
-				hit_anything = 1;
-				closest_so_far = temp_record.t;
-				*rec = temp_record;
-				rec->index = current->index;
-			}
-		}
-		else if (current->type == CONE)
-		{
-			if (hit_cone(*(current->cone), ray, temp_var, &temp_record))
-			{
-				hit_anything = 1;
-				closest_so_far = temp_record.t;
-				*rec = temp_record;
-				rec->index = current->index;
-			}
-		}
-		else if (current->type == PLANE)
-		{
-			if (hit_plane(*(current->plane), ray, temp_var, &temp_record))
-			{
-				hit_anything = 1;
-				closest_so_far = temp_record.t;
-				*rec = temp_record;
-				rec->index = current->index;
-			}
-		}
-		else if (current->type == CYLINDER)
-		{
-			if (hit_cylinder(*(current->cylinder), ray, temp_var, &temp_record))
-			{
-				hit_anything = 1;
-				closest_so_far = temp_record.t;
-				*rec = temp_record;
-				rec->index = current->index;
-			}
-		}
-		current = current->next;
+		t_var.min = t.min;
+		t_var.max = closest;
+		if (c->type == SPHERE && hit_sphere(*(c->sphere), ray, t_var, &tr))
+				hit_any = set_record(&closest, &tr, rec, c->index);
+		else if (c->type == CONE && hit_cone(*(c->cone), ray, t_var, &tr))
+				hit_any = set_record(&closest, &tr, rec, c->index);
+		else if (c->type == PLANE && hit_plane(*(c->plane), ray, t_var, &tr))
+				hit_any = set_record(&closest, &tr, rec, c->index);
+		else if (c->type == CYL && hit_cylinder(*(c->cyl), ray, t_var, &tr))
+				hit_any = set_record(&closest, &tr, rec, c->index);
+		c = c->next;
 	}
-	return (hit_anything);
+	return (hit_any);
 }

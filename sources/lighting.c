@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/12 14:49:19 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:09:24 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,45 @@ t_vector	normalize(t_vector vector)
 	return (result);
 }
 
-t_color	lighting(t_material material, t_light light, t_point3 point, t_vector eyev, t_vector normal_vector, int in_shadow)
+static void	normalize_result(t_color *result)
 {
-	t_color		effective_color;
-	t_vector	light_vector;
-	t_vector	reflect_vector;
-	t_color		ambient;
-	t_color		diffuse;
-	t_color		specular;
-	t_color		result;
-	double		light_dot_normal;
-	double		reflect_dot_eye;
-	double		factor;
+	if (result->x > 1)
+		result->x = 1;
+	if (result->y > 1)
+		result->y = 1;
+	if (result->z > 1)
+		result->z = 1;
+}
 
-	effective_color = vector_product(vector_mult(material.color, light.intensity), light.color);
-	light_vector = normalize(vector_diff(light.source, point));
-	ambient = vector_mult(effective_color, material.ambient);
-	light_dot_normal = vector_dot(light_vector, normal_vector);
-	if (light_dot_normal < 0 || in_shadow)
-	{
-		// printf("entrou aqui\n");
-		diffuse = vector_create(0, 0, 0);
-		specular = vector_create(0, 0, 0);
-	}
-	else
-	{
-		diffuse = vector_mult(effective_color, material.diffuse * light_dot_normal);
-		reflect_vector = vector_reflect(vector_negate_self(&light_vector), normal_vector);
-		reflect_dot_eye = vector_dot(reflect_vector, eyev); // camera.orign may be wrong;
-		if (reflect_dot_eye <= 0)
-		{
-			specular = vector_create(0, 0, 0);
-		}
-		else
-		{
-			factor = pow(reflect_dot_eye, material.shininess);
-			specular = vector_mult(light.color, material.specular * factor);
-		}
-	}
-	result = vector_sum(vector_sum(diffuse, specular), ambient);
-	if (result.x > 1)
-		result.x = 1;
-	if (result.y > 1)
-		result.y = 1;
-	if (result.z > 1)
-		result.z = 1;
-	return (result);
+static void	zero_diffuse_and_specular(t_color *diffuse, t_color *specular)
+{
+	*diffuse = vector_create(0, 0, 0);
+	*specular = vector_create(0, 0, 0);
+}
+
+t_color	lighting(t_material m, t_light light, t_hit *hit, int in_shadow)
+{
+	t_color		eff_color;
+	t_vector	lightv;
+	t_vector	reflect_v;
+	t_color		colors[4];
+	double		lg_d_norm;
+
+	eff_color = vector_product(vector_mult(m.color,
+				light.intensity), light.color);
+	lightv = normalize(vector_diff(light.source, hit->rec->point));
+	colors[AMBIENT] = vector_mult(eff_color, m.ambient);
+	lg_d_norm = vector_dot(lightv, hit->rec->normal);
+	colors[DIFFUSE] = vector_mult(eff_color, m.diffuse * lg_d_norm);
+	reflect_v = vector_reflect(vector_negate_self(&lightv), hit->rec->normal);
+	colors[SPECULAR] = vector_mult(light.color, m.specular
+			* pow(vector_dot(reflect_v, hit->ray->direction), m.shininess));
+	if (!(vector_dot(reflect_v, hit->ray->direction) > 0))
+		colors[SPECULAR] = vector_create(0, 0, 0);
+	if (!(lg_d_norm >= 0 && !in_shadow))
+		zero_diffuse_and_specular(&colors[DIFFUSE], &colors[SPECULAR]);
+	colors[RESULT] = vector_sum(vector_sum(colors[DIFFUSE],
+				colors[SPECULAR]), colors[AMBIENT]);
+	normalize_result(&colors[RESULT]);
+	return (colors[RESULT]);
 }

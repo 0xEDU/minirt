@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:25:43 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 16:26:55 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:25:21 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	validate_camera_values(char **split)
 	if (!validate_normal(split[2]))
 	{
 		printf("Error\nCamera normal must be in format 0,0,0"
-			"and values must be between 1 and 0\n");
+			" and values must be between 1 and 0\n");
 		return (0);
 	}
 	if (!validate_fov(split[3]))

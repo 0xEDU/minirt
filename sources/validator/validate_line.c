@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:18:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 16:41:03 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:03:14 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	validate_line(char *line)
 {
-	printf("line: %s", line);
 	if (line[0] == 'C' && line[1] == ' ')
 		return (validate_camera(line));
 	if (line[0] == 'A' && line[1] == ' ')

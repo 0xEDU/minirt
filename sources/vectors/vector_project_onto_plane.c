@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   vector_project_onto_plane.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: etachott <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:44:50 by coder             #+#    #+#             */
-/*   Updated: 2023/04/25 21:09:14 by etachott         ###   ########.fr       */
+/*   Created: 2023/04/25 22:55:12 by etachott          #+#    #+#             */
+/*   Updated: 2023/04/25 22:55:24 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft.h"
+#include "minirt.h"
 
-// prototypes
-char	*gnl_strjoin(char *s1, char *s2);
-int		gnl_strchr(const char *s, char c);
-char	*get_next_line(int fd);
-#endif
+t_vector	vector_project_onto_plane(t_vector v, t_vector n)
+{
+	t_vector	n_scaled;
+	double		dot_product;
+
+	dot_product = vector_dot(v, n);
+	n_scaled = vector_mult(n, dot_product);
+	return (vector_diff(v, n_scaled));
+}

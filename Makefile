@@ -45,6 +45,7 @@ VECTORS_SRCS =  vector_add.c \
 				vector_create.c \
 				vector_reflect.c \
 				vector_product.c \
+				vector_project_onto_plane.c \
 				vector_cross.c
 RAYS_SRCS =	ray_at.c \
 			ray_color.c

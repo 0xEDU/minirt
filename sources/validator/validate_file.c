@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:11:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 16:30:00 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:31:11 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ int	validate_file(char *file)
 {
 	char	*line;
 	int		fd;
+	int		success;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (0);
-	close(fd);
 	if (!validate_minimal_file(file))
 		return (0);
 	fd = open(file, O_RDONLY);
+	success = 1;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -58,9 +59,10 @@ int	validate_file(char *file)
 		if (!validate_line(line))
 		{
 			free(line);
-			return (0);
+			success = 0;
+			break ;
 		}
 		free(line);
 	}
-	return (1);
+	return (success);
 }
