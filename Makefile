@@ -59,6 +59,7 @@ PARSER_SRCS =	parse_ambient.c \
 				parse_sphere.c \
 				parse_plane.c \
 				parse_cylinder.c \
+				parse_cone.c \
 				parse_utils.c
 
 VALIDATOR_SRCS =	validate_argv.c \

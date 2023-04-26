@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/26 17:15:47 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:27:19 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,8 @@ void			parse_sphere(char *line, t_hittable_list *world,
 void			parse_plane(char *line, t_hittable_list *world,
 					t_minirt *minirt, int *i);
 void			parse_cylinder(char *line, t_hittable_list *world,
+					t_minirt *minirt, int *i);
+void			parse_cone(char *ln, t_hittable_list *lst,
 					t_minirt *minirt, int *i);
 
 /* Validating functions */

@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 17:18:15 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:21:20 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	create_world(char *file, t_minirt *minirt,
 			parse_plane(line, world, minirt, &i);
 		else if (line[0] == 'c' && line[1] == 'y' && line[2] == ' ')
 			parse_cylinder(line, world, minirt, &i);
+		else if (line[0] == 'c' && line[1] == 'n' && line[2] == ' ')
+			parse_cone(line, world, minirt, &i);
 		free(line);
 	}
 	close(fd);
