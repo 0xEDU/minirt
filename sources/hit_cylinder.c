@@ -6,47 +6,62 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:26:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 22:33:49 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:55:34 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_vector	vector_project_onto_plane(t_vector v, t_vector n)
+static int	hit_caps_helper(t_hit *hit, double t_val,
+	t_vector point, int is_bottom)
 {
-	t_vector	n_scaled;
-	double		dot_product;
+	const double	epsilon = 1e-6;
+	double			radius;
+	t_vector		cap;
 
-	dot_product = vector_dot(v, n);
-	n_scaled = vector_mult(n, dot_product);
-	return (vector_diff(v, n_scaled));
-}
-
-static int hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
-{
-	const double epsilon = 1e-6;
-	double t_bottom = (vector_dot(cyl.cap_bottom, cyl.axis) - vector_dot(ray->origin, cyl.axis)) / vector_dot(ray->direction, cyl.axis);
-	double t_top = (vector_dot(cyl.cap_top, cyl.axis) - vector_dot(ray->origin, cyl.axis)) / vector_dot(ray->direction, cyl.axis);
-	t_vector point_bottom = ray_at(*ray, t_bottom);
-	t_vector point_top = ray_at(*ray, t_top);
-	double bottom_radius = vector_length(vector_diff(point_bottom, cyl.cap_bottom));
-	double top_radius = vector_length(vector_diff(point_top, cyl.cap_top));
-	if (t_bottom >= t.min && t_bottom <= t.max && bottom_radius <= cyl.radius - epsilon)
+	if (is_bottom)
+		cap = hit->cyl->cap_bottom;
+	else
+		cap = hit->cyl->cap_top;
+	radius = vector_length(vector_diff(point, cap));
+	if (t_val >= hit->t.min && t_val <= hit->t.max
+		&& radius <= hit->cyl->radius - epsilon)
 	{
-		rec->t = t_bottom;
-		rec->point = point_bottom;
-		rec->normal = vector_mult(cyl.axis, -1);
-		set_face_normal(rec, ray, &rec->normal);
-		return (1);
-	} 
-	else if (t_top >= t.min && t_top <= t.max && top_radius <= cyl.radius - epsilon)
-	{
-		rec->t = t_top;
-		rec->point = point_top;
-		rec->normal = cyl.axis;
-		set_face_normal(rec, ray, &rec->normal);
+		hit->rec->t = t_val;
+		hit->rec->point = point;
+		if (is_bottom)
+			hit->rec->normal = vector_mult(hit->cyl->axis, -1);
+		else
+			hit->rec->normal = hit->cyl->axis;
+		set_face_normal(hit->rec, hit->ray, &hit->rec->normal);
 		return (1);
 	}
+	return (0);
+}
+
+static int	hit_caps(t_cylinder cyl, t_ray *ray,
+	t_variation t, t_hit_record *rec)
+{
+	double		t_bottom;
+	double		t_top;
+	t_hit		hit;
+	t_vector	point_bottom;
+	t_vector	point_top;
+
+	hit.cyl = &cyl;
+	hit.ray = ray;
+	hit.t = t;
+	hit.rec = rec;
+	t_bottom = (vector_dot(cyl.cap_bottom, cyl.axis) - vector_dot(ray->origin,
+				cyl.axis)) / vector_dot(ray->direction, cyl.axis);
+	t_top = (vector_dot(cyl.cap_top, cyl.axis) - vector_dot(ray->origin,
+				cyl.axis)) / vector_dot(ray->direction, cyl.axis);
+	point_bottom = ray_at(*ray, t_bottom);
+	point_top = ray_at(*ray, t_top);
+	if (hit_caps_helper(&hit, t_bottom, point_bottom, 1))
+		return (1);
+	if (hit_caps_helper(&hit, t_top, point_top, 0))
+		return (1);
 	return (0);
 }
 

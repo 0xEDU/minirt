@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/25 19:52:15 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:55:58 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_vector		vector_div(t_vector vector, double value);
 t_vector		vector_diff(t_vector u, t_vector v);
 t_vector		vector_product(t_vector u, t_vector v);
 t_vector		vector_create(double x, double y, double z);
+t_vector		vector_project_onto_plane(t_vector v, t_vector n);
 double			vector_length(t_vector vector);
 
 /*Vector Utils*/
