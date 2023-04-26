@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:14:37 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 23:00:42 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:10:04 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ t_color	ray_color(t_ray ray, t_hittable_list *world, t_light light)
 	if (hittable_list_hit(world, hit.ray, hit.t, hit.rec))
 	{
 		in_shadow = is_shadowed(hit.rec->point, light, world, hit.rec->index);
+		vector_negate_self(&hit.ray->direction);
 		return (lighting(get_material(world, hit.rec->index), light,
-				hit.rec->point, vector_negate_self(&hit.ray->direction),
-				hit.rec->normal, in_shadow));
+				&hit, in_shadow));
 	}
 	return (vector_create(0, 0, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/25 22:31:10 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:10:46 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define PLANE 2
 # define CYLINDER 3
 # define CONE 4
+# define AMBIENT 0
+# define DIFFUSE 1
+# define SPECULAR 2
+# define RESULT 3
 
 typedef struct s_variation {
 	double	min;
@@ -171,6 +175,14 @@ typedef struct s_bhaskara {
 	double	root[2];
 }				t_bhaskara;
 
+typedef struct s_lighting {
+	t_material	m;
+	t_light		light;
+	t_point3	point;
+	t_vector	eyev;
+	t_vector	normal;
+}				t_lighting;
+
 /* Hittable list functions */
 void			hittable_list_clear(t_hittable_list *list);
 void			hittable_list_add(t_hittable_list *list, void *object,
@@ -206,8 +218,8 @@ void			init_minirt(t_minirt *minirt);
 
 /* Rendering functions */
 void			render_scene(t_minirt *minirt, t_hittable_list *world);
-t_color			lighting(t_material material, t_light light, t_point3 point,
-					t_vector eyev, t_vector normal_vector, int in_shadow);
+t_color			lighting(t_material material, t_light light,
+					t_hit *hit, int in_shadow);
 
 /* Parsing functions utils */
 t_color			parse_color(char *line);
