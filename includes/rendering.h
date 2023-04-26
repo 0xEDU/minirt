@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/26 16:44:54 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:15:47 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,7 @@ int				validate_light(char *line);
 int				validate_sphere(char *line);
 int				validate_plane(char *line);
 int				validate_cylinder(char *line);
+int				validate_cone(char *line);
 
 /* Validating utils */
 int				validate_position(char *position);

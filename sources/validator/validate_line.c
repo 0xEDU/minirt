@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:18:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 21:03:14 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:18:34 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	validate_line(char *line)
 		return (validate_plane(line));
 	if (line[0] == 'c' && line[1] == 'y' && line[2] == ' ')
 		return (validate_cylinder(line));
+	if (line[0] == 'c' && line[1] == 'n' && line[2] == ' ')
+		return (validate_cone(line));
 	return (1);
 }

@@ -71,6 +71,7 @@ VALIDATOR_SRCS =	validate_argv.c \
 					validate_plane.c \
 					validate_cylinder.c \
 					validate_utils.c \
+					validate_cone.c \
 					validate_utils2.c 
 
 OBJS = ${SRCS:%.c=$(PATH_OBJS)%.o}
