@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/26 21:49:26 by etachott         ###   ########.fr       */
-=======
-/*   Updated: 2023/04/26 21:15:07 by guribeir         ###   ########.fr       */
->>>>>>> f6ec33708a60399c72aeada3358345337ec0b4bc
+/*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
+/*   Updated: 2023/04/26 21:55:58 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef RENDERING_H
 # define RENDERING_H
