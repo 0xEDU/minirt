@@ -6,11 +6,9 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 21:55:58 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:56:37 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef RENDERING_H
 # define RENDERING_H
