@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 21:56:37 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:12:29 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_hit_record {
 	int			front_face;
 	int			index;
 	int			ignore_index;
+	int			has_normal;
 }				t_hit_record;
 
 typedef struct s_material {
@@ -216,7 +217,7 @@ int				hit_sphere(t_sphere sphere,
 					t_hit_record *rec);
 int				hit_plane(t_plane plane, t_ray *ray, t_variation t,
 					t_hit_record *rec);
-int				hit_cylinder(t_cylinder cyl, t_ray *ray,
+int				hit_cylinder(t_cylinder *cyl, t_ray *ray,
 					t_variation t, t_hit_record *rec);
 int				hit_cone(t_cone cone, t_ray *ray,
 					t_variation t, t_hit_record *rec);

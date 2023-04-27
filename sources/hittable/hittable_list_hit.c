@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 21:26:21 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:52:33 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	hittable_shadow_hit(t_hittable_list *list,
 					hit_any = set_record(&close, &tr, h->rec, c->index);
 			else if (c->type == PL && hit_plane(*(c->p), h->ray, tv, &tr))
 					hit_any = set_record(&close, &tr, h->rec, c->index);
-			else if (c->type == CYL && hit_cylinder(*(c->y), h->ray, tv, &tr))
+			else if (c->type == CYL && hit_cylinder(c->y, h->ray, tv, &tr))
 					hit_any = set_record(&close, &tr, h->rec, c->index);
 		}
 		c = c->next;
@@ -85,7 +85,7 @@ int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 				hit_any = set_record(&closest, &tr, rec, c->index);
 		else if (c->type == PLANE && hit_plane(*(c->plane), ray, t_var, &tr))
 				hit_any = set_record(&closest, &tr, rec, c->index);
-		else if (c->type == CYL && hit_cylinder(*(c->y), ray, t_var, &tr))
+		else if (c->type == CYL && hit_cylinder(c->y, ray, t_var, &tr))
 				hit_any = set_record(&closest, &tr, rec, c->index);
 		c = c->next;
 	}
