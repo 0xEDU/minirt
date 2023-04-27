@@ -24,7 +24,7 @@ void	parse_sphere(char *ln, t_hittable_list *world, t_minirt *minirt, int *i)
 	sphere->type = SPHERE;
 	sphere->m.ambient = minirt->ambient.ratio;
 	sphere->m.diffuse = 0.9;
-	sphere->m.specular = 0.3;
+	sphere->m.specular = 0.9;
 	sphere->m.shininess = 200;
 	sphere->m.color = parse_color(split[3]);
 	ft_free_matrix((void **)split);

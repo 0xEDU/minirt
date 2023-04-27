@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:21:31 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 17:26:37 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:00:16 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_cone(char *ln, t_hittable_list *lst, t_minirt *minirt, int *i)
 	cone = ft_calloc(sizeof(t_cone), 1);
 	cone->vertex = parse_vector(split[1]);
 	cone->axis = parse_vector(split[2]);
-	cone->height = ft_atof(split[3]);
+	cone->h = ft_atof(split[3]);
 	cone->angle = ft_atof(split[4]);
 	cone->type = CONE;
 	cone->m.ambient = minirt->ambient.ratio;

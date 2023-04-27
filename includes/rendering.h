@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/26 17:27:19 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:15:07 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_cylinder {
 typedef struct s_cone {
 	t_vector	vertex;
 	t_vector	axis;
-	double		height;
+	double		h;
 	double		angle;
 	int			type;
 	t_material	m;
@@ -202,6 +202,9 @@ void			create_world(char *file, t_minirt *minirt,
 					t_hittable_list *world, int i);
 void			set_face_normal(t_hit_record *rec,
 					t_ray *ray, t_vector *out_normal);
+t_bhaskara		calculate_cone_bhaskara(t_ray *ray,
+					t_vector v_origin_vertex, t_cone cone);
+void			set_recor(t_hit_record *rec, double root, t_vector point);
 
 /* Light hitting functions */
 int				hit_sphere(t_sphere sphere,
