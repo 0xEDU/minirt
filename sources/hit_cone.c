@@ -1,41 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hit_cone.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/26 17:06:23 by guribeir          #+#    #+#             */
+/*   Updated: 2023/04/26 21:14:36 by guribeir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-int hit_cone(t_cone cone, t_ray *ray, t_variation t, t_hit_record *rec) {
-	double k = tan(cone.angle) * tan(cone.angle);
-	t_vector v_origin_vertex = vector_diff(ray->origin, cone.vertex);
-	t_vector v = ray->direction;
+int	cc(double height, double root, t_variation t, double cone_height)
+{
+	return (height >= 0 && height <= cone_height
+		&& root >= t.min && root <= t.max);
+}
 
-	double a = vector_dot(v, v) - (1 + k) * pow(vector_dot(v, cone.axis), 2);
-	double b = 2 * (vector_dot(v, v_origin_vertex) - (1 + k) * vector_dot(v, cone.axis) * vector_dot(v_origin_vertex, cone.axis));
-	double c = vector_dot(v_origin_vertex, v_origin_vertex) - (1 + k) * pow(vector_dot(v_origin_vertex, cone.axis), 2);
+t_bhaskara	find_bhaskara_roots(t_bhaskara bhaskara)
+{
+	bhaskara.root[0] = (-bhaskara.b - sqrt(bhaskara.discr)) / (2 * bhaskara.a);
+	bhaskara.root[1] = (-bhaskara.b + sqrt(bhaskara.discr)) / (2 * bhaskara.a);
+	return (bhaskara);
+}
 
-	double discr = b * b - 4 * a * c;
-	if (discr < 0)
-		return 0;
-	double root1 = (-b - sqrt(discr)) / (2 * a);
-	double root2 = (-b + sqrt(discr)) / (2 * a);
+int	cond(double height[], double root[], t_variation t, double h)
+{
+	return (cc(height[0], root[0], t, h) || cc(height[1], root[1], t, h));
+}
 
-	t_vector point1 = ray_at(*ray, root1);
-	double height1 = vector_dot(cone.axis, vector_diff(point1, cone.vertex));
-	t_vector point2 = ray_at(*ray, root2);
-	double height2 = vector_dot(cone.axis, vector_diff(point2, cone.vertex));
+void	update_cone_hit_record(t_cone cone, t_ray *ray, t_hit_record *rec)
+{
+	t_vector	point_on_axis;
 
-	if ((height1 >= 0 && height1 <= cone.height && root1 >= t.min && root1 <= t.max) || (height2 >= 0 && height2 <= cone.height && root2 >= t.min && root2 <= t.max)) {
-		if ((height1 >= 0 && height1 <= cone.height && root1 >= t.min && root1 <= t.max) && (height2 < 0 || height2 > cone.height || root2 < t.min || root2 > t.max || root1 < root2))
-		{
-			rec->t = root1;
-			rec->point = point1;
-		}
+	point_on_axis = vector_sum(cone.vertex, vector_mult(cone.axis,
+				vector_dot(vector_diff(rec->point, cone.vertex), cone.axis)));
+	rec->normal = vector_unit(vector_diff(rec->point, point_on_axis));
+	set_face_normal(rec, ray, &rec->normal);
+}
+
+int	hit_cone(t_cone cone, t_ray *ray, t_variation t, t_hit_record *rec)
+{
+	t_vector	v_origin_vertex;
+	double		h[2];
+	t_vector	point[2];
+	t_bhaskara	bha;
+
+	v_origin_vertex = vector_diff(ray->origin, cone.vertex);
+	bha = calculate_cone_bhaskara(ray, v_origin_vertex, cone);
+	if (bha.discr < 0)
+		return (0);
+	bha = find_bhaskara_roots(bha);
+	point[0] = ray_at(*ray, bha.root[0]);
+	h[0] = vector_dot(cone.axis, vector_diff(point[0], cone.vertex));
+	point[1] = ray_at(*ray, bha.root[1]);
+	h[1] = vector_dot(cone.axis, vector_diff(point[1], cone.vertex));
+	if (cond(h, bha.root, t, cone.h))
+	{
+		if (cc(h[0], bha.root[0], t, cone.h) && (!cc(h[1],
+					bha.root[1], t, cone.h) || bha.root[0] < bha.root[1]))
+			set_recor(rec, bha.root[0], point[0]);
 		else
-		{
-			rec->t = root2;
-			rec->point = point2;
-		}
-		t_vector point_on_axis = vector_sum(cone.vertex, vector_mult(cone.axis, vector_dot(vector_diff(rec->point, cone.vertex), cone.axis)));
-		rec->normal = vector_unit(vector_diff(rec->point, point_on_axis));
-		set_face_normal(rec, ray, &rec->normal);
-		return 1;
+			set_recor(rec, bha.root[1], point[1]);
+		update_cone_hit_record(cone, ray, rec);
+		return (1);
 	}
-
-	return 0;
+	return (0);
 }

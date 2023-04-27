@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:11:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 21:31:11 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:31:32 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	validate_minimal_file(char *file)
 		free(line);
 	}
 	close(fd);
-	if (counter < 3)
+	if (counter != 3)
 	{
 		printf("Error\nMissing Ambient, Camera or Light\n");
 		return (0);
