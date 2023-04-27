@@ -6,19 +6,17 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 17:21:20 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:49:13 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	create_world(char *file, t_minirt *minirt,
+void	create_world(int fd, t_minirt *minirt,
 		t_hittable_list *world, int i)
 {
-	int				fd;
 	char			*line;
 
-	fd = open(file, O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -40,5 +38,4 @@ void	create_world(char *file, t_minirt *minirt,
 			parse_cone(line, world, minirt, &i);
 		free(line);
 	}
-	close(fd);
 }

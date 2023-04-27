@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 16:45:05 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:26:21 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,30 @@ static void	set_t_var(t_variation *t_var, t_variation t, double closest)
 	t_var->max = closest;
 }
 
-int	hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
-			t_variation t, t_hit_record *rec)
+int	hittable_shadow_hit(t_hittable_list *list,
+			t_variation t, t_hit *h, int ignore_index)
 {
 	t_hit_record	tr;
 	t_hittable_node	*c;
 	int				hit_any;
-	double			closest;
-	t_variation		t_var;
+	double			close;
+	t_variation		tv;
 
-	hit_any = init_shadow_variables(&closest, t);
+	hit_any = init_shadow_variables(&close, t);
 	c = list->head;
 	while (c)
 	{
-		if (c->index != rec->ignore_index)
+		if (c->index != ignore_index)
 		{
-			set_t_var(&t_var, t, closest);
-			if (c->type == SPHERE && hit_sphere(*(c->sphere), ray, t_var, &tr))
-					hit_any = set_record(&closest, &tr, rec, c->index);
-			else if (c->type == CONE && hit_cone(*(c->cone), ray, t_var, &tr))
-					hit_any = set_record(&closest, &tr, rec, c->index);
-			else if (c->type == PL && hit_plane(*(c->plane), ray, t_var, &tr))
-					hit_any = set_record(&closest, &tr, rec, c->index);
-			else if (c->type == CYL && hit_cylinder(*(c->cyl), ray, t_var, &tr))
-					hit_any = set_record(&closest, &tr, rec, c->index);
+			set_t_var(&tv, t, close);
+			if (c->type == SPHERE && hit_sphere(*(c->s), h->ray, tv, &tr))
+					hit_any = set_record(&close, &tr, h->rec, c->index);
+			else if (c->type == CONE && hit_cone(*(c->c), h->ray, tv, &tr))
+					hit_any = set_record(&close, &tr, h->rec, c->index);
+			else if (c->type == PL && hit_plane(*(c->p), h->ray, tv, &tr))
+					hit_any = set_record(&close, &tr, h->rec, c->index);
+			else if (c->type == CYL && hit_cylinder(*(c->y), h->ray, tv, &tr))
+					hit_any = set_record(&close, &tr, h->rec, c->index);
 		}
 		c = c->next;
 	}
@@ -85,7 +85,7 @@ int	hittable_list_hit(t_hittable_list *list, t_ray *ray,
 				hit_any = set_record(&closest, &tr, rec, c->index);
 		else if (c->type == PLANE && hit_plane(*(c->plane), ray, t_var, &tr))
 				hit_any = set_record(&closest, &tr, rec, c->index);
-		else if (c->type == CYL && hit_cylinder(*(c->cyl), ray, t_var, &tr))
+		else if (c->type == CYL && hit_cylinder(*(c->y), ray, t_var, &tr))
 				hit_any = set_record(&closest, &tr, rec, c->index);
 		c = c->next;
 	}

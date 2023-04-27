@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:21:31 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 17:26:37 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:44:54 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ void	parse_cone(char *ln, t_hittable_list *lst, t_minirt *minirt, int *i)
 	cone->m.shininess = 200;
 	cone->m.color = parse_color(split[5]);
 	hittable_list_add(lst, cone, *i, CONE);
+	ft_free_matrix((void **)split);
 	(*i)++;
 }
-
-// cone1 = ft_calloc(sizeof(t_cone), 1);
-//     cone1->vertex = vector_create(0, 2, -5);
-//     cone1->axis = vector_create(0, 1, 0);
-//     cone1->angle = 12;
-//     //cone1->cap_bottom = vector_create(-3, 2, 1);
-//     cone1->height = 6;
-//     cone1->type = CONE;
-//     cone1->m.ambient = 0.2;
-//     cone1->m.diffuse = 0.9;
-//     cone1->m.specular = 0.3;
-//     cone1->m.shininess = 200;
-//     cone1->m.color = vector_create(1, 0, 0);

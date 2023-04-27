@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:27:43 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/24 09:55:39 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:44:49 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	parse_cylinder(char *ln, t_hittable_list *lst, t_minirt *minirt, int *i)
 	cyl->cap_bottom = vector_sum(cyl->center,
 			vector_mult(cyl->axis, - (cyl->height / 2.0)));
 	hittable_list_add(lst, cyl, *i, CYLINDER);
+	ft_free_matrix((void **)split);
 	(*i)++;
 }

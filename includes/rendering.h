@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:59:16 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/26 17:27:19 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:49:26 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,13 @@ typedef struct s_hittable_node {
 	{
 		void				*object;
 		t_sphere			*sphere;
+		t_sphere			*s;
 		t_cylinder			*cylinder;
-		t_cylinder			*cyl;
+		t_cylinder			*y;
 		t_plane				*plane;
-		t_cone				*cone;	
+		t_plane				*p;
+		t_cone				*cone;
+		t_cone				*c;
 	};
 	int						type;
 	int						index;
@@ -193,12 +196,12 @@ void			hittable_list_add(t_hittable_list *list, void *object,
 					int index, int type);
 int				hittable_list_hit(t_hittable_list *list, t_ray *ray,
 					t_variation t, t_hit_record *rec);
-int				hittable_shadow_hit(t_hittable_list *list, t_ray *ray,
-					t_variation t, t_hit_record *rec);
+int				hittable_shadow_hit(t_hittable_list *list,
+					t_variation t, t_hit *hit, int ignore_index);
 
 /* Hit Record Utils */
 // t_hittable_list	*create_world(char *file, t_minirt *minirt);
-void			create_world(char *file, t_minirt *minirt,
+void			create_world(int fd, t_minirt *minirt,
 					t_hittable_list *world, int i);
 void			set_face_normal(t_hit_record *rec,
 					t_ray *ray, t_vector *out_normal);
