@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:26:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/27 21:50:33 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:10:41 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,23 @@ static int	hit_caps_helper(t_hit *hit, double t_val,
 	return (0);
 }
 
-static int	hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
+
+// Bottom = 0
+// Top = 1
+// _bt = _bottom / _top
+// I hate the norm T_T
+static int	hit_caps(t_cylinder cyl, t_ray *ray,
+	t_variation t, t_hit_record *rec)
 {
-	double t_bottom;
-	double t_top;
-	t_hit hit;
-	t_vector point_bottom;
-	t_vector point_top;
-	int hit_bottom;
-	int hit_top;
-	t_vector axis_origin_to_bottom;
-	t_vector axis_origin_to_top;
-	double denom_bottom;
-	double denom_top;
+	double		t_bt[2];
+	t_hit		hit;
+	t_vector	point_bt[2];
+	int			hit_bottom;
+	int			hit_top;
+	t_vector	axis_origin_to_bottom;
+	t_vector	axis_origin_to_top;
+	double		denom_bottom;
+	double		denom_top;
 
 	hit.cyl = &cyl;
 	hit.ray = ray;
@@ -61,29 +65,27 @@ static int	hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec
 	axis_origin_to_top = vector_diff(cyl.cap_top, ray->origin);
 	denom_bottom = vector_dot(ray->direction, cyl.axis);
 	denom_top = vector_dot(ray->direction, cyl.axis);
-	if (fabs(denom_bottom) > 1e-6)
-		t_bottom = vector_dot(axis_origin_to_bottom, cyl.axis) / denom_bottom;
-	else
-		t_bottom = -1;
-	if (fabs(denom_top) > 1e-6)
-		t_top = vector_dot(axis_origin_to_top, cyl.axis) / denom_top;
-	else
-		t_top = -1;
-	point_bottom = ray_at(*ray, t_bottom);
-	point_top = ray_at(*ray, t_top);
-	hit_bottom = hit_caps_helper(&hit, t_bottom, point_bottom, 1);
-	hit_top = hit_caps_helper(&hit, t_top, point_top, 0);
+	t_bt[0] = -1;
+	if (!(fabs(denom_bottom) < 1e-6))
+		t_bt[0] = vector_dot(axis_origin_to_bottom, cyl.axis) / denom_bottom;
+	t_bt[1] = -1;
+	if (!(fabs(denom_top) < 1e-6))
+		t_bt[1] = vector_dot(axis_origin_to_top, cyl.axis) / denom_top;
+	point_bt[0] = ray_at(*ray, t_bt[0]);
+	point_bt[1] = ray_at(*ray, t_bt[1]);
+	hit_bottom = hit_caps_helper(&hit, t_bt[0], point_bt[0], 1);
+	hit_top = hit_caps_helper(&hit, t_bt[1], point_bt[1], 0);
 	if (hit_bottom && hit_top)
 	{
-		if (t_bottom < t_top)
-			return (hit_caps_helper(&hit, t_bottom, point_bottom, 1));
+		if (t_bt[0] < t_bt[1])
+			return (hit_caps_helper(&hit, t_bt[0], point_bt[0], 1));
 		else
-			return (hit_caps_helper(&hit, t_top, point_top, 0));
+			return (hit_caps_helper(&hit, t_bt[1], point_bt[1], 0));
 	}
 	else if (hit_bottom)
-		return (hit_caps_helper(&hit, t_bottom, point_bottom, 1));
+		return (hit_caps_helper(&hit, t_bt[0], point_bt[0], 1));
 	else if (hit_top)
-		return (hit_caps_helper(&hit, t_top, point_top, 0));
+		return (hit_caps_helper(&hit, t_bt[1], point_bt[1], 0));
 	return (0);
 }
 
