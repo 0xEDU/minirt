@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:13:41 by guribeir          #+#    #+#             */
-/*   Updated: 2023/03/27 20:23:53 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:33:25 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 typedef struct s_ray
 {
 	t_point3	origin;
-	t_vector	direction;
+	union
+	{
+		t_vector	direction;
+		t_vector	dir;
+	};
 }				t_ray;
 
 /* Light pseudo-methods */

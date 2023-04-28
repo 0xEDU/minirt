@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:25:43 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 20:25:21 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:12:50 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,17 @@ int	validate_camera(char *line)
 {
 	int		i;
 	char	**split;
+	int		len_line;
+	int		len_split;
 
 	i = 0;
+	len_line = ft_strlen(line);
 	split = ft_split(line, ' ');
+	if (!split)
+		return (0);
+	len_split = ft_strlen(split[0]);
+	if (len_split == 0)
+		return (clean_return(0, (void **)split));
 	while (split[i])
 		i++;
 	if (i != 4)
