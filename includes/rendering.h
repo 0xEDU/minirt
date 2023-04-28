@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 00:43:09 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/28 01:50:00 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,21 @@ void			set_face_normal(t_hit_record *rec,
 t_bhaskara		calculate_cone_bhaskara(t_ray *ray,
 					t_vector v_origin_vertex, t_cone cone);
 void			set_recor(t_hit_record *rec, double root, t_vector point);
+int				find_hit_result(t_hit hit, double t_bt[2],
+					t_vector point_bt[2]);
+double			calculate_t_bt(t_vector aot, t_ray ray, t_vector axis);
+int				hit_caps(t_cylinder c, t_ray *ray, t_variation t,
+					t_hit_record *rec);
+int				hit_caps_helper(t_hit *hit, double t_val,
+					t_vector point, int is_bottom);
+void			set_hit_record(t_hit *hit, double rt, t_vector point);
+int				is_valid_intersection(double h, double rt, t_hit *hit);
+t_hit			init_hit(t_cylinder *cyl, t_ray *ray, t_variation t,
+					t_hit_record *rec);
+t_bhaskara		init_bhaskara(t_vector pj_ori_center,
+					t_vector v, double radius);
+void			update_hit_record(t_hit_record *rec, t_vector point,
+					t_vector cap_bottom, t_vector axis);
 
 /* Light hitting functions */
 int				hit_sphere(t_sphere sphere,

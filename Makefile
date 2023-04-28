@@ -15,6 +15,8 @@ SRCS =	main.c \
 		hit_sphere.c \
 		hit_plane.c \
 		hit_cylinder.c \
+		hit_cylinder_utils.c \
+		hit_cylinder_utils2.c \
 		hit_cone.c \
 		hit_cone_utils.c \
 		create_world.c \

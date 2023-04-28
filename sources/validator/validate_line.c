@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:18:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 00:40:47 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/28 01:57:44 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	validate_line(char *line, int iteration)
 {
 	if (line[1] != ' ' && iteration == 0)
 	{
-		printf("Error\nWrong spacing\n");
+		printf("Error\nWrong formating\n");
 		return (0);
 	}
 	if (line[0] == 'C' && line[1] == ' ')
