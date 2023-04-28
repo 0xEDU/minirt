@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/27 22:37:38 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:42:35 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,6 @@ typedef struct s_vector
 		};
 	};
 }	t_vector;
-
-typedef struct s_vrau {
-	union {
-		int a;
-		int b;
-	}
-}			t_vrau;
-
-// t_vrau vrau;
-// vrau.a = 1;
-// printf(vrau.b) == 1;
 
 typedef t_vector	t_point3;
 typedef t_vector	t_color;
