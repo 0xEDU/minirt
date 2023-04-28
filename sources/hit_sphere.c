@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 17:32:01 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:26:05 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	hit_sphere(t_sphere sphere, t_ray *ray, t_variation t, t_hit_record *rec)
 	double		root;
 
 	distance = vector_diff(ray->origin, sphere.center);
-	delta.x = vector_length_squared(ray->direction);
+	delta.x = vector_length_sqd(ray->direction);
 	delta.y = vector_dot(distance, ray->direction);
-	delta.z = vector_length_squared(distance) - sphere.radius * sphere.radius;
+	delta.z = vector_length_sqd(distance) - sphere.radius * sphere.radius;
 	discr = delta.y * delta.y - (delta.x * delta.z);
 	if (discr < 0)
 		return (0);

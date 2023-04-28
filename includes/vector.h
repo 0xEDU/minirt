@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:53:11 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/25 22:55:58 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:24:54 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ double			vector_length(t_vector vector);
 /*Vector Utils*/
 t_vector		vector_unit(t_vector vector);
 double			vector_dot(t_vector u, t_vector v);
-double			vector_length_squared(const t_vector vector);
+double			vector_length_sqd(const t_vector vector);
 t_vector		vector_reflect(t_vector input, t_vector normal);
 t_vector		vector_cross(t_vector u, t_vector v);
 

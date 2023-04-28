@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:26:45 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/27 21:05:24 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:50:33 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	hit_caps_helper(t_hit *hit, double t_val,
 	{
 		hit->rec->t = t_val;
 		hit->rec->point = point;
-		hit->rec->has_normal = 1;
 		if (is_bottom)
 			hit->rec->normal = vector_mult(hit->cyl->axis, -1);
 		else
@@ -40,7 +39,7 @@ static int	hit_caps_helper(t_hit *hit, double t_val,
 	return (0);
 }
 
-static int hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
+static int	hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 {
 	double t_bottom;
 	double t_top;
@@ -77,58 +76,58 @@ static int hit_caps(t_cylinder cyl, t_ray *ray, t_variation t, t_hit_record *rec
 	if (hit_bottom && hit_top)
 	{
 		if (t_bottom < t_top)
-			return hit_caps_helper(&hit, t_bottom, point_bottom, 1);
+			return (hit_caps_helper(&hit, t_bottom, point_bottom, 1));
 		else
-			return hit_caps_helper(&hit, t_top, point_top, 0);
+			return (hit_caps_helper(&hit, t_top, point_top, 0));
 	}
 	else if (hit_bottom)
-		return hit_caps_helper(&hit, t_bottom, point_bottom, 1);
+		return (hit_caps_helper(&hit, t_bottom, point_bottom, 1));
 	else if (hit_top)
-		return hit_caps_helper(&hit, t_top, point_top, 0);
+		return (hit_caps_helper(&hit, t_top, point_top, 0));
 	return (0);
 }
 
-static int select_hit(double rt[2], t_hit *hit)
+static int	select_hit(double rt[2], t_hit *hit,
+	int vld_inter1, int vld_inter2)
 {
-    t_vector p[2];
-    double h[2];
-    int valid_intersection[2] = {0, 0};
+	t_vector	p[2];
+	double		h[2];
 
-    p[0] = ray_at(*hit->ray, rt[0]);
-    h[0] = vector_dot(hit->cyl->axis, vector_diff(p[0], hit->cyl->cap_bottom));
-    p[1] = ray_at(*hit->ray, rt[1]);
-    h[1] = vector_dot(hit->cyl->axis, vector_diff(p[1], hit->cyl->cap_bottom));
-
-    valid_intersection[0] = (h[0] >= 0 && h[0] <= hit->cyl->height && rt[0] >= hit->t.min && rt[0] <= hit->t.max);
-    valid_intersection[1] = (h[1] >= 0 && h[1] <= hit->cyl->height && rt[1] >= hit->t.min && rt[1] <= hit->t.max);
-
-    if (valid_intersection[0] && valid_intersection[1])
-    {
-        if (rt[0] < rt[1])
-        {
-            hit->rec->t = rt[0];
-            hit->rec->point = p[0];
-        }
-        else
-        {
-            hit->rec->t = rt[1];
-            hit->rec->point = p[1];
-        }
-        return (1);
-    }
-    else if (valid_intersection[0])
-    {
-        hit->rec->t = rt[0];
-        hit->rec->point = p[0];
-        return (1);
-    }
-    else if (valid_intersection[1])
-    {
-        hit->rec->t = rt[1];
-        hit->rec->point = p[1];
-        return (1);
-    }
-    return (0);
+	p[0] = ray_at(*hit->ray, rt[0]);
+	h[0] = vector_dot(hit->cyl->axis, vector_diff(p[0], hit->cyl->cap_bottom));
+	p[1] = ray_at(*hit->ray, rt[1]);
+	h[1] = vector_dot(hit->cyl->axis, vector_diff(p[1], hit->cyl->cap_bottom));
+	vld_inter1 = (h[0] >= 0 && h[0] <= hit->cyl->height
+			&& rt[0] >= hit->t.min && rt[0] <= hit->t.max);
+	vld_inter2 = (h[1] >= 0 && h[1] <= hit->cyl->height
+			&& rt[1] >= hit->t.min && rt[1] <= hit->t.max);
+	if (vld_inter1 && vld_inter2)
+	{
+		if (rt[0] < rt[1])
+		{
+			hit->rec->t = rt[0];
+			hit->rec->point = p[0];
+		}
+		else
+		{
+			hit->rec->t = rt[1];
+			hit->rec->point = p[1];
+		}
+		return (1);
+	}
+	else if (vld_inter1)
+	{
+		hit->rec->t = rt[0];
+		hit->rec->point = p[0];
+		return (1);
+	}
+	else if (vld_inter2)
+	{
+		hit->rec->t = rt[1];
+		hit->rec->point = p[1];
+		return (1);
+	}
+	return (0);
 }
 
 static int	body_or_cap(t_hit *hit, int body_hit)
@@ -165,22 +164,22 @@ int	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 	v_origin_center = vector_diff(ray->origin, cyl->cap_bottom);
 	pj_ori_center = vector_project_onto_plane(v_origin_center, cyl->axis);
 	v = vector_project_onto_plane(ray->direction, cyl->axis);
-	bhaskara.a = vector_length_squared(v);
+	bhaskara.a = vector_length_sqd(v);
 	bhaskara.b = 2 * vector_dot(pj_ori_center, v);
-	bhaskara.c = vector_length_squared(pj_ori_center) - cyl->radius * cyl->radius;
+	bhaskara.c = vector_length_sqd(pj_ori_center) - cyl->radius * cyl->radius;
 	bhaskara.discr = bhaskara.b * bhaskara.b - 4 * bhaskara.a * bhaskara.c;
 	if (bhaskara.discr < 0)
 		return (0);
 	bhaskara.root[0] = (-bhaskara.b - sqrt(bhaskara.discr)) / (2 * bhaskara.a);
 	bhaskara.root[1] = (-bhaskara.b + sqrt(bhaskara.discr)) / (2 * bhaskara.a);
-	rec->has_normal = 0;
-	if (!body_or_cap(&hit, select_hit(bhaskara.root, &hit)))
+	if (!body_or_cap(&hit, select_hit(bhaskara.root, &hit, 0, 0)))
 		return (0);
-	rec->normal = vector_unit(vector_diff(rec->point, vector_sum(cyl->cap_bottom,
-					vector_mult(cyl->axis, vector_dot(vector_diff(rec->point,
-								cyl->cap_bottom), cyl->axis)))));
+	rec->normal = vector_unit(vector_diff(rec->point,
+				vector_sum(cyl->cap_bottom, vector_mult(cyl->axis,
+						vector_dot(vector_diff(rec->point, cyl->cap_bottom),
+							cyl->axis)))));
 	set_face_normal(rec, ray, &rec->normal);
-	if (!body_or_cap(&hit, select_hit(bhaskara.root, &hit)))
+	if (!body_or_cap(&hit, select_hit(bhaskara.root, &hit, 0, 0)))
 		return (0);
 	return (1);
 }
