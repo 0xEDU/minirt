@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/04/26 21:48:53 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:42:08 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_hittable_list	*world;
 	int				fd;
 
-	if (!validate_argv(argc, argv) || !validate_file(argv[1]))
+	if (!validate_argv(argc, argv) || !validate_file(argv[1], -1))
 		return (-1);
 	init_minirt(&minirt);
 	mlx_open_window(&minirt.mlx);

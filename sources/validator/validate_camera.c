@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_camera.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:25:43 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/27 22:12:50 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:23:08 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	validate_camera(char *line)
 	if (!split)
 		return (0);
 	len_split = ft_strlen(split[0]);
-	if (len_split == 0)
+	if (len_split == len_line)
 		return (clean_return(0, (void **)split));
 	while (split[i])
 		i++;

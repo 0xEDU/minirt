@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:11:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/27 21:44:26 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:42:00 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	validate_minimal_file(char *file)
 	return (1);
 }
 
-int	validate_file(char *file)
+int	validate_file(char *file, int iteration)
 {
 	char	*line;
 	int		fd;
@@ -46,7 +46,10 @@ int	validate_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("Error\nWrong file name\n");
 		return (0);
+	}
 	if (!validate_minimal_file(file))
 		return (0);
 	fd = open(file, O_RDONLY);
@@ -56,7 +59,7 @@ int	validate_file(char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (!validate_line(line))
+		if (!validate_line(line, ++iteration))
 			success = 0;
 		free(line);
 	}

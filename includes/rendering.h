@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/27 22:32:39 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:43:09 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,8 +250,8 @@ void			parse_cone(char *ln, t_hittable_list *lst,
 
 /* Validating functions */
 int				validate_argv(int argc, char **argv);
-int				validate_file(char *file);
-int				validate_line(char *line);
+int				validate_file(char *file, int iteration);
+int				validate_line(char *line, int iteration);
 int				validate_camera(char *line);
 int				validate_ambient(char *line);
 int				validate_light(char *line);

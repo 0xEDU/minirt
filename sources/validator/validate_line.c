@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   validate_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:18:13 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 17:18:34 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:40:47 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	validate_line(char *line)
+int	validate_line(char *line, int iteration)
 {
+	if (line[1] != ' ' && iteration == 0)
+	{
+		printf("Error\nWrong spacing\n");
+		return (0);
+	}
 	if (line[0] == 'C' && line[1] == ' ')
 		return (validate_camera(line));
 	if (line[0] == 'A' && line[1] == ' ')
