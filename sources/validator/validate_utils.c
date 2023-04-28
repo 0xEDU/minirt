@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:17:07 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/25 21:33:03 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:01:00 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	validate_normal(char *normal)
 {
 	int		i;
 	char	**split;
+	int		one;
 
 	i = -1;
+	one = 0;
 	if (!comma_check(normal))
 		return (0);
 	while (normal[++i])
@@ -48,8 +50,11 @@ int	validate_normal(char *normal)
 	i = -1;
 	while (split[++i])
 	{
-		if (ft_atof(split[i]) <= -1.0 && ft_atof(split[i]) >= 1.0)
+		if ((ft_atof(split[i]) <= -1.0 && ft_atof(split[i]) >= 1.0)
+			|| (one && ft_atof(split[i]) == 1.0))
 			return (clean_return(0, (void **)split));
+		if (ft_atof(split[i]) == 1.0)
+			one++;
 	}
 	return (clean_return(1, (void **)split));
 }
