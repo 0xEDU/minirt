@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/24 12:26:42 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:32:25 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	turn_on_camera(t_camera *camera, double aspect_ratio)
 	if (vector_is_equal(camera->lookat, vector_create(0, 1, 0)))
 		camera->lookat.z += 0.0001;
 	else if (vector_is_equal(camera->lookat, vector_create(0, -1, 0)))
-		camera->lookat.z -= 0.0001;
+		camera->lookat.z += 0.0001;
 	theta = convert_to_radians(camera->fov);
 	h_cam = tan(theta / 2);
 	camera->view_up = vector_create(0, 1, 0);
