@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:21:11 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 14:59:59 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/24 09:56:02 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_plane(char *ln, t_hittable_list *world, t_minirt *minirt, int *i)
 	plane->type = PLANE;
 	plane->m.ambient = minirt->ambient.ratio;
 	plane->m.diffuse = 0.9;
-	plane->m.specular = 0;
+	plane->m.specular = 0.3;
 	plane->m.shininess = 200;
 	plane->m.color = parse_color(split[3]);
 	ft_free_matrix((void **)split);

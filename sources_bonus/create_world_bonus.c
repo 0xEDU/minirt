@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_world.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:39:52 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 14:59:19 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:49:13 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	create_world(int fd, t_minirt *minirt,
 			parse_plane(line, world, minirt, &i);
 		else if (line[0] == 'c' && line[1] == 'y' && line[2] == ' ')
 			parse_cylinder(line, world, minirt, &i);
+		else if (line[0] == 'c' && line[1] == 'n' && line[2] == ' ')
+			parse_cone(line, world, minirt, &i);
 		free(line);
 	}
 }

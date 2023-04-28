@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:27:43 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 14:59:55 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:44:49 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_cylinder(char *ln, t_hittable_list *lst, t_minirt *minirt, int *i)
 	cyl->type = CYLINDER;
 	cyl->m.ambient = minirt->ambient.ratio;
 	cyl->m.diffuse = 0.9;
-	cyl->m.specular = 0;
+	cyl->m.specular = 0.9;
 	cyl->m.shininess = 200;
 	cyl->m.color = parse_color(split[5]);
 	cyl->cap_top = vector_sum(cyl->center,
