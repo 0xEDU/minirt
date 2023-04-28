@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:11:38 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 00:42:00 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:17:07 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	validate_file(char *file, int iteration)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (!validate_line(line, ++iteration))
+		if (!validate_line(line, iteration))
 			success = 0;
 		free(line);
 	}
