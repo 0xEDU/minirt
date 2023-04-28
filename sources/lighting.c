@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/26 16:09:24 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:41:22 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_vector	normalize(t_vector vector)
 	return (result);
 }
 
-static void	normalize_result(t_color *result)
+static void	normalize_result(t_color colors[][4])
 {
-	if (result->x > 1)
-		result->x = 1;
-	if (result->y > 1)
-		result->y = 1;
-	if (result->z > 1)
-		result->z = 1;
+	if (colors[RESULT]->x > 1)
+		colors[RESULT]->x = 1;
+	if (colors[RESULT]->y > 1)
+		colors[RESULT]->y = 1;
+	if (colors[RESULT]->z > 1)
+		colors[RESULT]->z = 1;
 }
 
 static void	zero_diffuse_and_specular(t_color *diffuse, t_color *specular)
@@ -50,6 +50,7 @@ t_color	lighting(t_material m, t_light light, t_hit *hit, int in_shadow)
 	t_color		colors[4];
 	double		lg_d_norm;
 
+	ft_bzero(&colors, 1);
 	eff_color = vector_product(vector_mult(m.color,
 				light.intensity), light.color);
 	lightv = normalize(vector_diff(light.source, hit->rec->point));
@@ -65,6 +66,6 @@ t_color	lighting(t_material m, t_light light, t_hit *hit, int in_shadow)
 		zero_diffuse_and_specular(&colors[DIFFUSE], &colors[SPECULAR]);
 	colors[RESULT] = vector_sum(vector_sum(colors[DIFFUSE],
 				colors[SPECULAR]), colors[AMBIENT]);
-	normalize_result(&colors[RESULT]);
+	normalize_result(&colors);
 	return (colors[RESULT]);
 }
