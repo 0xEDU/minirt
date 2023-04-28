@@ -1,5 +1,5 @@
-NAME = minirt
-BONUS = minirt_bonus
+NAME = miniRT
+BONUS = miniRT_bonus
 
 PATH_SRCS = ./sources/
 PATH_MLX_SRCS = ./sources/mlx/
