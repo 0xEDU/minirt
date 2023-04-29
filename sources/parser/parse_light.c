@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:36:19 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/24 09:56:08 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/28 23:17:02 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	parse_light(char *line, t_light *light)
 	split = ft_split(line, ' ');
 	light->source = parse_vector(split[1]);
 	light->intensity = ft_atof(split[2]);
-	light->color = parse_color(split[3]);
+	light->color = vector_create(1, 1, 1);
 	ft_free_matrix((void **)split);
 }
