@@ -29,6 +29,7 @@ SRCS =	main.c \
 		hit_cylinder_utils2.c \
 		create_world.c \
 		render_scene.c \
+		set_ambient.c \
 		lighting.c
 MLX_SRCS = mlx_open_window.c \
 		   mlx_loop_window.c \
@@ -95,6 +96,7 @@ SRCS_BONUS =	main_bonus.c \
 		hit_cone_utils_bonus.c \
 		create_world_bonus.c \
 		render_scene_bonus.c \
+		set_ambient_bonus.c \
 		lighting_bonus.c
 MLX_SRCS_BONUS = mlx_open_window.c \
 		   mlx_loop_window.c \
