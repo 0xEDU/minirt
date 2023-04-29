@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 20:41:22 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/29 15:05:39 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,24 @@ t_vector	normalize(t_vector vector)
 	return (result);
 }
 
-static void	normalize_result(t_color colors[][4])
+static void	normalize_result(t_color *colors)
 {
-	if (colors[RESULT]->x > 1)
-		colors[RESULT]->x = 1;
-	if (colors[RESULT]->y > 1)
-		colors[RESULT]->y = 1;
-	if (colors[RESULT]->z > 1)
-		colors[RESULT]->z = 1;
+	if (fabs(colors[RESULT].x) > 1)
+		colors[RESULT].x = 1;
+	if (fabs(colors[RESULT].y) > 1)
+		colors[RESULT].y = 1;
+	if (fabs(colors[RESULT].z) > 1)
+		colors[RESULT].z = 1;
+}
+
+static t_color	copy_and_deinit(t_color *colors)
+{
+	t_color	result;
+
+	result = vector_create(colors[RESULT].x, colors[RESULT].y,
+			colors[RESULT].z);
+	free(colors);
+	return (result);
 }
 
 static void	zero_diffuse_and_specular(t_color *diffuse, t_color *specular)
@@ -47,15 +57,15 @@ t_color	lighting(t_material m, t_light light, t_hit *hit, int in_shadow)
 	t_color		eff_color;
 	t_vector	lightv;
 	t_vector	reflect_v;
-	t_color		colors[4];
+	t_color		*colors;
 	double		lg_d_norm;
 
-	ft_bzero(&colors, 1);
+	colors = ft_calloc(sizeof(t_color), 4);
 	eff_color = vector_product(vector_mult(m.color,
 				light.intensity), light.color);
 	lightv = normalize(vector_diff(light.source, hit->rec->point));
 	colors[AMBIENT] = vector_mult(eff_color, m.ambient);
-	lg_d_norm = vector_dot(lightv, hit->rec->normal);
+	lg_d_norm = fmax(0, vector_dot(lightv, hit->rec->normal));
 	colors[DIFFUSE] = vector_mult(eff_color, m.diffuse * lg_d_norm);
 	reflect_v = vector_reflect(vector_negate_self(&lightv), hit->rec->normal);
 	colors[SPECULAR] = vector_mult(light.color, m.specular
@@ -66,6 +76,6 @@ t_color	lighting(t_material m, t_light light, t_hit *hit, int in_shadow)
 		zero_diffuse_and_specular(&colors[DIFFUSE], &colors[SPECULAR]);
 	colors[RESULT] = vector_sum(vector_sum(colors[DIFFUSE],
 				colors[SPECULAR]), colors[AMBIENT]);
-	normalize_result(&colors);
-	return (colors[RESULT]);
+	normalize_result(colors);
+	return (copy_and_deinit(colors));
 }
