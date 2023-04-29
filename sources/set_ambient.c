@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ambient.c                                    :+:      :+:    :+:   */
+/*   set_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 15:27:08 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/29 15:41:04 by etachott         ###   ########.fr       */
+/*   Created: 2023/04/29 15:45:42 by etachott          #+#    #+#             */
+/*   Updated: 2023/04/29 15:55:32 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_ambient(char *line, t_ambient *ambient)
+void	set_ambient(t_ambient ambient, t_hittable_list *world)
 {
-	char	**split;
+	t_hittable_node	*tmp;
 
-	split = ft_split(line, ' ');
-	ambient->ratio = ft_atof(split[1]);
-	ambient->color = parse_color(split[2]);
-	ft_free_matrix((void **)split);
+	tmp = world->head;
+	while (tmp)
+	{
+		if (tmp->type == SPHERE)
+			tmp->sphere->m.ambient = ambient.ratio;
+		if (tmp->type == CYLINDER)
+			tmp->cylinder->m.ambient = ambient.ratio;
+		if (tmp->type == PLANE)
+			tmp->plane->m.ambient = ambient.ratio;
+		tmp = tmp->next;
+	}
 }

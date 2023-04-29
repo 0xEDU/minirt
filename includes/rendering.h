@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/28 01:50:00 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/29 15:49:22 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,7 @@ void			parse_cylinder(char *line, t_hittable_list *world,
 					t_minirt *minirt, int *i);
 void			parse_cone(char *ln, t_hittable_list *lst,
 					t_minirt *minirt, int *i);
+void			set_ambient(t_ambient ambient, t_hittable_list *world);
 
 /* Validating functions */
 int				validate_argv(int argc, char **argv);

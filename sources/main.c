@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/04/28 00:42:08 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/29 15:45:29 by etachott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	world = ft_calloc(sizeof(t_hittable_list), 1);
 	fd = open(argv[1], O_RDONLY);
 	create_world(fd, &minirt, world, 0);
+	set_ambient(minirt.ambient, world);
 	close(fd);
 	minirt.world = world;
 	render_scene(&minirt, world);
