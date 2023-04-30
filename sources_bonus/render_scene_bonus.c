@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:07:55 by guribeir          #+#    #+#             */
-/*   Updated: 2023/04/28 15:45:03 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:28:02 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 	t_color		color;
 	t_light		point_light;
 
-	turn_on_camera(&minirt->camera, (1.77777777778));
+	turn_on_camera(&minirt->camera, (double)(WIDTH / HEIGHT));
 	point_light = minirt->light;
 	loop.x = 0;
 	while (loop.x < WIDTH)

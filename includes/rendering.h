@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/29 15:49:22 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:08:11 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "../libft/includes/libput.h"
 # include "vector.h"
 # include "ray.h"
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 500
+# define HEIGHT 500
 # define PI 3.1415926535897932385
 # define SPHERE 1
 # define PLANE 2
