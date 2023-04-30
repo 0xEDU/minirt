@@ -3,6 +3,9 @@
 MiniRT is a simple ray tracer built using minilibx that is capable of rendering planes, spheres, cylinders (mandatory part), and cones (bonus part) to generate a 2D image representing the 3D scene. 
 The ray tracer features light management, including spot brightness, hard shadows, and ambiance lighting (objects are never completely in the dark). It implements ambient and diffuse lighting in the mandatory part, and ambient, diffuse, and specular lighting in the bonus part.
 
+![minirt](https://user-images.githubusercontent.com/85483589/235368453-bfb95863-edff-42ce-9cce-3e2be0f034a7.png)
+composition.rt[^1]
+
 ## Ray Tracing Technique
 
 The ray tracing technique used in MiniRT consists of the following steps:
@@ -24,10 +27,24 @@ The ray tracing technique used in MiniRT consists of the following steps:
 
 ## Usage
 
-To render a scene, provide a valid `.rt`. The ray tracer will resize objects based on its unique properties defined in the file.
+### Install minilibx:
+```bash
+git clone https://github.com/42Paris/minilibx-linux
+cd minilibx-linux
+apt-get install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
+mv minilibx-linux/man/man1 to /usr/local/man/
+mv minilibx-linux/libmlx.a to /usr/local/lib/
+mv minilibx-linux/mlx.h to /usr/local/include/
+```
 
-#### Example usage:
+### Example usage:
 
+Clone the repository using:
+
+```bash
+git clone git@github.com:Guiribei/minirt.git
+```
+Compile the project:
 ```bash
 make
 ```
@@ -37,6 +54,8 @@ After compile the project (make bonus for bonus part), you can run the executabl
 ```bash
 ./miniRT scenes/[scene_file.rt]
 ```
+
+To render a scene, provide a valid `.rt`. The ray tracer will resize objects based on its unique properties defined in the file.
 
 ## Scene File Format
 
@@ -86,4 +105,8 @@ void	render_scene(t_minirt *minirt, t_hittable_list *world)
 
 This is a basic implementation of a ray tracing renderer, and improvements can be made in various aspects, such as performance optimization, support for more complex materials and lighting models, and the addition of more geometric primitives.
 
+![christmas scene](https://user-images.githubusercontent.com/85483589/235368990-ccbb253c-25e5-401a-843a-e9bd6e479531.png)
+
 > For a more in-depth look at the code, see the full implementation.
+
+[^1]: Scene created by @sgkhusal, avaliable at: https://github.com/sgkhusal/42-miniRT/blob/main/scenes/composition.rt
