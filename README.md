@@ -24,10 +24,24 @@ The ray tracing technique used in MiniRT consists of the following steps:
 
 ## Usage
 
-To render a scene, provide a valid `.rt`. The ray tracer will resize objects based on its unique properties defined in the file.
+### Install minilibx:
+```bash
+git clone https://github.com/42Paris/minilibx-linux
+cd minilibx-linux
+apt-get install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
+mv minilibx-linux/man/man1 to /usr/local/man/
+mv minilibx-linux/libmlx.a to /usr/local/lib/
+mv minilibx-linux/mlx.h to /usr/local/include/
+```
 
-#### Example usage:
+### Example usage:
 
+Clone the repository using:
+
+```bash
+git clone git@github.com:Guiribei/minirt.git
+```
+Compile the project:
 ```bash
 make
 ```
@@ -37,6 +51,8 @@ After compile the project (make bonus for bonus part), you can run the executabl
 ```bash
 ./miniRT scenes/[scene_file.rt]
 ```
+
+To render a scene, provide a valid `.rt`. The ray tracer will resize objects based on its unique properties defined in the file.
 
 ## Scene File Format
 
