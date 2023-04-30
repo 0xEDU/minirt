@@ -4,6 +4,7 @@ MiniRT is a simple ray tracer built using minilibx that is capable of rendering 
 The ray tracer features light management, including spot brightness, hard shadows, and ambiance lighting (objects are never completely in the dark). It implements ambient and diffuse lighting in the mandatory part, and ambient, diffuse, and specular lighting in the bonus part.
 
 ![minirt](https://user-images.githubusercontent.com/85483589/235368453-bfb95863-edff-42ce-9cce-3e2be0f034a7.png)
+composition.rt[^1]
 
 ## Ray Tracing Technique
 
@@ -107,3 +108,5 @@ This is a basic implementation of a ray tracing renderer, and improvements can b
 ![christmas scene](https://user-images.githubusercontent.com/85483589/235368990-ccbb253c-25e5-401a-843a-e9bd6e479531.png)
 
 > For a more in-depth look at the code, see the full implementation.
+
+[^1]: Scene created by @sgkhusal, avaliable at: https://github.com/sgkhusal/42-miniRT/blob/main/scenes/composition.rt
