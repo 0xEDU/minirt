@@ -6,7 +6,7 @@
 /*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:55:57 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/29 17:08:11 by guribeir         ###   ########.fr       */
+/*   Updated: 2023/04/30 00:49:46 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "../libft/includes/libput.h"
 # include "vector.h"
 # include "ray.h"
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1920.0
+# define HEIGHT 1080.0
 # define PI 3.1415926535897932385
 # define SPHERE 1
 # define PLANE 2
@@ -295,5 +295,6 @@ int				mlx_click_press_events(t_minirt *minirt);
 void			mlx_pixel_draw(t_image *image, int x, int y, int color);
 void			mlx_create_image(t_minirt *minirt);
 void			mlx_image_to_window(t_minirt *minirt, int x, int y);
+int				expose_event(t_minirt *minirt);
 
 #endif

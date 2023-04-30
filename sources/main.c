@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:50:59 by edu               #+#    #+#             */
-/*   Updated: 2023/04/29 15:45:29 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/30 00:43:23 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	render(t_minirt *minirt)
+{
+	if (minirt->mlx.window == NULL)
+		return (1);
+	mlx_clear_window(minirt->mlx.mlx, minirt->mlx.window);
+	render_scene(minirt, minirt->world);
+	mlx_image_to_window(minirt, 0, 0);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -29,8 +39,7 @@ int	main(int argc, char **argv)
 	set_ambient(minirt.ambient, world);
 	close(fd);
 	minirt.world = world;
-	render_scene(&minirt, world);
-	mlx_image_to_window(&minirt, 0, 0);
+	render(&minirt);
 	printf("DONE :D\n");
 	mlx_loop_window(&minirt);
 	return (0);
