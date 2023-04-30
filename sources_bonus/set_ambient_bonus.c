@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_ambient_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:45:42 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/29 15:56:42 by etachott         ###   ########.fr       */
+/*   Updated: 2023/04/30 01:15:33 by guribeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	set_ambient(t_ambient ambient, t_hittable_list *world)
 			tmp->cylinder->m.ambient = ambient.ratio;
 		if (tmp->type == PLANE)
 			tmp->plane->m.ambient = ambient.ratio;
+		if (tmp->type == CONE)
+			tmp->cone->m.ambient = ambient.ratio;
 		tmp = tmp->next;
 	}
 }
