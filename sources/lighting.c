@@ -6,7 +6,7 @@
 /*   By: etachott < etachott@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 18:59:51 by etachott          #+#    #+#             */
-/*   Updated: 2023/04/29 15:44:43 by etachott         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:24:06 by edu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static t_color	copy_and_deinit(t_color *colors)
 
 	result = vector_create(colors[RESULT].x, colors[RESULT].y,
 			colors[RESULT].z);
-	free(colors);
 	return (result);
 }
 
@@ -57,10 +56,9 @@ t_color	lighting(t_material m, t_light light, t_hit *hit, int in_shadow)
 	t_color		eff_color;
 	t_vector	lightv;
 	t_vector	reflect_v;
-	t_color		*colors;
+	t_color		colors[4];
 	double		lg_d_norm;
 
-	colors = ft_calloc(sizeof(t_color), 4);
 	eff_color = vector_product(vector_mult(m.color,
 				light.intensity), light.color);
 	lightv = normalize(vector_diff(light.source, hit->rec->point));
